@@ -1,0 +1,125 @@
+{% extends 'controlapp/base.html' %}
+
+{% block title %}
+{{user.username}}
+{% endblock %}
+
+{% block content %}
+
+<div class="container-flu">
+
+
+  <!-- content selector   -->
+  <ul class="nav justify-content-center nav-pills nav-fill">
+    <li class="nav-item">
+      <a class="nav-link active " href="#">Download Current</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " href="#">Absent Report</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " href="#">Vacation Request</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " href="#">Change Hours</a>
+    </li>
+  </ul>
+
+  <!-- Weather code -->
+  <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us" data-label_1="NEW YORK" data-label_2="WEATHER" data-theme="original" >NEW YORK WEATHER</a>
+  <script>
+  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+  </script>
+
+<!--  amount of employees-->
+  <div class="jumbotron">
+    <h2>Current Employees  {{ current_employees }}</h2>
+  </div>
+
+<!--  list of devices-->
+    {% if list_of_devices %}
+      <table class="table table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Devices</th>
+              <th scope="col">Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for device, quantity in list_of_devices.items %}
+               <tr>
+                 <td>{{ device }}</td>
+                 <td>{{ quantity }}</td>
+               </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+    {% endif %}
+
+    {% if warning_not_today_clock_in %}
+          <table class="table table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Devices</th>
+                <th scope="col">Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+        {% for location, value in warning_not_today_clock_in.items %}
+           <tr>
+             <td>{{ location}}</td>
+             <td>{{ value }}</td>
+           </tr>
+        {% endfor %}
+          </tbody>
+      </table>
+    {% endif%}
+
+<!--    list of location for employees working in other places-->
+    {% if current_not_primary %}
+    <h2>Employees From other Primaries </h2>
+        <table class="table table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Primary Department</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for data in current_employees.values %}
+               <tr>
+                 <td>{{ data.Name }}</td>
+                 <td>{{ data.Primary_Department }}</td>
+               </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+    {% endif %}
+
+
+    {% if primary_no_current %}
+        <h2>Employees From your site in Other locations </h2>
+        <table class="table table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Primary Department</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for data in primary_no_current.values %}
+               <tr>
+                 <td>{{ data }}</td>
+               </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+    {% endif %}
+
+
+
+</div>
+
+
+
+{% endblock %}

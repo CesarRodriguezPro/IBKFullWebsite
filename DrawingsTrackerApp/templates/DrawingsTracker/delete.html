@@ -1,0 +1,22 @@
+{% extends "DrawingsTracker/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Delete Drawings
+{% endblock %}
+
+{% block content%}
+<div class="container">
+<div class="jumbotron">
+<center>
+    <br>
+    <form method="POST">
+      {% csrf_token %}
+      {{form_delete|crispy}}
+    <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</center>
+</div>
+</div>
+
+{% endblock%}

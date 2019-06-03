@@ -1,0 +1,27 @@
+
+{% extends 'DrawingsTracker/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Add Drawings
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+<div class="jumbotron ">
+    <br>
+    <center>
+    <h2> Add Information</h2>
+    </center>
+<br>
+<form method="POST">
+  {% csrf_token %}
+  {{ form|crispy}}
+<button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+</div>
+</div>
+
+{% endblock %}

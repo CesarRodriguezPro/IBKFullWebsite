@@ -1,0 +1,35 @@
+{% extends "DrawingsTracker/base.html" %}
+
+{% block title %}
+View Information
+{% endblock %}
+{% block content%}
+<div class="container">
+<center>
+<br>
+<table class="table table table-striped">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">Code ID</th>
+    <th scope="col">Location</th>
+    <th scope="col">Drawings No</th>
+    <th scope="col">Description</th>
+    <th scope="col">Date Summited</th>
+  </tr>
+</thead>
+<tbody>
+{% for item in Drawings %}
+ <tr>
+   <td>{{ item.code_Id }}</td>
+   <td>{{ item.location }}</td>
+   <td>{{ item.drawings_no }}</td>
+   <td>{{ item.description }}</td>
+   <td>{{ item.date_submitted }}</td>
+ </tr>
+{% endfor %}
+</tbody>
+</table>
+</center>
+</div>
+
+{% endblock%}

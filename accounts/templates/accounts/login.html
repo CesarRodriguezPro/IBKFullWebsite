@@ -1,0 +1,25 @@
+{% extends "controlapp/base.html" %}
+{% block title %}
+login
+{% endblock %}
+
+{% block content%}
+
+<div style="background-color:#00012f">
+<div class="container" style="background-color:#00012f; padding-bottom:20px">
+<div class="jumbotron">
+<center>
+
+<h1> this is from accounts</h1>
+<form method="POST"  action="{% url 'accounts:login_user' %}">
+  {% csrf_token %}
+  <input type="text" name=username class=form-control >
+  <input type='password' name=password class=form-control>
+  <button type="submit">Login</button>
+</form>
+</center>
+</div>
+</div>
+</div>
+
+{% endblock%}
