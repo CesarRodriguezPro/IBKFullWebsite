@@ -11,7 +11,6 @@ def drawings_main(request):
 
 @login_required
 def drawings_add(request):
-
     add_drawings_form = AddDrawings()
     if request.method == "POST":
         add_drawings_form = AddDrawings(request.POST)
