@@ -2,6 +2,11 @@
 background-color:#00012f
 }
 
+.tableColor{
+background-color:#3d5177;
+color: white;
+}
+
 .simplePic {
    height:200px;
 }
@@ -18,5 +23,5 @@ background-color:#00012f
 }
 
 .yellow_mark{
-  color:#FFDE05
+  color:#FFDE05;
 }

@@ -1,16 +1,10 @@
 {% extends 'controlapp/base.html' %}
 
 {% block title %}
-{{user.username}}
+  {{user.username}}
 {% endblock %}
 
-{% block content %}
-
-<div class="container-flu">
-
-
-  <!-- content selector   -->
-  <ul class="nav justify-content-center nav-pills nav-fill">
+{% block foremanNav %}
     <li class="nav-item">
       <a class="nav-link active " href="#">Download Current</a>
     </li>
@@ -23,101 +17,127 @@
     <li class="nav-item">
       <a class="nav-link " href="#">Change Hours</a>
     </li>
-  </ul>
-
+{% endblock %}
+{% block content %}
+    <br>
   <!-- Weather code -->
   <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us" data-label_1="NEW YORK" data-label_2="WEATHER" data-theme="original" >NEW YORK WEATHER</a>
   <script>
   !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
   </script>
 
-<!--  amount of employees-->
-  <div class="jumbotron">
-    <h2>Current Employees  {{ current_employees }}</h2>
-  </div>
+<div class="container ">
+    <br>
+    <div class="row">
+        <div class="col-sm">
+            <!--  amount of employees-->
+              <div class="jumbotron">
+                <h2>Current Employees  {{ current_employees }}</h2>
+              </div>
+        </div>
 
-<!--  list of devices-->
-    {% if list_of_devices %}
-      <table class="table table table-striped">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">Devices</th>
-              <th scope="col">Quantity</th>
-            </tr>
-          </thead>
-          <tbody>
-              {% for device, quantity in list_of_devices.items %}
-               <tr>
-                 <td>{{ device }}</td>
-                 <td>{{ quantity }}</td>
-               </tr>
-              {% endfor %}
-          </tbody>
-      </table>
-    {% endif %}
+            <!--  list of devices-->
+        {% if list_of_devices %}
+        <div class="col-sm">
+            <h5>Devices</h5>
+              <table class="table table table-striped table-bordered">
+                  <thead class="tableColor">
+                    <tr>
+                      <th scope="col">Devices</th>
+                      <th scope="col">Quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for device, quantity in list_of_devices.items %}
+                       <tr>
+                         <td>{{ device }}</td>
+                         <td>{{ quantity }}</td>
+                       </tr>
+                      {% endfor %}
+                  </tbody>
+              </table>
+        </div>
+        {% endif %}
+    </div>
 
-    {% if warning_not_today_clock_in %}
-          <table class="table table table-striped">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">Devices</th>
-                <th scope="col">Quantity</th>
-              </tr>
-            </thead>
-            <tbody>
-        {% for location, value in warning_not_today_clock_in.items %}
-           <tr>
-             <td>{{ location}}</td>
-             <td>{{ value }}</td>
-           </tr>
-        {% endfor %}
-          </tbody>
-      </table>
-    {% endif%}
+    <div class="container=flu">
+        {% if warning_not_today_clock_in %}
+        <br>
+            <h4>Warning!</h4>
+            <h5>Employees Still in who didn't Clock in today</h5>
+                  <table class="table table table-striped table-bordered">
+                    <thead class="tableColor">
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Clock in</th>
+                          <th scope="col">Device Used</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                {% for data in warning_not_today_clock_in.values %}
+                   <tr>
+                     <td>{{ data.Name}}</td>
+                     <td>{{ data.Date}}</td>
+                     <td>{{ data.Device}}</td>
+                   </tr>
+                {% endfor %}
+                  </tbody>
+              </table>
+        <br>
+        {% endif%}
+    </div>
 
-<!--    list of location for employees working in other places-->
-    {% if current_not_primary %}
-    <h2>Employees From other Primaries </h2>
-        <table class="table table table-striped">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Primary Department</th>
-            </tr>
-          </thead>
-          <tbody>
-              {% for data in current_employees.values %}
-               <tr>
-                 <td>{{ data.Name }}</td>
-                 <td>{{ data.Primary_Department }}</td>
-               </tr>
-              {% endfor %}
-          </tbody>
-        </table>
-    {% endif %}
+        <div class="row">
+            <div class="col-sm">
+                <!--    list of location for employees working in other places-->
+                    {% if current_not %}
+                    <h5>Employees in other locations </h5>
+                        <table class="table table table-striped table-bordered">
+                          <thead class="tableColor">
+                            <tr>
+                              <th scope="col">Name</th>
+                              <th scope="col">Primary Department</th>
+                                <th scope="col">Current Department</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              {% for data in current_not %}
+                               <tr>
+                                    <td>{{ data.Name }}</td>
+                                    <td>{{ data.Primary_Department}}</td>
+                                    <td>{{ data.Current_Department}}</td>
+                               </tr>
+                              {% endfor %}
+                          </tbody>
+                        </table>
+                    {% endif %}
+            </div>
 
-
-    {% if primary_no_current %}
-        <h2>Employees From your site in Other locations </h2>
-        <table class="table table table-striped">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Primary Department</th>
-            </tr>
-          </thead>
-          <tbody>
-              {% for data in primary_no_current.values %}
-               <tr>
-                 <td>{{ data }}</td>
-               </tr>
-              {% endfor %}
-          </tbody>
-        </table>
-    {% endif %}
-
-
-
+            <div class="col-sm">
+                {% if primary_not %}
+                    <h5>Employees Visiting from your site </h5>
+                    <table class="table table table-striped table-bordered">
+                      <thead class="tableColor">
+                        <tr>
+                          <th scope="col">Name</th>
+                          <th scope="col">Primary Department</th>
+                          <th scope="col">Current Department</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for data in primary_not %}
+                           <tr>
+                               <td>{{ data.Name }}</td>
+                               <td>{{ data.Primary_Department}}</td>
+                               <td>{{ data.Current_Department}}</td>
+                           </tr>
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </div>
 
 

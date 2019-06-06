@@ -3,9 +3,11 @@ from .forms import AddDrawings,DeleteDrawings
 from .models import Drawings
 from django.contrib.auth.decorators import login_required
 
+
 @login_required
 def drawings_main(request):
     return render(request, 'DrawingsTracker/home.html')
+
 
 @login_required
 def drawings_add(request):
@@ -17,10 +19,12 @@ def drawings_add(request):
             new_drawings = add_drawings_form.save(commit=True)
     return render(request, 'DrawingsTracker/add.html', context={'form': add_drawings_form})
 
+
 @login_required
 def drawings_viewinfo(request):
     dict_items = Drawings.objects.all()
     return render(request, 'DrawingsTracker/viewinfo.html',context={'Drawings':dict_items})
+
 
 @login_required
 def drawings_delete(request):
