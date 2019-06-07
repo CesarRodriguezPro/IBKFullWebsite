@@ -5,23 +5,26 @@ import os
 
 class ItControl:
 
-    def __init__(self, foreman):
+    def __init__(self, first_name, last_name):
 
         # basic settings for timestation
-        self.foreman = foreman
+        self.first_name = first_name
+        self.last_name = last_name
         self.key_api = os.environ.get('TimeStationKey')
-        self.location = self.foreman_location(self.foreman)
 
         # get the information for current employees
-        self.code_current = 37
-        self.url_current = f"https://api.mytimestation.com/v0.1/reports/?api_key={self.key_api}&id={self.code_current}&exportformat=csv"
-        self.current_data = pd.read_csv(self.url_current)
+        # self.code_current = 37
+        # self.url_current = f"https://api.mytimestation.com/v0.1/reports/?api_key={self.key_api}&id={self.code_current}&exportformat=csv"
+        # self.current_data = pd.read_csv(self.url_current)
+
+        self.current_data = pd.read_csv(r"C:\Users\strea\Desktop\testdata.csv")
         self.filter_data_in = self.current_data[self.current_data['Status'].str.contains('In')]
+        self.location = self.foreman_location()
         self.data_current = self.filter_data_in[(self.filter_data_in['Current Department'].isin([self.location]))]
 
-    def foreman_location(self, foreman):
-        # todo working in user select location.
-        return '161E 28ST (SS)'
+    def foreman_location(self):
+        data = self.current_data[self.current_data['Name'].isin([f'{self.last_name}, {self.first_name}'])]['Primary Department']
+        return data.to_list()[0]
 
     def current_employees_count(self):
         return str(self.data_current.Name.count())
@@ -59,9 +62,7 @@ class ItControl:
         return return_list
 
 
-
-
-
 if __name__ == '__main__':
+    active = ItControl('Pavlo', 'Nalyvayko')
 
-    pass
+

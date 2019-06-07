@@ -26,14 +26,18 @@
           {% endif %}
 
           {% if user.is_authenticated %}
-            <li class="nav-item ">
-              <a class="navbar-brand" style="color:#FFDE05"> {{user.username}} </a>
-            </li>
+           <ul class="navbar-nav justify-content-center">
+             <li class="nav-item">
+               <a class="nav-link" style="color:#FFDE05;" href="{% url 'foreman_hub:foreman_main'%}">
+                   {{user.first_name}} {{user.last_name}}
+               </a>
+             </li>
+           </ul>
           {% endif %}
-
        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
        </button>
+
        <div class="collapse navbar-collapse" id="navbarSupportedContent">
          <ul class="navbar-nav ml-auto">
 
@@ -43,9 +47,6 @@
                    <a class="nav-link" href="{% url 'drawings_app:drawings_main' %}">Drawings</a>
                  </li>
                {% elif request.session.type == 'foreman' %}
-                 <li class="nav-item ">
-                   <a class="nav-link yellow_mark" href="{% url 'foreman_hub:foreman_main'%}">Foreman Home</a>
-                 </li>
                  {% block foremanNav %}
                  {% endblock%}
                {% endif %}

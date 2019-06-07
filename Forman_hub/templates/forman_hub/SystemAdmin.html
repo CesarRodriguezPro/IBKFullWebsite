@@ -1,34 +1,40 @@
-{% extends 'controlapp/base.html' %}
+ <!doctype html>
+ {% load  staticfiles %}
 
-{% block title %}
-  {{user.username}}
-{% endblock %}
+ <html lang="en">
+ <head>
+   <meta charset="utf-8">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+   <link rel="stylesheet" href="{% static 'css/SystemAdmin.css' %}">
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+   <link rel="shortcut icon" type="image/png" href="{% static 'images/controlapp/base/favicon.ico' %}" />
+   <title>Administrator</title>
+ </head>
 
-{% block foremanNav %}
-  <li class="nav-item">
-    <a class="nav-link active " href="#">Download Current</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link " href="#">Absent Report</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link " href="#">Vacation Request</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link " href="#">Change Hours</a>
-  </li>
-{% endblock %}
-
-{% block content %}
-
-<!-- Weather code -->
-<a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us" data-label_1="NEW YORK"
-  data-label_2="WEATHER" data-theme="original">NEW YORK WEATHER</a>
-<script>
-  !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
-</script>
-
+<body>
 <div class="container ">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Administrator</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Locations
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">location1</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!--start section of information -->
   <br>
   <div class="row">
     <!--  amount of employees-->
@@ -42,7 +48,7 @@
     {% if list_of_devices %}
     <div class="col-sm">
       <h5>Devices</h5>
-      <table class="table table table-striped table-bordered">
+      <table class="table table table-striped table-bordered table-dark table-sm"">
         <thead class="tableColor">
           <tr>
             <th scope="col">Devices</th>
@@ -67,7 +73,7 @@
     <br>
     <h4>Warning!</h4>
     <h5>Employees Still in who didn't Clock in today</h5>
-    <table class="table table table-striped table-bordered">
+    <table class="table table table-striped table-bordered table-dark table-sm"">
       <thead class="tableColor">
         <tr>
           <th scope="col">Name</th>
@@ -95,7 +101,7 @@
     {% if current_not %}
     <div class="col-sm"></div>
     <h5>Employees in other locations </h5>
-    <table class="table table table-striped table-bordered">
+    <table class="table table table-striped table-bordered table-dark table-sm"">
       <thead class="tableColor">
         <tr>
           <th scope="col">Name</th>
@@ -121,7 +127,7 @@
   {% if primary_not %}
   <div class="col-sm"></div>
   <h5>Employees Visiting from your site</h5>
-  <table class="table table table-striped table-bordered">
+  <table class="table table table-striped table-bordered table-dark table-sm"">
     <thead class="tableColor">
       <tr>
         <th scope="col">Name</th>
@@ -141,11 +147,8 @@
   </table>
 </div>
 {% endif %}
-
 </div>
 </div>
 </div>
 
-
-
-{% endblock %}
+</body>

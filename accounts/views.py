@@ -18,14 +18,21 @@ def login_user(request):
                 login(request, user)
                 request.session['type'] = 'drawings'
                 return HttpResponseRedirect(reverse('drawings_app:drawings_main'))
+
+            elif user.is_active and user.groups.filter(name='SystemAdmin').exists():
+                login(request, user)
+                return HttpResponseRedirect(reverse('foreman_hub:system_admin'))
+
             elif user.is_active and user.groups.filter(name='Foreman').exists():
                 login(request, user)
                 request.session['type'] = 'foreman'
                 return HttpResponseRedirect(reverse('foreman_hub:foreman_main'))
+
             elif user.is_active:
                 login(request, user)
                 request.session['type'] = 'normal'
                 return HttpResponseRedirect(reverse('home'))
+
             else:
                 return HttpResponse('ACCOUNT NOT ACTIVE')
         else:
