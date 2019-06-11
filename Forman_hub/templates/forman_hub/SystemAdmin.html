@@ -22,13 +22,24 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Locations
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">location1</a>
+      
+
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Dropdown
+            <span class="caret"></span>
+            </button>
+                
+          <ul class="dropdown-menu">
+          <form method="POST"> 
+           {% csrf_token %}
+          <li><button type="submit" class="btn" name="" >All Locations</button></li>
+              {% for location in list_locations %}
+                <li><button type="submit" class="btn"  name="{{ location }}" >{{ location }}</button></li>
+              {% endfor %}
+          </form>    
         </div>
+  
       </li>
     </ul>
   </div>
