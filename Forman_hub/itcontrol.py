@@ -5,19 +5,20 @@ import os
 
 class ItControl:
 
-    def __init__(self, first_name, last_name):
+    def __init__(self, first_name, last_name, location_request):
 
         # basic settings for timestation
         self.first_name = first_name
         self.last_name = last_name
+        self.location_request = location_request
         self.key_api = os.environ.get('TimeStationKey')
 
-        # get the information for current employees
+        # # get the information for current employees
         # self.code_current = 37
         # self.url_current = f"https://api.mytimestation.com/v0.1/reports/?api_key={self.key_api}&id={self.code_current}&exportformat=csv"
         # self.current_data = pd.read_csv(self.url_current)
 
-        self.current_data = pd.read_csv(r"C:\Users\strea\Desktop\testdata.csv")
+        self.current_data = pd.read_csv(r"C:\Users\IBKCo\Desktop\test_data.csv")
         self.filter_data_in = self.current_data[self.current_data['Status'].str.contains('In')]
     
     def get_list_of_location(self):
@@ -26,32 +27,48 @@ class ItControl:
         return [location_item for location_item in data.keys()]
 
     def current_location(self):
-        location = self.foreman_location()
-        data_current = self.filter_data_in[(self.filter_data_in['Current Department'].isin([location]))]
-        return data_current
+        if not self.location_request:
+            location = self.foreman_location()
+            data_current = self.filter_data_in[(self.filter_data_in['Current Department'].isin([location]))]
+            return data_current, location
+        
+        elif self.location_request == 'allLocations':  
+            return self.filter_data_in, 'all Locations'
+        
+        elif self.location_request:
+            data_current = self.filter_data_in[(self.filter_data_in['Current Department'].isin([self.location_request]))]
+            return data_current, self.location_request
+        else:
+            return self.filter_data_in[(self.filter_data_in['Current Department'].isin(['']))], ''
 
     def foreman_location(self):
         data = self.current_data[self.current_data['Name'].isin([f'{self.last_name}, {self.first_name}'])]['Primary Department']
         return data.to_list()[0]
 
     def current_employees_count(self):
-        current_location = self.current_location()
+        current_location = self.current_location()[0]
         return str(current_location.Name.count())
 
     def list_of_devices(self):
-        data_current = self.current_location()
+        data_current = self.current_location()[0] # this will get the data for current location as pandas dataframe.
         devices_view = data_current.groupby(['Device']).count()
         return None if devices_view['Current Department'].empty else devices_view['Current Department'].to_dict()
 
     def warning_not_today_clock_in(self):
-        data_current = self.current_location()
+        data_current = self.current_location()[0]
         last_check_in = data_current[data_current['Date'] != datetime.date.today().strftime('%Y-%m-%d')]
         return None if last_check_in.empty else last_check_in.to_dict('index')
 
     def check_function(self):
-        location  = self.foreman_location()
-        data_current = self.filter_data_in[(self.filter_data_in['Current Department'].isin([location]))]
-        data_primary = self.filter_data_in[(self.filter_data_in['Primary Department'].isin([location]))]
+        def location_picker():
+            if self.current_location()[1] == 'all Locations':
+                return self.get_list_of_location()
+            else:
+                return [self.current_location()[1]]
+        
+        location  = location_picker()
+        data_current = self.filter_data_in[(self.filter_data_in['Current Department'].isin(location))]
+        data_primary = self.filter_data_in[(self.filter_data_in['Primary Department'].isin(location))]
         primary_no_current = data_current[data_current['Primary Department'] != data_current['Current Department']]
         current_not_primary = data_primary[data_primary['Primary Department'] != data_primary['Current Department']]
         current_not = self.adact_data(current_not_primary)
@@ -75,7 +92,7 @@ class ItControl:
 
 
 if __name__ == '__main__':
-    active = ItControl('Pavlo', 'Nalyvayko')
-    x = active.get_list_of_location()
-    print(x)
+    active = ItControl('Pavlo', 'Nalyvayko', None)
+    active.current_data.to_csv('test_data.csv')
+
 

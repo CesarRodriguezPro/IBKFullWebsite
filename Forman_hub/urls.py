@@ -6,5 +6,4 @@ app_name='foreman_hub'
 
 urlpatterns = [
     path('', views.foreman_main, name='foreman_main'),
-    path('systemAdmin/', views.system_admin, name='system_admin'),
 ]

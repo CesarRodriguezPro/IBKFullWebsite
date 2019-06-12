@@ -21,7 +21,7 @@ def login_user(request):
 
             elif user.is_active and user.groups.filter(name='SystemAdmin').exists():
                 login(request, user)
-                return HttpResponseRedirect(reverse('foreman_hub:system_admin'))
+                return HttpResponseRedirect(reverse('foreman_hub:foreman_main'))
 
             elif user.is_active and user.groups.filter(name='Foreman').exists():
                 login(request, user)

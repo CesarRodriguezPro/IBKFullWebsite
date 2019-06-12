@@ -17,30 +17,33 @@
 <div class="container ">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Administrator</a>
+ 
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    {{ current_location_label }}
+    <span class="caret"></span>
+    </button>
+        
+  <ul class="dropdown-menu">
+  <form method="POST"> 
+   {% csrf_token %}
+  <li><button type="submit" class="btn" name="" >All Locations</button></li>
+      {% for location in list_locations %}
+        <li><button type="submit" class="btn"  name="{{ location }}" >{{ location }}</button></li>
+      {% endfor %}
+  </form> 
+  </ul>   
+</div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav ml-auto">
       
-
-          <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Dropdown
-            <span class="caret"></span>
-            </button>
-                
-          <ul class="dropdown-menu">
-          <form method="POST"> 
-           {% csrf_token %}
-          <li><button type="submit" class="btn" name="" >All Locations</button></li>
-              {% for location in list_locations %}
-                <li><button type="submit" class="btn"  name="{{ location }}" >{{ location }}</button></li>
-              {% endfor %}
-          </form>    
-        </div>
-  
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'accounts:logout_user' %}">Log Out</a>
       </li>
+    
     </ul>
   </div>
 </nav>
@@ -110,7 +113,7 @@
 
     <!--    list of location for employees working in other places-->
     {% if current_not %}
-    <div class="col-sm"></div>
+    <div class="col-sm">
     <h5>Employees in other locations </h5>
     <table class="table table table-striped table-bordered table-dark table-sm"">
       <thead class="tableColor">
@@ -130,13 +133,13 @@
         {% endfor %}
       </tbody>
     </table>
-  </div>
+    </div>
   {% endif %}
 
 
 
   {% if primary_not %}
-  <div class="col-sm"></div>
+  <div class="col-sm">
   <h5>Employees Visiting from your site</h5>
   <table class="table table table-striped table-bordered table-dark table-sm"">
     <thead class="tableColor">
@@ -156,6 +159,7 @@
       {% endfor %}
     </tbody>
   </table>
+  </div>
 </div>
 {% endif %}
 </div>
