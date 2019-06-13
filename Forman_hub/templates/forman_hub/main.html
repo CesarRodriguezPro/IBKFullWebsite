@@ -5,8 +5,11 @@
 {% endblock %}
 
 {% block foremanNav %}
+ <li class="nav-item">
+    <a class="nav-link active" style="color:#FFDE05;" href="#">{{ current_location_label }}</a>
+  </li>
   <li class="nav-item">
-    <a class="nav-link active " href="#">Download Current</a>
+    <a class="nav-link  " href="#">Download Current</a>
   </li>
   <li class="nav-item">
     <a class="nav-link " href="#">Absent Report</a>
@@ -93,7 +96,7 @@
 
     <!--    list of location for employees working in other places-->
     {% if current_not %}
-    <div class="col-sm"></div>
+    <div class="col-sm">
     <h5>Employees in other locations </h5>
     <table class="table table table-striped table-bordered">
       <thead class="tableColor">
@@ -119,7 +122,7 @@
 
 
   {% if primary_not %}
-  <div class="col-sm"></div>
+  <div class="col-sm">
   <h5>Employees Visiting from your site</h5>
   <table class="table table table-striped table-bordered">
     <thead class="tableColor">

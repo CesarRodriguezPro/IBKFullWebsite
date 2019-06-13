@@ -15,8 +15,10 @@
 
 <body>
 <div class="container ">
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Administrator</a>
+  <a class="navbar-brand" href="{% url 'home' %}">Administrator</a>
  
   <div class="dropdown">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -25,13 +27,13 @@
     </button>
         
   <ul class="dropdown-menu">
-  <form method="POST"> 
-   {% csrf_token %}
-  <li><button type="submit" class="btn" name="" >All Locations</button></li>
-      {% for location in list_locations %}
-        <li><button type="submit" class="btn"  name="{{ location }}" >{{ location }}</button></li>
-      {% endfor %}
-  </form> 
+    <form method="POST"> 
+    {% csrf_token %}
+    <li><button type="submit" class="btn" name="" >All Locations</button></li>
+        {% for location in list_locations %}
+          <li><button type="submit" class="btn"  name="{{ location }}" >{{ location }}</button></li>
+        {% endfor %}
+    </form> 
   </ul>   
 </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

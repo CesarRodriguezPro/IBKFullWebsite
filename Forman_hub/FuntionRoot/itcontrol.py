@@ -18,9 +18,9 @@ class ItControl:
         # self.url_current = f"https://api.mytimestation.com/v0.1/reports/?api_key={self.key_api}&id={self.code_current}&exportformat=csv"
         # self.current_data = pd.read_csv(self.url_current)
 
-        self.current_data = pd.read_csv(r"C:\Users\IBKCo\Desktop\test_data.csv")
+        self.current_data = pd.read_csv(r"C:\Users\strea\Desktop\test_data.csv")
         self.filter_data_in = self.current_data[self.current_data['Status'].str.contains('In')]
-    
+
     def get_list_of_location(self):
         raw_data = self.current_data.groupby(['Primary Department']).any()
         data = raw_data.to_dict('index')
@@ -31,10 +31,10 @@ class ItControl:
             location = self.foreman_location()
             data_current = self.filter_data_in[(self.filter_data_in['Current Department'].isin([location]))]
             return data_current, location
-        
-        elif self.location_request == 'allLocations':  
+
+        elif self.location_request == 'allLocations':
             return self.filter_data_in, 'all Locations'
-        
+
         elif self.location_request:
             data_current = self.filter_data_in[(self.filter_data_in['Current Department'].isin([self.location_request]))]
             return data_current, self.location_request
@@ -65,7 +65,7 @@ class ItControl:
                 return self.get_list_of_location()
             else:
                 return [self.current_location()[1]]
-        
+
         location  = location_picker()
         data_current = self.filter_data_in[(self.filter_data_in['Current Department'].isin(location))]
         data_primary = self.filter_data_in[(self.filter_data_in['Primary Department'].isin(location))]
@@ -96,5 +96,3 @@ class ItControl:
 if __name__ == '__main__':
     active = ItControl('Pavlo', 'Nalyvayko', None)
     active.current_data.to_csv('test_data.csv')
-
-

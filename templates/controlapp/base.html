@@ -19,19 +19,21 @@
    <!-- ---------------------------   heather navigation bar ----------------------------------------------- -->
    <div class="container-flu">
      <nav class="navbar navbar-expand-lg sticky-top navbar-dark" style="background-color:#00012f">
-       <a class="navbar-brand" href="#">
-       <img src="{% static 'images/controlapp/base/ibklogo.jpg' %}" width="90" alt=""></a>
+       <a class="navbar-brand" href="{% url 'home' %}">
+       <img src="{% static 'images/controlapp/base/ibklogo.jpg' %}" width="90" alt="">
           {% if not user.is_authenticated %}
               <a class="navbar-brand" href="{% url 'home'%}">IBK Construction Group</a>
           {% endif %}
 
           {% if user.is_authenticated %}
            <ul class="navbar-nav justify-content-center">
-             <li class="nav-item">
-               <a class="nav-link" style="color:#FFDE05;" href="{% url 'foreman_hub:foreman_main'%}">
+              {% if request.session.type == 'foreman' or request.session.type == 'systemAdmin' %}
+              <li class="nav-item">
+               <a  style="color:#FFDE05;" href="{% url 'foreman_hub:foreman_main'%}">
                    {{user.first_name}} {{user.last_name}}
                </a>
-             </li>
+              </li>
+               {% endif %}
            </ul>
           {% endif %}
        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +48,7 @@
                  <li class="nav-item ">
                    <a class="nav-link" href="{% url 'drawings_app:drawings_main' %}">Drawings</a>
                  </li>
-               {% elif request.session.type == 'foreman' %}
+               {% elif request.session.type == 'foreman' or request.session.type == 'systemAdmin' %}
                  {% block foremanNav %}
                  {% endblock%}
                {% endif %}

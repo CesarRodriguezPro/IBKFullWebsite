@@ -29,13 +29,12 @@ def data_collection(request, location_request=None):
 
 
 def system_admin(request):
-
-
     if request.method == 'POST':
         form = request.POST
-        location_name = list(form.keys())[1] if len(list(form.keys())) > 1 else 'allLocations'
-        data = data_collection(request, location_request = location_name)
+        location_request = list(form.keys())[1] if len(list(form.keys())) > 1 else 'allLocations'
+        data = data_collection(request, location_request = location_request)
         return render(request, 'forman_hub/SystemAdmin.html', context=data)
+    
     data = data_collection(request)
     return render(request, 'forman_hub/SystemAdmin.html', context=data)
 
