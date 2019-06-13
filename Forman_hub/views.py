@@ -7,7 +7,6 @@ from . import itcontrol
 register = template.Library()
 
 
-
 def data_collection(request, location_request=None):
 
     first_name                 = request.user.first_name
