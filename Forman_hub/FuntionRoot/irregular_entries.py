@@ -2,11 +2,11 @@ import pandas as pd
 import datetime
 import os
         
-
+''' this will check if there is any wrong entry in the timestation entry log '''
 
 class IrregularEntries:
 
-    def __init__(self,key_api):
+    def __init__(self):
      
         self.key_api = os.environ.get('TimeStationKey')
         self.CODE = 34  # Employee Activity
@@ -15,8 +15,9 @@ class IrregularEntries:
 
         self.url_data = f"https://api.mytimestation.com/v0.1/reports/?api_key={self.key_api}&" \
             f"Report_StartDate={self.current_monday}&Report_EndDate={self.today}&id={self.CODE}&exportformat=csv"
-        self.raw_data = pd.read_csv(self.url_data)
-        
+        # self.raw_data = pd.read_csv(self.url_data)
+        self.raw_data = pd.read_csv(r"C:\Users\IBKCo\Desktop\testdata\EmployeeActivity.csv")
+
     def process_information(self):
 
         sorted_db = self.raw_data.sort_values(['Name', 'Date'])
@@ -27,16 +28,17 @@ class IrregularEntries:
     def send_to_website(self):
         ' working in this part to adact this funtion to html views.'
         sorted_db = self.process_information()
-        
-        print('')
-
+        return sorted_db.to_dict('index')
 
     def display_data(self):
         sorted_db = self.process_information()
         if not sorted_db.empty:
             print('This are Irregular entries -> please check \n ')
             print(sorted_db[sorted_db['flag']][['Name', 'Department', 'Date','Time', 'Activity']].to_string())
-            print(self.brk)
+        else:
+            print('there are not data to display')
+
 
 if __name__ == "__main__":
-    pass
+    active = IrregularEntries()
+    active.raw_data.to_csv('EmployeeActivity.csv')

@@ -84,6 +84,39 @@
     {% endif %}
   </div>
 
+
+  <!-- irregular_entries -->
+  {% if irregular_entries %}
+  <div class="container=flu">
+    <br>
+    <h5>Irregular Entries </h5>
+    <table class="table table table-striped table-bordered table-dark table-sm"">
+      <thead class="tableColor">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Department</th>
+          <th scope="col">Device Used</th>
+          <th scope="col">Time</th>
+          <th scope="col">Activity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in irregular_entries.values %}
+        <tr>
+          <td>{{data.Name}}</td>
+          <td>{{data.Department}}</td>
+          <td>{{data.Device}}</td>
+          <td>{{data.Time}}</td>
+          <td>{{data.Activity}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <br>
+  </div>
+  <br>
+  {% endif%}
+
   <div class="container=flu">
     {% if warning_not_today_clock_in %}
     <br>

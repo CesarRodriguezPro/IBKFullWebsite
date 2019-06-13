@@ -2,10 +2,22 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django import template
 from .FuntionRoot import itcontrol
+from .FuntionRoot.irregular_entries import IrregularEntries
 
 
 register = template.Library()
 
+def irregular_entries_dispatch(location_request):
+
+    ''' Downloading data from timestation can make Website Slow down.
+    with this function i will download this data only when i requested ALL location View.
+    this will reduce the server use.'''
+
+    if location_request == 'allLocations':
+        irregular = IrregularEntries()
+        return irregular.send_to_website()
+    else:
+        return None
 
 def data_collection(request, location_request=None):
 
@@ -15,6 +27,7 @@ def data_collection(request, location_request=None):
     list_locations             = active.get_list_of_location()
     current_not, primary_not   = active.check_function()
     current_location_label     = active.current_location()[1]
+    irregular_entries          = irregular_entries_dispatch(location_request)
 
     data = {
         'current_employees': active.current_employees_count(),
@@ -24,11 +37,13 @@ def data_collection(request, location_request=None):
         'primary_not': primary_not, 
         'list_locations': list_locations,
         'current_location_label': current_location_label,
+        'irregular_entries': irregular_entries,
     }
     return data
 
 
 def system_admin(request):
+
     if request.method == 'POST':
         form = request.POST
         location_request = list(form.keys())[1] if len(list(form.keys())) > 1 else 'allLocations'

@@ -13,12 +13,12 @@ class ItControl:
         self.location_request = location_request
         self.key_api = os.environ.get('TimeStationKey')
 
-        # # get the information for current employees
-        # self.code_current = 37
-        # self.url_current = f"https://api.mytimestation.com/v0.1/reports/?api_key={self.key_api}&id={self.code_current}&exportformat=csv"
-        # self.current_data = pd.read_csv(self.url_current)
+        # get the information for current employees
+        self.code_current = 37
+        self.url_current = f"https://api.mytimestation.com/v0.1/reports/?api_key={self.key_api}&id={self.code_current}&exportformat=csv"
+        self.current_data = pd.read_csv(self.url_current)
 
-        self.current_data = pd.read_csv(r"C:\Users\strea\Desktop\test_data.csv")
+        # self.current_data = pd.read_csv(r"C:\Users\strea\Desktop\test_data.csv")
         self.filter_data_in = self.current_data[self.current_data['Status'].str.contains('In')]
 
     def get_list_of_location(self):
