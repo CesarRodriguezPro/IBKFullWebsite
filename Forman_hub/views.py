@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django import template
-from . import itcontrol
+from .FuntionRoot import itcontrol
 
 
 register = template.Library()
