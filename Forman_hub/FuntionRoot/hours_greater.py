@@ -1,42 +1,34 @@
 
 import pandas as pd
 import datetime
+import os 
 
 today = datetime.date.today()
-last_monday = today - datetime.timedelta(6)
-#last_monday = today - datetime.timedelta(days=today.weekday())
-date= last_monday.strftime('%Y-%m-%d')
+past_date = today - datetime.timedelta(6)
+date= past_date.strftime('%Y-%m-%d')
 
 class HoursGreater:
 
-    def __init__(self, key_api, brk):
-        self.brk = brk
-        self.key_api = key_api
-        self.CODE = 41
+    def __init__(self):
+    
+        self.key_api = os.environ.get('TimeStationKey')
+        self.CODE = 41 # 1 week summary 
         self.url = f"https://api.mytimestation.com/v0.1/reports/?api_key={self.key_api}&Report_StartDate={date}&id={self.CODE}&exportformat=csv"
-        self.df = pd.read_csv(self.url)
+        # self.raw_data = pd.read_csv(self.url)
+        self.raw_data = pd.read_csv(r"C:\Users\strea\Desktop\testfiles\1weekSummary.csv")
 
-    def hours_greater(self, location):
-
-        ''' This will display in the main view if employees has hours greater that 15,
-        if employees forgot to clock out the previous days this report will help to see those employees
-        '''
-
-        filter_data = self.df[self.df['Department'].str.contains(location)]
-        col = filter_data.iloc[:, 4:-3].columns.values
-        lb = list(col)
+    def get_times(self):
+        data = self.raw_data
+        just_columns = data.iloc[:, 5:-3].columns.values
+        lb = list(just_columns)
         lb.insert(0, 'Employee')
         lb.insert(1, 'Department')
-        
-        #  i need to make global so i can be print from the outsite of this functions.
-        global great_hours
-        great_hours = filter_data[filter_data[filter_data[col] > 15][col].notnull().any(1)][lb]
-        
-        if great_hours.empty:
-            pass
-        else:
-            print('\n\nWarning ----> Please review Employees hours on timestation')
-            print(self.brk)            
-            print(great_hours.to_string())
-            print(self.brk)            
-            print('\n')
+        great_hours = data[data[data[just_columns] > 15 ][just_columns].notnull().any(1)][lb]
+        return great_hours.to_dict('split')
+    
+if __name__ == "__main__":
+    active = HoursGreater()
+    data = active.get_times()
+    # active.raw_data.to_csv('1weekSummary.csv')
+    for x, y in data.items():
+        print(x,y)

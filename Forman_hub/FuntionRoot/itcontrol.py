@@ -16,15 +16,19 @@ class ItControl:
         # get the information for current employees
         self.code_current = 37
         self.url_current = f"https://api.mytimestation.com/v0.1/reports/?api_key={self.key_api}&id={self.code_current}&exportformat=csv"
-        self.current_data = pd.read_csv(self.url_current)
+        # self.current_data = pd.read_csv(self.url_current)
 
-        # self.current_data = pd.read_csv(r"C:\Users\strea\Desktop\test_data.csv")
+        self.current_data = pd.read_csv(r"C:\Users\strea\Desktop\testfiles\test_data.csv")
         self.filter_data_in = self.current_data[self.current_data['Status'].str.contains('In')]
 
     def get_list_of_location(self):
         raw_data = self.current_data.groupby(['Primary Department']).any()
         data = raw_data.to_dict('index')
         return [location_item for location_item in data.keys()]
+
+    def current_working_locations(self):
+        raw_data = self.filter_data_in.groupby(['Current Department']).count()
+        return raw_data.to_dict('index')
 
     def current_location(self):
         if not self.location_request:
@@ -33,7 +37,7 @@ class ItControl:
             return data_current, location
 
         elif self.location_request == 'allLocations':
-            return self.filter_data_in, 'all Locations'
+            return self.filter_data_in, 'All Locations'
 
         elif self.location_request:
             data_current = self.filter_data_in[(self.filter_data_in['Current Department'].isin([self.location_request]))]
@@ -61,7 +65,7 @@ class ItControl:
 
     def check_function(self):
         def location_picker():
-            if self.current_location()[1] == 'all Locations':
+            if self.current_location()[1] == 'All Locations':
                 return self.get_list_of_location()
             else:
                 return [self.current_location()[1]]
@@ -91,8 +95,7 @@ class ItControl:
         return return_list
 
 
-
-
 if __name__ == '__main__':
     active = ItControl('Pavlo', 'Nalyvayko', None)
     active.current_data.to_csv('test_data.csv')
+
