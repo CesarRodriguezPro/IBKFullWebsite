@@ -18,10 +18,15 @@ class ItControl:
         self.url_current = f"https://api.mytimestation.com/v0.1/reports/?api_key={self.key_api}&id={self.code_current}&exportformat=csv"
         # self.current_data = pd.read_csv(self.url_current)
 
-        self.current_data = pd.read_csv(r"C:\Users\strea\Desktop\testfiles\test_data.csv")
+        self.current_data = pd.read_csv(r"C:\Users\IBKCo\Desktop\testDataFile\test_data.csv")
         self.filter_data_in = self.current_data[self.current_data['Status'].str.contains('In')]
 
+    def save_current(self):
+        data_pd, location_name = self.current_location()
+        return data_pd.to_csv(), location_name
+    
     def get_list_of_location(self):
+        ''' this return a list of the current locations'''
         raw_data = self.current_data.groupby(['Primary Department']).any()
         data = raw_data.to_dict('index')
         return [location_item for location_item in data.keys()]
@@ -31,10 +36,14 @@ class ItControl:
         return raw_data.to_dict('index')
 
     def current_location(self):
+        '''this function will search for the current location of the user has log in.'''
         if not self.location_request:
-            location = self.foreman_location()
-            data_current = self.filter_data_in[(self.filter_data_in['Current Department'].isin([location]))]
-            return data_current, location
+            try:
+                location = self.foreman_location()
+                data_current = self.filter_data_in[(self.filter_data_in['Current Department'].isin([location]))]
+                return data_current, location
+            except:
+                return self.filter_data_in, 'All Locations'
 
         elif self.location_request == 'allLocations':
             return self.filter_data_in, 'All Locations'
@@ -42,8 +51,7 @@ class ItControl:
         elif self.location_request:
             data_current = self.filter_data_in[(self.filter_data_in['Current Department'].isin([self.location_request]))]
             return data_current, self.location_request
-        else:
-            return self.filter_data_in[(self.filter_data_in['Current Department'].isin(['']))], ''
+
 
     def foreman_location(self):
         data = self.current_data[self.current_data['Name'].isin([f'{self.last_name}, {self.first_name}'])]['Primary Department']
@@ -97,5 +105,5 @@ class ItControl:
 
 if __name__ == '__main__':
     active = ItControl('Pavlo', 'Nalyvayko', None)
-    active.current_data.to_csv('test_data.csv')
-
+    # active.current_data.to_csv('test_data.csv')
+    active.save_current()

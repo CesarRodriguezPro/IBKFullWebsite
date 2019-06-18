@@ -1,0 +1,147 @@
+,Unnamed: 0,Employee ID,Name,Title,Primary Department,Current Department,Device,Status,Date / Time,Date,Time
+0,1.0,1325,"Armendariz, Christian",11706  W   Safety Leader Mineola,199 2nd Street(Mineola),262 Kent,"Shtybel, Andriy",In,2019-06-14 06:54,2019-06-17,06:54
+1,2.0,2,"Baginski, Jozef",W   RR CSM,511E 86St,511E 86St,"Gurariy, Simon",In,2019-06-14 06:48,2019-06-17,06:48
+2,4.0,1666,"Baird, Derick",B   RR Carpenter VAC:05.13-05.17.19,511E 86St,123 Linden,"trzpis, tomasz",In,2019-06-14 07:01,2019-06-17,07:01
+3,5.0,,"Balde, Souleymane",B   NEW-07.18.18,199 2nd Street(Mineola),199 2nd Street(Mineola),"Rustamov, Bakhtiyor",In,2019-06-14 06:58,2019-06-17,06:58
+4,8.0,1359,"Blake, Balford",11236 B  VB SILICA CP;,262 Kent,262 Kent,"Shtybel, Andriy",In,2019-06-14 07:03,2019-06-17,07:03
+5,9.0,1056,"Bondarenko, Vasyl",W ABS: 04.29.19-06.06.19;LO-04.24.19;REH-06.10.19,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:12,2019-06-17,07:12
+6,10.0,1997,"Bravo, Luis",11237 H VB - Carpenters,262 Kent,262 Kent,"Shtybel, Andriy",In,2019-06-14 06:53,2019-06-17,06:53
+7,11.0,1297,"Brown, Martin",RR SILICA CP;,262 Kent,262 Kent,"Shtybel, Andriy",In,2019-06-14 06:53,2019-06-17,06:53
+8,12.0,,"Bugaev, Aleksei",W YD Rebar Specialist;VAC:05.27.19-06.09.19,511E 86St,RCS,RCS - Office,In,2019-06-14 07:59,2019-06-17,07:59
+9,13.0,2092,"Carter, Jason",H,511E 86St,511E 86St,"Gurariy, Simon",In,2019-06-14 06:55,2019-06-17,06:55
+10,14.0,,"Charles, Ken",11239 B VB - Carpenter;,Yard NJ,Yard NJ,NJ Yard Fujitsu tab,In,2019-06-14 07:00,2019-06-17,07:00
+11,15.0,993,"Chayka, Mykola",RR REBAR FOREMAN;,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:14,2019-06-17,07:14
+12,16.0,1061,"Checo, Jose",11207 H SILICA CP,262 Kent,262 Kent,"Shtybel, Andriy",In,2019-06-14 06:54,2019-06-17,06:54
+13,17.0,2336,"Chekmarov, Yuriy",W   Back-10.04.18;,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:13,2019-06-17,07:13
+14,4.0,1666,"Baird, Derick",B   RR Carpenter VAC:05.13-05.17.19,511E 86St,123 Linden,"trzpis, tomasz",In,2019-06-14 07:01,2019-06-17,07:01
+15,18.0,1008,"Chimborazo, Segundo",11368 H,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:12,2019-06-17,07:12
+16,20.0,,"Collins, Sheldon",B   SILICA CP,511E 86St,511E 86St,"Gurariy, Simon",In,2019-06-14 07:00,2019-06-17,07:00
+17,21.0,9053-Temp,"Conquest, Alan",11101 B VB - RIGGER,161E 28ST (SS),Yard NJ,NJ Yard Fujitsu tab,In,2019-06-14 08:05,2019-06-17,08:05
+18,22.0,293,"Contreras, Rene",11206 H YD Concrete Safety Manager,262 Kent,262 Kent,"Shtybel, Andriy",In,2019-06-14 06:53,2019-06-17,06:53
+19,24.0,,"CUMBE, JUAN",GALKIN Driver,Yard,Yard,Getac_yard,In,2019-06-14 05:52,2019-06-17,05:52
+20,26.0,1806,"Daniels, William",11101 B RR Safety Carpenter;ABS:05.13-05.16,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:14,2019-06-17,07:14
+21,27.0,1084,"Davis, Tarelle",RR Rigger,511E 86St,511E 86St,"Mindyuk, Stanislav",In,2019-06-14 06:54,2019-06-17,06:54
+22,28.0,988,"Dechen, Dechen",11221 A VB - REBAR,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:14,2019-06-17,07:14
+23,30.0,1354,"Deuso, Clifford",10460 W REH-11.01.18; LO-12.12.18; REH-01.07.19,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:15,2019-06-17,07:15
+24,31.0,1998,"Dhondup, Dawa",A   RR Rebar Labourer,511E 86St,161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:14,2019-06-17,07:14
+25,33.0,263,"Diawara, Hame",10031 B   RR Carpenter,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:14,2019-06-17,07:14
+26,34.0,,"Diawara, Mohamed",10031 B VB - FORMS; VAC:05.17.19-05.31.19,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:15,2019-06-17,07:15
+27,36.0,845,"Espinoza, Modesto",RR Demolition Labourer,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:14,2019-06-17,07:14
+28,37.0,754,"Fassa, Hamatta",B   RR Carpenter,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:15,2019-06-17,07:15
+29,38.0,921,"Ferguson, Victor",11226 B VB - Carpenter;,Yard NJ,Yard NJ,NJ Yard Fujitsu tab,In,2019-06-14 07:00,2019-06-17,07:00
+30,39.0,295,"Fofana, Lamine",100.38 B VB - FORMS;VAC:06.03-06.26.19,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:14,2019-06-17,07:14
+31,40.0,502,"Fyffe, Bryan",B VB - FORMS; LO-05.31.19,Yard NJ,Yard NJ,NJ Yard Fujitsu tab,In,2019-06-14 07:01,2019-06-17,07:01
+32,42.0,1015,"Gonpo, Yeshi",113.68 A   RR Rebar Labourer,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:14,2019-06-17,07:14
+33,43.0,,"Gonzales, Rodney",115.26 H   NEW-10.16.18,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:14,2019-06-17,07:14
+34,44.0,1742,"Grant, David",114.36 B,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:14,2019-06-17,07:14
+35,45.0,,"Green, Alton",B VB - Silica CP; LO-01.30.19; REH-05.28.19,262 Kent,262 Kent,"Shtybel, Andriy",In,2019-06-14 06:53,2019-06-17,06:53
+36,46.0,1844,"Grocia, Omar",B,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:13,2019-06-17,07:13
+37,48.0,1392,"Guallpa, Luis",70.87 H   BACK-09.10.18,262 Kent,262 Kent,"Shtybel, Andriy",In,2019-06-14 06:57,2019-06-17,06:57
+38,49.0,,"Gurariy, Simon",W   SUPERVISOR,511E 86St,511E 86St,"Gurariy, Simon",In,2019-06-14 06:33,2019-06-17,06:33
+39,51.0,452,"Harte, William",111.05 B,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:13,2019-06-17,07:13
+40,52.0,1374,"Hollingsworth, Terry",B   RR SILICA CP,262 Kent,262 Kent,"Shtybel, Andriy",In,2019-06-14 06:54,2019-06-17,06:54
+41,53.0,902,"Hotamov, Khurshed",W   RR Rebar Labourer,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:12,2019-06-17,07:12
+42,54.0,2162,"Ioppolo, Anthony",117.46 W,Yard,161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:09,2019-06-17,07:09
+43,56.0,868,"Kanteh, Haggi",104.51 B   199 Mineola,262 Kent,262 Kent,"Shtybel, Andriy",In,2019-06-14 06:53,2019-06-17,06:53
+44,57.0,1521,"Kazaryan, Vardan",112.04 W VB - CARPENTER,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:13,2019-06-17,07:13
+45,58.0,,"Kerr, Gavin",B  07017,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:14,2019-06-17,07:14
+46,60.0,1772,"Khoroshenkiy, Yuriy",112.23 W    LO-12.21.18; REH-01.25.19,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:13,2019-06-17,07:13
+47,61.0,860,"Kisialiou, Ihar",112.24 W   RR Carpenter;VAC:05.13.19-05.17.19,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:13,2019-06-17,07:13
+48,62.0,961,"Kisialiou, Siarhei",112.24 W  YD Carpenter Foreman;ABS:06.03-06.12,Yard NJ,Office,LIliana sikk,In,2019-06-14 07:33,2019-06-17,07:33
+49,63.0,273,"Kobzev, Alexander",112.35 W VB - CARPENTER,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:15,2019-06-17,07:15
+50,65.0,1813,"Kosmyna, Yevgen",66.15 W VB - CARPENTER,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:12,2019-06-17,07:12
+51,67.0,611,"Kostyshak, Myroslav",,Yard NJ,Yard NJ,NJ Yard Fujitsu tab,In,2019-06-14 07:00,2019-06-17,07:00
+52,68.0,14,"Kuriliuk, Igor",112.10 W; VAC:05.20-05.24.19,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:14,2019-06-17,07:14
+53,69.0,305,"Lao, Felix",,511E 86St,161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:14,2019-06-17,07:14
+54,70.0,34,"Lelmacher, Zbigniew",W YD Pump Operator,Yard,161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:14,2019-06-17,07:14
+55,71.0,,"Lhagyal, Tashi",A  NEW - 05.17.18 LO 121418;REH-04.09.19,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:13,2019-06-17,07:13
+56,72.0,1119,"Lobsang, Jampa",113.73 A VB - REBAR,511E 86St,161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:14,2019-06-17,07:14
+57,73.0,,"LOPEZ, JHONATAN",104.63 H   GALKIN Pump operator;,Yard,161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:08,2019-06-17,07:08
+58,74.0,,"Martin, Jason",100.29 B VB - RIGGER,161E 28ST (SS),Yard NJ,NJ Yard Fujitsu tab,In,2019-06-14 08:05,2019-06-17,08:05
+59,79.0,1258,"Mends, Frank",B   RR Carpenter,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:12,2019-06-17,07:12
+60,80.0,35,"Mindyuk, Stanislav",W   05.27.19-06.16.19,511E 86St,511E 86St,"Gurariy, Simon",In,2019-06-14 06:49,2019-06-17,06:49
+61,81.0,,"Mitchell, Keswick",113.77 B Silica CP;back-03.07.19,262 Kent,262 Kent,"Shtybel, Andriy",In,2019-06-14 06:53,2019-06-17,06:53
+62,83.0,36,"Nersesyan, Araik",112.29 W   VAC:05.05.19-05.10.19,Yard NJ,Yard NJ,NJ Yard Fujitsu tab,In,2019-06-14 07:00,2019-06-17,07:00
+63,84.0,,"Nfn, Trinley",113.77 A,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:14,2019-06-17,07:14
+64,85.0,316,"Norbu, Chonden",113.77 A   RR Carpenter; REH-03.05.19,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:15,2019-06-17,07:15
+65,87.0,298,"Oganesyan, Aleksandr",,RCS,RCS,AlexO,In,2019-06-14 07:00,2019-06-17,07:00
+66,88.0,1319,"Padilla, Jason",104.68 H   RR Rigger,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:15,2019-06-17,07:15
+67,89.0,,"Pakulets, Myroslav",W   VAC:05.13.19-05.24.19,511E 86St,511E 86St,"Mindyuk, Stanislav",In,2019-06-14 06:54,2019-06-17,06:54
+68,90.0,,"Patterson, Alvin",112.26 B   NEW-09.17.18 VB SILICA CP,262 Kent,262 Kent,"Shtybel, Andriy",In,2019-06-14 06:53,2019-06-17,06:53
+69,91.0,,"Pearson, Edwin",112.10 B new 12/03/2018,511E 86St,511E 86St,"Mindyuk, Stanislav",In,2019-06-14 06:54,2019-06-17,06:54
+70,92.0,322,"Pecak, Zbigniew",RR Stairs Leader;,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:15,2019-06-17,07:15
+71,93.0,1026,"Perez, Alejandro",H   REH 07.30.18; VAC:07.08.19-07.19.19,262 Kent,262 Kent,"Shtybel, Andriy",In,2019-06-14 06:53,2019-06-17,06:53
+72,94.0,2329,"Petrishchak, Mykhailo",REH-04.09.19,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:13,2019-06-17,07:13
+73,95.0,877,"Piper, Wilton",112.03 B   RR Carpenter,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:13,2019-06-17,07:13
+74,96.0,1590,"Pozhidaev, Timur",W PS Safety Manager,Office,161E 28ST (SS),"Pozhidaev, Timur",In,2019-06-14 07:21,2019-06-17,07:21
+75,97.0,1793,"Ramsammy, Randy",112.12 A   RR Carpenter,123 Linden,123 Linden,"trzpis, tomasz",In,2019-06-14 07:00,2019-06-17,07:00
+76,98.0,259,"Richardson, Colin",B   VAC:04.22.19-04.26.19;VAC:05.24-06.07.19,511E 86St,262 Kent,"Shtybel, Andriy",In,2019-06-14 06:54,2019-06-17,06:54
+77,99.0,2204,"Robinson, Michael",B,511E 86St,511E 86St,"Mindyuk, Stanislav",In,2019-06-14 06:54,2019-06-17,06:54
+78,100.0,,"Rodriguez, Alejandro",H,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:13,2019-06-17,07:13
+79,101.0,1760,"Rodriguez, Cesar",113.68 H   YD IT Administrator,161E 28ST (SS),161E 28ST (SS),Cesar Rodriguez,In,2019-06-14 07:17,2019-06-17,07:17
+80,102.0,1892,"Rodriguez, Genghis",,511E 86St,511E 86St,"Mindyuk, Stanislav",In,2019-06-14 06:55,2019-06-17,06:55
+81,103.0,2310,"Rodriguez, Jordan",116.94 H,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:13,2019-06-17,07:13
+82,104.0,,"Rokhman, Gregory",,RCS,RCS,RCS - Office,In,2019-06-14 07:00,2019-06-17,07:00
+83,105.0,2208,"Rudnichenko, Volodymyr",W Silica CP; LO-04.29.19;REH-05.28.19,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:12,2019-06-17,07:12
+84,106.0,2379,"Rustamov, Bakhtiyor",W,199 2nd Street(Mineola),199 2nd Street(Mineola),"Rustamov, Bakhtiyor",In,2019-06-14 06:58,2019-06-17,06:58
+85,107.0,746,"Ryczek, Ryszard",112.22 W   RR Supervisor;,215 West 28th Street,225 West 28th Street,Ryszard Ryczek,In,2019-06-14 07:05,2019-06-17,07:05
+86,108.0,6,"Sabadakh, Myron",W,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:15,2019-06-17,07:15
+87,109.0,1086,"Sabake, Mantia",104.51 B   RR Carpenter;,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:15,2019-06-17,07:15
+88,110.0,937,"Sakharny, Vladimir",103.09 W VB LIFT DIRECTOR;,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:15,2019-06-17,07:15
+89,111.0,38,"Sakine, Aliou",B   RR Carpenter,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:15,2019-06-17,07:15
+90,112.0,900,"Saldana, Daniel",113.85 H,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:15,2019-06-17,07:15
+91,113.0,479,"Salokhiddinov, Azamat",W   RR Rebar Foreman,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:13,2019-06-17,07:13
+92,114.0,,"Samba, Pema",113.68 A   BACK-09.10.18; VAC:06.03.19-06.16.19,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:14,2019-06-17,07:14
+93,116.0,103,"Shtybel, Andriy",112.29 W,262 Kent,262 Kent,"Shtybel, Andriy",In,2019-06-14 06:49,2019-06-17,06:49
+94,117.0,41,"Shtybel, Vasyl",100.09 W   REH-10.29.18,262 Kent,262 Kent,"Shtybel, Andriy",In,2019-06-14 06:54,2019-06-17,06:54
+95,118.0,312,"Siby, Aly",100.31 B   RR Carpenter,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:14,2019-06-17,07:14
+96,119.0,1650,"Sikk, Liliana",111.04 W PS Assistant Project Manager,Office,Office,LIliana sikk,In,2019-06-14 07:34,2019-06-17,07:34
+97,120.0,,"Smikle, Dwayne",112.07 B   NEW-08.29.18; LO-12.14.18;REH-01.30.19,262 Kent,262 Kent,"Shtybel, Andriy",In,2019-06-14 06:53,2019-06-17,06:53
+98,121.0,427,"Soler, Marcio",H   TERM-10.15.18;REH-10.30.18,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:13,2019-06-17,07:13
+99,123.0,,"STANKER, ANTHONY",yardman,Yard,Yard,Getac_yard,In,2019-06-14 05:57,2019-06-17,05:57
+100,124.0,1183,"Stefanets, Mykhailo",103.06 W,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:14,2019-06-17,07:14
+101,125.0,,"Taewa, Gyaltsen",113.77 A   NEW - 06.06.18,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:12,2019-06-17,07:12
+102,126.0,303,"Tashi, Kalsang",,511E 86St,511E 86St,"Mindyuk, Stanislav",In,2019-06-14 06:54,2019-06-17,06:54
+103,127.0,,"Tenzin, NFN",,511E 86St,161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:13,2019-06-17,07:13
+104,129.0,1542,"Troksi, Ndue",,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",In,2019-06-14 07:13,2019-06-17,07:13
+105,130.0,779,"Trzpis, Tomasz",RR Carpenter Foreman;,262 Kent,123 Linden,"trzpis, tomasz",In,2019-06-14 07:00,2019-06-17,07:00
+106,131.0,1508,"Tshewang, Jigme",,511E 86St,511E 86St,"Mindyuk, Stanislav",In,2019-06-14 06:54,2019-06-17,06:54
+107,132.0,390,"Ubaydullayev, Ali",112.18 W VB TITAN,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:13,2019-06-17,07:13
+108,133.0,615,"Ujka, Kol",W   RR Carpenter   VAC:04.15.19-04.26.19,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:15,2019-06-17,07:15
+109,135.0,,"VOYTYUK, TARAS",112.23 W,Yard,Yard,Getac_yard,In,2019-06-14 06:01,2019-06-17,06:01
+110,136.0,1841,"Wague, Baba",104.56 B   RR Carpenter,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:15,2019-06-17,07:15
+111,137.0,1711,"Wangyal, Tashi",113.77 A,511E 86St,161E 28ST (SS),Tyrone McLeod,In,2019-06-14 07:14,2019-06-17,07:14
+112,138.0,2419,"Washington, Daquan",B   RR Carpenter,161E 28ST (SS),Yard NJ,NJ Yard Fujitsu tab,In,2019-06-14 08:05,2019-06-17,08:05
+113,141.0,,"Wilson, Bruce",New- 06.19.18,RCS,RCS,RCS - Office,In,2019-06-14 07:02,2019-06-14,07:02
+114,142.0,2185,"Yauri, Luis",113.68 H,262 Kent,262 Kent,"Shtybel, Andriy",In,2019-06-14 06:57,2019-06-17,06:57
+115,0.0,,"Almeida, Jason",NEW-04.17.19,262 Kent,262 Kent,"Sakharny, Vladimir",Out,2019-04-17 13:39,2019-04-17,13:39
+116,3.0,304,"Baginski, Wieslaw",11211  W  VAC:06.10.19-06.23.19,262 Kent,262 Kent,,Out,2019-06-07 15:00,2019-06-07,15:00
+117,6.0,94,"Barakhtyanskyy, Vyacheslav",11235 W VB SUPERVISOR;VAC:06.06-06.17.19,262 Kent,262 Kent,,Out,2019-06-04 15:00,2019-06-04,15:00
+118,7.0,,"Bennett, Joseph",10307 W VB - FOREMAN;,262 Kent,262 Kent,,Out,2019-06-12 15:00,2019-06-12,15:00
+119,19.0,1348,"Choegyal, Tenzin",,511E 86St,511E 86St,"Nalyvayko, Pavlo",Out,2019-06-13 13:10,2019-06-13,13:10
+120,23.0,,"Cruell, Lance",11433 B   NEW-11.09.18; WC-05.02.19,511E 86St,511E 86St,"Sabadakh, Myron",Out,2019-05-02 13:36,2019-05-02,13:36
+121,25.0,1516,"Dally, Delroy",B Silica CP;ABS:05.20.19-05.31.19,262 Kent,262 Kent,"Shtybel, Andriy",Out,2019-06-13 14:56,2019-06-13,14:56
+122,29.0,1837,"Delacruz, Arquimedes",11417 H VB,161E 28ST (SS),161E 28ST (SS),"Nalyvayko, Pavlo",Out,2019-06-13 13:11,2019-06-13,13:11
+123,32.0,1154,"Dhondup, Tsering",RR Carpenter,161E 28ST (SS),161E 28ST (SS),Cesar Rodriguez,Out,2019-06-12 15:00,2019-06-12,15:00
+124,35.0,,"Edwards, Michael",11216 B   NEW - 05.11.18,262 Kent,262 Kent,"Shtybel, Andriy",Out,2019-06-12 11:56,2019-06-12,11:56
+125,41.0,,"Gillespie, Alvin",112.33 B   NEW-10.01.18;,Yard NJ,Yard NJ,NJ Yard Fujitsu tab,Out,2019-06-12 15:30,2019-06-12,15:30
+126,47.0,,"Grynyuk, Vitaliy",100.25 W VB - CARPENTER;,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,Out,2019-06-13 13:55,2019-06-13,13:55
+127,50.0,1151,"Gurung, Pema",113.77 A   RR Rebar Labourer,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,Out,2019-06-13 10:19,2019-06-13,10:19
+128,55.0,1792,"Istamov, Firdavsjon",112.30 W   VAC:05.13.19-05.19.19,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",Out,2019-06-12 16:00,2019-06-12,16:00
+129,59.0,1020,"Khmara, Yury",112.24 W VB - CARPENTER,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",Out,2019-06-12 15:59,2019-06-12,15:59
+130,64.0,2118,"Konyshev, Andrei",112.29 W   LO-03.20.19; REH-04.10.19,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",Out,2019-06-12 16:00,2019-06-12,16:00
+131,66.0,448,"Kosovych, Dariy",113.85 W   Superviser;ABS:05.27.19-06.21.19,161E 28ST (SS),262 Kent,"Shtybel, Andriy",Out,2019-05-24 14:33,2019-05-24,14:33
+132,75.0,928,"Martinez, Daniel",H  LO-02.15.19; REH-05.06.19,161E 28ST (SS),161E 28ST (SS),Cesar Rodriguez,Out,2019-06-12 15:02,2019-06-12,15:02
+133,76.0,5,"McLeod, Tyrone",,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,Out,2019-06-13 13:54,2019-06-13,13:54
+134,77.0,,"Melendez, Marcial",New-06.19.18,RCS,RCS,RCS - Office,Out,2019-06-13 11:51,2019-06-13,11:51
+135,78.0,2331,"Mendoza, Andy",113.58 H VB-CARPENTER;REH-01.14.,161E 28ST (SS),161E 28ST (SS),"Zuba, Zdzislaw",Out,2019-06-12 15:59,2019-06-12,15:59
+136,82.0,48,"Nalyvayko, Pavlo",W SUPERVISOR;,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,Out,2019-06-13 13:55,2019-06-13,13:55
+137,86.0,2239,"Nychynyk, Iaroslav",VAC:05.27.19-06.08.19,RCS,RCS,RCS - Office,Out,2019-05-31 15:30,2019-05-31,15:30
+138,115.0,1476,"Sampson, Adrian",112.26 B   CAR ACCIDENT-05.11.19,262 Kent,199 2nd Street(Mineola),"Rustamov, Bakhtiyor",Out,2019-05-10 14:30,2019-05-10,14:30
+139,122.0,861,"Soliev, Feruz",112.14 W,161E 28ST (SS),161E 28ST (SS),"Nalyvayko, Pavlo",Out,2019-06-13 13:06,2019-06-13,13:06
+140,128.0,2025,"Thomas, Presley",112.12 B VB - Carpenter LO 121418 REH- 3.12.19,161E 28ST (SS),161E 28ST (SS),Cesar Rodriguez,Out,2019-06-06 11:58,2019-06-06,11:58
+141,134.0,1170,"Velasquez, Eladio",H   VAC:04.22.19-04.27.19,161E 28ST (SS),161E 28ST (SS),"Nalyvayko, Pavlo",Out,2019-06-13 13:08,2019-06-13,13:08
+142,139.0,150,"Wedderburn, Paul",112.26 B   RR Demolition Leader; WC-05.08.19,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,Out,2019-05-08 11:58,2019-05-08,11:58
+143,140.0,1094,"Wellington, Arnold",112.10 B   RR Demolition Labourer,161E 28ST (SS),161E 28ST (SS),"Nalyvayko, Pavlo",Out,2019-06-13 08:47,2019-06-13,08:47
+144,143.0,747,"Zuba, Zdzislaw",W   SUPERVISOR,161E 28ST (SS),161E 28ST (SS),Tyrone McLeod,Out,2019-06-13 13:54,2019-06-13,13:54
+145,,Employee ID,Name,Title,Primary Department,Current Department,Device,Status,Date / Time,Date,Time

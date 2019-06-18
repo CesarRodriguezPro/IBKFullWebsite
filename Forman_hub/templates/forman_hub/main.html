@@ -8,9 +8,15 @@
  <li class="nav-item">
     <a class="nav-link active" style="color:#FFDE05;" href="#">{{ current_location_label }}</a>
   </li>
+
   <li class="nav-item">
-    <a class="nav-link  " href="#">Download Current</a>
+      <form method="POST">
+          {% csrf_token %}
+    <button type="submit" class="btn"  name="download_current" >Download Current</button>
+  </form>
   </li>
+
+
   <li class="nav-item">
     <a class="nav-link " href="#">Absent Report</a>
   </li>

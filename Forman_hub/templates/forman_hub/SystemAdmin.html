@@ -18,33 +18,33 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="{% url 'home' %}">Administrator</a>
- 
+
   <div class="dropdown">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     {{ current_location_label }}
     <span class="caret"></span>
     </button>
-        
+
   <ul class="dropdown-menu">
-    <form method="POST"> 
+    <form method="POST">
     {% csrf_token %}
     <li><button type="submit" class="btn" name="" >All Locations</button></li>
         {% for location in list_locations %}
           <li><button type="submit" class="btn"  name="{{ location }}" >{{ location }}</button></li>
         {% endfor %}
-    </form> 
-  </ul>   
+    </form>
+  </ul>
 </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
-      
+
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'accounts:logout_user' %}">Log Out</a>
       </li>
-    
+
     </ul>
   </div>
 </nav>
@@ -78,14 +78,14 @@
                 </tbody>
               </table>
             </div>
-        {% endif %}    
+        {% endif %}
         </div>
 
         <!--  list of devices-->
         {% if list_of_devices %}
             <div class="col-sm">
               <h5>Devices</h5>
-              <table class="table table table-striped table-bordered table-dark table-sm"">
+              <table class="table table table-striped table-bordered table-dark table-sm">
                 <thead class="tableColor">
                   <tr>
                     <th scope="col">Devices</th>
@@ -104,20 +104,20 @@
             </div>
         {% endif %}
       </div>
-      
 
-      {% if greater_hours %}
+
+      {% if greater_hours.data %}
         <h5> Irregular Hours </h5>
-        <table class="table table table-striped table-bordered table-dark table-sm"">
+        <table class="table table table-striped table-bordered table-dark table-sm">
           <thead class="tableColor">
             <tr>
-              {% for columns_labels in greater_hours.columns %} 
+              {% for columns_labels in greater_hours.columns %}
                   <th scope="col">{{ columns_labels }}</th>
               {% endfor %}
             </tr>
           </thead>
           <tbody>
-              {% for items_in_list in greater_hours.data %}         
+              {% for items_in_list in greater_hours.data %}
                 <tr>
                   {% for items in items_in_list %}
                         <td>{{ items }}</td>
@@ -126,7 +126,7 @@
               {% endfor %}
           </tbody>
         </table>
-        <br> 
+        <br>
       {% endif%}
 
 
@@ -134,7 +134,7 @@
   <!-- irregular_entries -->
   {% if irregular_entries %}
     <h5>Irregular Entries </h5>
-    <table class="table table table-striped table-bordered table-dark table-sm"">
+    <table class="table table table-striped table-bordered table-dark table-sm">
       <thead class="tableColor">
         <tr>
           <th scope="col">Name</th>
