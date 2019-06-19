@@ -10,21 +10,23 @@ View Information
 <table class="table table table-striped">
   <thead class="thead-dark">
   <tr>
-    <th scope="col">Code ID</th>
-    <th scope="col">Location</th>
-    <th scope="col">Drawings No</th>
-    <th scope="col">Description</th>
+    <th scope="col">Foreman</th>
+    <th scope="col">location</th>
+    <th scope="col">Starting Date</th>
+    <th scope="col">Finish Date</th>
     <th scope="col">Date Summited</th>
+    <th scope="col">Current Status</th>
   </tr>
 </thead>
 <tbody>
 {% for item in Drawings %}
  <tr>
-   <td>{{ item.code_Id }}</td>
+   <td>{{ item.foreman }}</td>
    <td>{{ item.location }}</td>
-   <td>{{ item.drawings_no }}</td>
-   <td>{{ item.description }}</td>
+   <td>{{ item.init_date }}</td>
+   <td>{{ item.final_date }}</td>
    <td>{{ item.date_submitted }}</td>
+   <td>{{ item.status }}</td>
  </tr>
 {% endfor %}
 </tbody>

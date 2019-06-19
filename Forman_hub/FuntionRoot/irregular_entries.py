@@ -15,7 +15,7 @@ class IrregularEntries:
         self.url_data = f"https://api.mytimestation.com/v0.1/reports/?api_key={self.key_api}&" \
             f"Report_StartDate={self.current_monday}&Report_EndDate={self.today}&id={self.CODE}&exportformat=csv"
         # self.raw_data = pd.read_csv(self.url_data)
-        self.raw_data = pd.read_csv(r"C:\Users\IBKCo\Desktop\testDataFile\EmployeeActivity.csv")
+        self.raw_data = pd.read_csv(r"C:\Users\strea\Desktop\testfiles\EmployeeActivity.csv")
 
     def process_information(self):
         sorted_db = self.raw_data.sort_values(['Name', 'Date'])

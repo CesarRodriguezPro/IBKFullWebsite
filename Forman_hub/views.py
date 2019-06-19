@@ -5,13 +5,17 @@ from .FuntionRoot import itcontrol
 from .FuntionRoot.irregular_entries import IrregularEntries
 from .FuntionRoot.hours_greater import HoursGreater
 from django.http import HttpRequest, HttpResponse
-from django.http import FileResponse
-from django.core.files.storage import FileSystemStorage
-
-
-
 
 register = template.Library()
+
+def download_current_list(request):
+    first_name = request.user.first_name
+    last_name  = request.user.last_name
+    active     = itcontrol.ItControl(first_name, last_name, location_request=None)
+    csv_file, location_name = active.save_current()
+    response = HttpResponse(csv_file, content_type='text/csv')
+    response['Content-Disposition'] = f'attachment; filename="{first_name}.{last_name}.{location_name}.csv"'
+    return response
 
 
 def especial_funtions_dispatch(location_request):
@@ -58,9 +62,12 @@ def data_collection(request, location_request=None):
 def system_admin(request):
     if request.method == 'POST':
         form = request.POST
-        location_request = list(form.keys())[1] if len(list(form.keys())) > 1 else 'allLocations'
-        data = data_collection(request, location_request = location_request)
-        return render(request, 'forman_hub/SystemAdmin.html', context=data)
+        if len(list(form.keys())) > 1 and list(form.keys())[1] == 'download_current':
+                return download_current_list(request)
+        else:      
+            location_request = list(form.keys())[1] if len(list(form.keys())) > 1 else 'allLocations'
+            data = data_collection(request, location_request = location_request)
+            return render(request, 'forman_hub/SystemAdmin.html', context=data)
 
     data = data_collection(request)
     return render(request, 'forman_hub/SystemAdmin.html', context=data)
@@ -74,15 +81,7 @@ def foreman_main(request):
         if request.method == "POST":
             form = request.POST
             if list(form.keys())[1] == 'download_current':
-
-                '''working in make download file '''
-                first_name = request.user.first_name
-                last_name  = request.user.last_name
-                active     = itcontrol.ItControl(first_name, last_name, location_request=None)
-                csv_file, location_name = active.save_current()
-                response = HttpResponse(csv_file, content_type='text/csv')
-                response['Content-Disposition'] = f'attachment; filename="{first_name}.{last_name}.{location_name}.csv"'
-                return response
+                return download_current_list()
 
 
         data = data_collection(request=request)

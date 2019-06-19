@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^ret/xcd(?P<code>\d+)', views.check_drawings_request),
     path('hub/', include(('Forman_hub.urls', 'forman_hub'))),
     path('accounts/', include(('accounts.urls', 'accounts'))),
+    path('vacation/', include(('vacationRequest.urls', 'accounts'))),
     ]

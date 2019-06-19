@@ -40,7 +40,12 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
-
+      <li class="nav-item">
+          <form method="POST">
+              {% csrf_token %}
+        <button type="submit" class="btn"  name="download_current" >Download Current</button>
+      </form>
+      </li>
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'accounts:logout_user' %}">Log Out</a>
       </li>
