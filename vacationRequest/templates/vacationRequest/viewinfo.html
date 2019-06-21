@@ -13,6 +13,7 @@
   <thead class="thead-dark">
   <tr>
     <th scope="col">Foreman</th>
+    <th scope="col">Employee</th>
     <th scope="col">location</th>
     <th scope="col">Starting Date</th>
     <th scope="col">Finish Date</th>
@@ -24,6 +25,7 @@
 {% for item in list_vacations %}
  <tr>
    <td>{{ item.foreman }}</td>
+   <td>{{ item.employee }}</td>
    <td>{{ item.location }}</td>
    <td>{{ item.init_date }}</td>
    <td>{{ item.final_date }}</td>

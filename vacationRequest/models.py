@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class vacationRequest(models.Model):
-    foreman          = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    foreman          = models.CharField(max_length=100,null=True, blank=True)
     employee         = models.CharField(max_length=100,null=True)
     location         = models.CharField(max_length=100)
     init_date        = models.DateTimeField()
