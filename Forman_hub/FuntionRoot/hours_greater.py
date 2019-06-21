@@ -14,8 +14,8 @@ class HoursGreater:
         self.key_api = os.environ.get('TimeStationKey')
         self.CODE = 41 # 1 week summary
         self.url = f"https://api.mytimestation.com/v0.1/reports/?api_key={self.key_api}&Report_StartDate={date}&id={self.CODE}&exportformat=csv"
-        # self.raw_data = pd.read_csv(self.url)
-        self.raw_data = pd.read_csv(r"C:\Users\strea\Desktop\testfiles\1weekSummary.csv")
+        self.raw_data = pd.read_csv(self.url)
+        # self.raw_data = pd.read_csv(r"C:\Users\strea\Desktop\testfiles\1weekSummary.csv")
 
     def get_times(self):
         data = self.raw_data
