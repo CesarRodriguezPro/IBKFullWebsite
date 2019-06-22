@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'DrawingsTrackerApp',
     'Forman_hub',
     'accounts',
-    'vacationRequest'
+    'vacationRequest',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
