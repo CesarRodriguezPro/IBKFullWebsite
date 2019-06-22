@@ -21,6 +21,7 @@ TEMPLATES_DIR = [
     os.path.join(BASE_DIR, 'accounts', 'templates'),
     os.path.join(BASE_DIR, 'vacationRequest', 'templates'),
     os.path.join(BASE_DIR, 'templates'),
+    os.path.join(BASE_DIR, 'office', 'templates'),
 ]
 
 
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
     'Forman_hub',
     'accounts',
     'vacationRequest',
+    'office'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

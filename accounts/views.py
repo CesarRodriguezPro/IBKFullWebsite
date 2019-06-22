@@ -29,6 +29,11 @@ def login_user(request):
                 request.session['type'] = 'foreman'
                 return HttpResponseRedirect(reverse('foreman_hub:foreman_main'))
 
+            elif user.is_active and user.groups.filter(name='office').exists():
+                login(request, user)
+                request.session['type'] = 'office'
+                return HttpResponseRedirect(reverse('office:main_view'))
+
             elif user.is_active:
                 login(request, user)
                 request.session['type'] = 'normal'

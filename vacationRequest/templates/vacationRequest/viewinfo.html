@@ -4,6 +4,16 @@
 {% load  staticfiles %}
 
 {% block title %}View vacation{% endblock %}
+
+{% block foremanNav %}
+<li class="nav-item ">
+  <a class="nav-link" href="{% url 'vacationRequest:vacation_request' %}">Request Vacation</a>
+</li>
+<li class="nav-item ">
+  <a class="nav-link" href="{% url 'vacationRequest:vacation_viewinfo' %}">View requests</a>
+</li>
+{% endblock %}
+
 {% block content %}
 
 <div class="container">
