@@ -20,6 +20,7 @@ TEMPLATES_DIR = [
     os.path.join(BASE_DIR, 'DrawingsTrackerApp', 'templates'),
     os.path.join(BASE_DIR, 'accounts', 'templates'),
     os.path.join(BASE_DIR, 'vacationRequest', 'templates'),
+    os.path.join(BASE_DIR, 'absentRequest', 'templates'),
     os.path.join(BASE_DIR, 'templates'),
     os.path.join(BASE_DIR, 'office', 'templates'),
 ]
@@ -54,7 +55,8 @@ INSTALLED_APPS = [
     'Forman_hub',
     'accounts',
     'vacationRequest',
-    'office'
+    'office',
+    'absentRequest',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -132,7 +134,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

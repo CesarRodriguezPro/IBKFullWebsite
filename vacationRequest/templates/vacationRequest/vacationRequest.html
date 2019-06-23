@@ -1,18 +1,8 @@
-{% extends "controlapp/base.html" %}
+{% extends "vacationRequest/base.html" %}
 {% load crispy_forms_tags %}
 {% load  staticfiles %}
 
 {% block title %}Vacation Request{% endblock %}
-
-{% block foremanNav %}
-<li class="nav-item ">
-  <a class="nav-link" href="{% url 'vacationRequest:vacation_request' %}">Request Vacation</a>
-</li>
-<li class="nav-item ">
-  <a class="nav-link" href="{% url 'vacationRequest:vacation_viewinfo' %}">View requests</a>
-</li>
-
-{% endblock %}
 
 {% block content %}
 <br>

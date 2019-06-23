@@ -1,0 +1,27 @@
+{% extends "controlapp/base.html" %}
+{% load crispy_forms_tags %}
+{% load  staticfiles %}
+
+
+{% block foremanNav %}
+<li class="nav-item ">
+  <a class="nav-link" href="{% url 'absentRequest:absent_request' %}">Absent Request</a>
+</li>
+<li class="nav-item ">
+  <a class="nav-link" href="{% url 'absentRequest:absent_viewinfo' %}">View Absent Log</a>
+</li>
+
+{% endblock %}
+
+{% block officeNav %}
+<li class="nav-item ">
+  <a class="nav-link" href="{% url 'absentRequest:absent_request' %}">Request Absent</a>
+</li>
+<li class="nav-item ">
+  <a class="nav-link" href="{% url 'absentRequest:absent_viewinfo' %}">View Absent Log</a>
+</li>
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}

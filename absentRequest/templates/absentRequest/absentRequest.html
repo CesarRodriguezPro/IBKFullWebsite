@@ -1,0 +1,25 @@
+{% extends "absentRequest/base.html" %}
+{% load crispy_forms_tags %}
+{% load  staticfiles %}
+
+{% block title %}Absent Request{% endblock %}
+
+{% block content %}
+<br>
+<div class="container">
+<div class="jumbotron ">
+    <br>
+    <center>
+    <h2> Absent Request </h2>
+    </center>
+<br>
+<form method="POST">
+  {% csrf_token %}
+  {{ form|crispy}}
+<button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+</div>
+</div>
+
+{% endblock %}

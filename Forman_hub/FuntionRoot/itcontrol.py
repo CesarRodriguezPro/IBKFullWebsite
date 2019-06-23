@@ -21,9 +21,12 @@ class ItControl:
         # self.current_data = pd.read_csv(r"C:\Users\strea\Desktop\testfiles\test_data.csv")
         self.filter_data_in = self.current_data[self.current_data['Status'].str.contains('In')]
 
-    def save_current(self):
+    def save_current_by_location(self):
         data_pd, location_name = self.current_location()
         return data_pd.to_csv(), location_name
+    
+    def save_current_all(self):
+        return self.current_data.to_csv()
     
     def get_list_of_location(self):
         ''' this return a list of the current locations'''
