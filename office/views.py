@@ -5,6 +5,5 @@ from Forman_hub import FuntionRoot
 
 def main_view(request):
 
-
     return render(request, 'office/main.html')
     

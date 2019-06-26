@@ -52,19 +52,15 @@
        <div class="collapse navbar-collapse" id="navbarSupportedContent">
          <ul class="navbar-nav ml-auto">
               {% if user.is_authenticated %}
-                    {% if request.session.type == 'drawings' %}
-                      <li class="nav-item ">
-                        <a class="nav-link" href="{% url 'drawings_app:drawings_main' %}">Drawings</a>
-                      </li>
-                    {% elif request.session.type == 'foreman' or request.session.type == 'systemAdmin' %}
+                    {% if request.session.type == 'foreman' or request.session.type == 'systemAdmin' %}
                           {% block foremanNav %}
-                          <!-- navication bar for foreman -->
+                               <!-- navication bar for foreman -->
                           {% endblock%}
                     {% elif request.session.type == 'office' %}
                             {% block officeNav %} 
-                            <!-- navigatinbar for office  -->
+                               <!-- navigatinbar for office  -->
                             {% endblock%}
-                      {% endif %}
+                    {% endif %}
                   <li class="nav-item active">
                     <a class="nav-link" href="{% url 'accounts:logout_user' %}">Log Out</a>
                   </li>
@@ -82,8 +78,6 @@
                     </form>
                   </li>
                 {% endif %}
-
-
           </ul> 
        </nav>
     </div>

@@ -17,7 +17,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 TEMPLATES_DIR = [
     os.path.join(BASE_DIR, 'Forman_hub', 'templates'),
-    os.path.join(BASE_DIR, 'DrawingsTrackerApp', 'templates'),
     os.path.join(BASE_DIR, 'accounts', 'templates'),
     os.path.join(BASE_DIR, 'vacationRequest', 'templates'),
     os.path.join(BASE_DIR, 'absentRequest', 'templates'),
@@ -51,7 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    'DrawingsTrackerApp',
     'Forman_hub',
     'accounts',
     'vacationRequest',

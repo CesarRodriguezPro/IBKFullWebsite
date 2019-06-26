@@ -1,0 +1,39 @@
+{% extends 'controlapp/base.html' %}
+
+{% block title %}
+  {{user.username}}
+{% endblock %}
+
+{% block officeNav %}
+<ul class="dropdown-menu">
+    <form method="POST">
+    {% csrf_token %}
+    <li><button type="submit" class="btn" name="" >All Locations</button></li>
+        {% for location in list_locations %}
+          <li><button type="submit" class="btn"  name="{{ location }}">{{ location }}</button></li>
+        {% endfor %}
+    </form>
+  </ul>
+
+
+    <li class="nav-item">
+        <a class="nav-link active" style="color:#FFDE05;" href="#">Office VIew</a>
+    </li>
+
+  <li class="nav-item">
+      <form method="POST">
+          {% csrf_token %}
+    <button type="submit" class="btn"  name="download_current" >Download Current</button>
+  </form>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link " href="{% url 'absentRequest:absent_request' %}">Absent Report</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " href="{% url 'vacationRequest:vacation_request' %}">Vacation Request</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " href="#">Change Hours</a>
+  </li>
+{% endblock %}

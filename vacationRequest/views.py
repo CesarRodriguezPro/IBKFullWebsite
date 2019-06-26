@@ -4,7 +4,7 @@ from .models import vacationRequest
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-
+from django.core.mail import send_mail
 
 # Create your views here.
 @login_required
@@ -16,6 +16,8 @@ def vacation_request(request):
             form = request_vacation_form.save(commit=False)
             form.foreman = f"{request.user.first_name} {request.user.last_name}"
             form.save()
+
+
             return HttpResponseRedirect(reverse("vacationRequest:vacation_viewinfo"))
     return render(request, "vacationRequest/vacationRequest.html", context={'form':request_vacation_form })
 

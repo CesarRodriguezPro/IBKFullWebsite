@@ -55,7 +55,6 @@ class ItControl:
             data_current = self.filter_data_in[(self.filter_data_in['Current Department'].isin([self.location_request]))]
             return data_current, self.location_request
 
-
     def foreman_location(self):
         data = self.current_data[self.current_data['Name'].isin([f'{self.last_name}, {self.first_name}'])]['Primary Department']
         return data.to_list()[0]
