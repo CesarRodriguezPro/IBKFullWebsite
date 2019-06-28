@@ -29,17 +29,24 @@
           {% if user.is_authenticated %}
            <ul class="navbar-nav justify-content-center">
               {% if request.session.type == 'foreman' or request.session.type == 'systemAdmin' %}
-              <li class="nav-item">
-               <a  style="color:#FFDE05;" href="{% url 'foreman_hub:foreman_main'%}">
-                   {{user.first_name}} {{user.last_name}}
-               </a>
-              </li>
+                  <li class="nav-item">
+                  <a  style="color:#FFDE05;" href="{% url 'foreman_hub:foreman_main'%}">
+                      {{user.first_name}} {{user.last_name}}
+                  </a>
+                  </li>
               {% elif request.session.type == 'office' %}
-              <li class="nav-item">
-               <a  style="color:#FFDE05;" href="{% url 'office:main_view'%}">
-                   {{user.first_name}} {{user.last_name}}
-               </a>
-              </li>
+                  <li class="nav-item">
+                  <a  style="color:#FFDE05;" href="{% url 'office:main_view'%}">
+                      {{user.first_name}} {{user.last_name}}
+                  </a>
+                  </li>
+
+              {% else %}
+                  <li class="nav-item">
+                    <a  style="color:#FFDE05;">
+                        No Group Assing Please contact Admin
+                    </a>
+                  </li>
               {% endif %}
            </ul>
           {% endif %}

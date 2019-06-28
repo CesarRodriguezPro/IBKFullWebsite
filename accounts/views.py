@@ -14,12 +14,8 @@ def login_user(request):
         user = authenticate(username=username, password=password)
 
         if user:
-            if user.is_active and user.groups.filter(name='DrawingsTracker').exists():
-                login(request, user)
-                request.session['type'] = 'drawings'
-                return HttpResponseRedirect(reverse('drawings_app:drawings_main'))
 
-            elif user.is_active and user.groups.filter(name='SystemAdmin').exists():
+            if user.is_active and user.groups.filter(name='SystemAdmin').exists():
                 login(request, user)
                 request.session['type'] = 'systemAdmin'
                 return HttpResponseRedirect(reverse('foreman_hub:foreman_main'))
