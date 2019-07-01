@@ -6,24 +6,17 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.core.mail import send_mail
 from .render import Render_file
-import requests
 from threading import Thread, activeCount
 from django.views.generic import View
-# Create your views here.
-
-
 
 
 ''' working with this funtion to view and send email with pdfs'''
-# def send_email(file: list):
-#     r = requests.post('smtp.ibkconstructiongroup.com',
-#         auth=("cesarr", "SuperConcrete01"),
-#         files=[("attachment", (file[0], open(file[1], "rb").read()))],
-#         data={"from": "No Reply <no-reply@##########>",
-#               "to": "cesarr@ibkconstructiongroup.com",
-#               "subject": "vacation testt",
-#               "text": "Requested Sales Report",
-#               "html": "<html>Requested Sales Report</html>"})
+def send_email(file):
+    
+    # working in sending email.
+    pass 
+    
+    send_email()
 
 
 class Pdf(View):
@@ -35,11 +28,8 @@ class Pdf(View):
             'date_out': '11/25/2019',
             'superviser': 'Tyrone McLance',
         }
-        
-        # file = Render_file.render_to_file('vacationRequest/pdf.html', params)
+        file = Render_file.render_to_file('vacationRequest/pdf.html', params)
 
-        # thread = Thread(target=send_email, args=(file,))
-        # thread.start()
         return Render_file.render('vacationRequest/pdf.html', params)
 
 
@@ -52,9 +42,9 @@ def vacation_request(request):
             form = request_vacation_form.save(commit=False)
             form.foreman = f"{request.user.first_name} {request.user.last_name}"
             form.save()
+            print('-----------------------------------> ', type(form))
 
-
-            return HttpResponseRedirect(reverse("vacationRequest:vacation_viewinfo"))
+            # return HttpResponseRedirect(reverse("vacationRequest:vacation_viewinfo"))
     return render(request, "vacationRequest/vacationRequest.html", context={'form':request_vacation_form })
 
 @login_required
