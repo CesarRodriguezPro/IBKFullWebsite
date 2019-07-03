@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Vacation Request</title>
+    <style type="text/css">
+        @page {
+            size: letter;
+            margin: 1cm;
+        }
+        .presentation {
+            text-align: center
+        
+        }
+        .page_title {
+            background-color: black;
+            color: white;
+            text-align: center;  
+            vertical-align: 100%;
+            padding-top: 18px;
+            padding-bottom: 15px;
+            font-size:20px;
+            
+            }
+        body{
+            font-size:18px;
+        }
+        .bold_text{
+            font-weight: 900;
+        }
+        
+    </style>
+</head>
+
+
+<body>
+
+    <div class='presentation'>
+        <h1>IBK Construction Group</h1>
+        <h3>617 Johson Ave. Brooklyn NY 11237</h3>
+        <h3>Tel:718 418 0040, Fax:718 732 2670</h3>
+    </div>
+<div class="page_title">
+<p>
+    <h3>ABSENT REQUEST FORM</h3>
+</p>
+</div>
+<div style="padding-top: 20px; padding-bottom:20px">
+<p>
+Electronicle Created on : {{current_date}}
+<br>
+<br>
+
+Employee:   <span class="bold_text"> {{employee}} </span> 
+<br>
+<br>
+</p>
+
+Absent Period:  From: <span class="bold_text">{{ date_in }}</span>    To: <span class="bold_text"> {{ date_out }}</span> 
+<br>
+</div>
+<br>
+<br>
+Reason for Being Absent:
+<table>
+    <tbody>
+        <tr>
+            <td> <span class="bold_text"> <u>{{reason}}</u></span> </td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<br>
+<br>
+<br>
+Send by:  <span class="bold_text"> {{superviser }} </span> Supervisor
+<br>
+<br>
+<br>
+Electronic Signature : <span class="bold_text"><u> {{ employee }} </u></span>
+</div>
+
+</body>
+</html>

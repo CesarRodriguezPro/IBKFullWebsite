@@ -25,6 +25,13 @@ TEMPLATES_DIR = [
 ]
 
 
+# Email Configuration
+EMAIL_HOST = 'smtp.ibkconstructiongroup.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'cesarr'
+EMAIL_HOST_PASSWORD = os.environ.get('email_password')
+EMAIL_USE_TLS = False
+
 
 
 # Quick-start development settings - unsuitable for production

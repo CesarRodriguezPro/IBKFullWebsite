@@ -4,6 +4,7 @@ import pandas as pd
 import os
 import datetime
 
+''' This script is in not use at this moment it will become a feature in the future.'''
 
 ID = "42"
 

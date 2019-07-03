@@ -3,6 +3,8 @@
 {% load  staticfiles %}
 
 
+<!-- this is for navigation for foreman -->
+
 {% block foremanNav %}
 <li class="nav-item ">
   <a class="nav-link" href="{% url 'absentRequest:absent_request' %}">Absent Request</a>
@@ -10,9 +12,10 @@
 <li class="nav-item ">
   <a class="nav-link" href="{% url 'absentRequest:absent_viewinfo' %}">View Absent Log</a>
 </li>
-
 {% endblock %}
 
+
+ <!-- this is for office navigation  -->
 {% block officeNav %}
 <li class="nav-item ">
   <a class="nav-link" href="{% url 'absentRequest:absent_request' %}">Request Absent</a>
@@ -22,6 +25,8 @@
 </li>
 {% endblock %}
 
+
+<!-- regular content will load it in here  -->
 {% block content %}
 
 {% endblock %}
