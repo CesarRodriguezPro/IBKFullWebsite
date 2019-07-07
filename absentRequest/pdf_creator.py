@@ -28,7 +28,7 @@ class Render_file:
     def render_to_file(path: str, params: dict):
         template = get_template(path)
         html = template.render(params)
-        file_name = "test.pdf"
+        file_name = "absentRequest.pdf"
         file_path = os.path.join(os.path.abspath(os.path.dirname("__file__")), "store", file_name)
         with open(file_path, 'wb') as pdf:
             pisa.pisaDocument(BytesIO(html.encode("UTF-8")), pdf)

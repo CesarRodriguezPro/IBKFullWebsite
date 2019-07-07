@@ -7,7 +7,7 @@ from django.urls import reverse
 from .pdf_creator import pdf_resource
 
 
-@login_required
+@login_required()
 def vacation_request(request):
     request_vacation_form = RequestVacationForm()
     if request.method == "POST":
@@ -24,8 +24,6 @@ def vacation_request(request):
 @login_required
 def vacation_viewinfo(request):
     dict_items = vacationRequest.objects.all().order_by('date_submitted').reverse()
-    return render(request, 'vacationRequest/viewinfo.html',context={'list_vacations':dict_items})
+    return render(request, 'vacationRequest/viewinfo.html', context={'vacation_request_list': dict_items})
 
 
-if __name__ == "__main__":
-    pass

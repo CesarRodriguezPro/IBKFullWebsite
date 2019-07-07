@@ -85,7 +85,6 @@ def system_admin(request):
 def foreman_main(request):
     user = request.user
     if user.groups.filter(name='Foreman').exists():
-
         if request.method == "POST":
             form = request.POST
             if list(form.keys())[1] == 'download_current':

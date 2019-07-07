@@ -36,6 +36,7 @@
 <table class="table table table-striped">
   <thead class="thead-dark">
   <tr>
+      <th scope="col">ID</th>
     <th scope="col">Foreman</th>
     <th scope="col">Employee</th>
     <th scope="col">location</th>
@@ -49,6 +50,7 @@
 <tbody>
 {% for item in list %}
  <tr>
+    <td>{{ item.id }}</td>
    <td>{{ item.foreman }}</td>
    <td>{{ item.employee }}</td>
    <td>{{ item.location }}</td>

@@ -1,27 +1,9 @@
 
-{% extends "controlapp/base.html" %}
+{% extends "vacationRequest/base.html" %}
 {% load crispy_forms_tags %}
 {% load  staticfiles %}
 
 {% block title %}View vacation{% endblock %}
-
-{% block foremanNav %}
-<li class="nav-item ">
-  <a class="nav-link" href="{% url 'vacationRequest:vacation_request' %}">Request Vacation</a>
-</li>
-<li class="nav-item ">
-  <a class="nav-link" href="{% url 'vacationRequest:vacation_viewinfo' %}">View requests</a>
-</li>
-{% endblock %}
-
-{% block officeNav %}
-<li class="nav-item ">
-  <a class="nav-link" href="{% url 'vacationRequest:vacation_request' %}">Request Vacation</a>
-</li>
-<li class="nav-item ">
-  <a class="nav-link" href="{% url 'vacationRequest:vacation_viewinfo' %}">View requests</a>
-</li>
-{% endblock %}
 
 {% block content %}
 
@@ -31,25 +13,27 @@
 <table class="table table table-striped">
   <thead class="thead-dark">
   <tr>
+    <th scope="col">ID</th>
     <th scope="col">Foreman</th>
     <th scope="col">Employee</th>
     <th scope="col">location</th>
     <th scope="col">Starting Date</th>
     <th scope="col">Finish Date</th>
     <th scope="col">Date Summited</th>
-    <th scope="col">Current Status</th>
+
   </tr>
 </thead>
 <tbody>
-{% for item in list_vacations %}
+{% for item in vacation_request_list %}
  <tr>
+    <td>{{ item.id }}</td>
    <td>{{ item.foreman }}</td>
    <td>{{ item.employee }}</td>
    <td>{{ item.location }}</td>
    <td>{{ item.init_date }}</td>
    <td>{{ item.final_date }}</td>
    <td>{{ item.date_submitted }}</td>
-   <td>{{ item.status }}</td>
+
  </tr>
 {% endfor %}
 </tbody>
