@@ -4,11 +4,12 @@ from django import template
 from .FuntionRoot import itcontrol
 from .FuntionRoot.irregular_entries import IrregularEntries
 from .FuntionRoot.hours_greater import HoursGreater
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpResponse
 
 register = template.Library()
 
-def download_current_list(request,location_request=None):
+
+def download_current_list(request, location_request=None):
     first_name = request.user.first_name
     last_name  = request.user.last_name
     active     = itcontrol.ItControl(first_name, last_name,location_request=location_request)
@@ -92,7 +93,9 @@ def foreman_main(request):
 
         data = data_collection(request=request)
         return render(request, 'forman_hub/main.html', context=data)
+
     elif user.groups.filter(name='SystemAdmin').exists():
         return system_admin(request=request)
+
     else:
         return render(request, 'controlapp/home.html')

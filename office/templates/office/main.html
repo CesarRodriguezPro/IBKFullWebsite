@@ -1,8 +1,44 @@
-{% extends 'office/base.html' %}
+{% extends 'controlapp/base.html' %}
+
+{% block title %}
+  {{user.username}}
+{% endblock %}
+
+{% block officeNav %}
+  <li class="nav-item">
+  <div class="dropdown">
+    <button style='margin-right:5px' class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    {{ current_location_label }}
+    <span class="caret"></span>
+    </button>
+
+      <ul class="dropdown-menu">
+        <form method="POST">
+          {% csrf_token %}
+          <li><button type="submit" class="btn" name="" >All Locations</button></li>
+              {% for location in list_locations %}
+                  <li><button style='margin-right:5px' type="submit" class="btn"  name="{{ location }}" >{{ location }}</button></li>
+              {% endfor %}
+        </form>
+      </li>
+      </ul>
+    </li>
+  <li class="nav-item">
+      <form method="POST">
+          {% csrf_token %}
+    <button type="submit" class="btn"  name="download_current" >Download Current</button>
+  </form>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " href="{% url 'absentRequest:absent_request' %}">Absent Report</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " href="{% url 'vacationRequest:vacation_request' %}">Vacation Request</a>
+  </li>
+{% endblock %}
 
 
 {% block content %}
-
 <!-- Weather code -->
 <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us" data-label_1="NEW YORK"
   data-label_2="WEATHER" data-theme="original">NEW YORK WEATHER</a>
@@ -14,17 +50,36 @@
   <br>
   <div class="row">
     <!--  amount of employees-->
-    <div class="col-sm">
+    <div class="col-lg">
       <div class="jumbotron jumbotron-fluid">
         <h2 style="text-align: center">Current Employees {{ current_employees }}</h2>
       </div>
+
+      <h2 style="text-align: center">Current Employees by location</h2>
+      <table class=" table table table-striped table-bordered table-sm">
+        <thead class="tableColor">
+          <tr>
+            <th scope="col"> Location </th>
+            <th scope="col"> Employees </th>
+          </tr>
+        </thead>
+        <tbody>
+          {%  for location, item in current_working_locations.items %}
+                <tr>
+                  <td>{{ location }}</td>
+                  <td>{{ item.Name }}</td>
+                </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
     </div>
 
     <!--  list of devices-->
     {% if list_of_devices %}
-    <div class="col-sm">
+    <div class="col-lg">
       <h5>Devices</h5>
-      <table class="table table table-striped table-bordered">
+      <table class="table table table-striped table-bordered table-sm">
         <thead class="tableColor">
           <tr>
             <th scope="col">Devices</th>
@@ -43,91 +98,6 @@
     </div>
     {% endif %}
   </div>
-
-  <div class="container=flu">
-    {% if warning_not_today_clock_in %}
-    <br>
-    <h4>Warning!</h4>
-    <h5>Employees Still in who didn't Clock in today</h5>
-    <table class="table table table-striped table-bordered">
-      <thead class="tableColor">
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Clock in</th>
-          <th scope="col">Device Used</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for data in warning_not_today_clock_in.values %}
-        <tr>
-          <td>{{ data.Name}}</td>
-          <td>{{ data.Date}}</td>
-          <td>{{ data.Device}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <br>
-    {% endif%}
-  </div>
-
-  <div class="row">
-
-    <!--    list of location for employees working in other places-->
-    {% if current_not %}
-    <div class="col-sm">
-    <h5>Employees in other locations </h5>
-    <table class="table table table-striped table-bordered">
-      <thead class="tableColor">
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Primary Department</th>
-          <th scope="col">Current Department</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for data in current_not %}
-        <tr>
-          <td>{{ data.Name }}</td>
-          <td>{{ data.Primary_Department}}</td>
-          <td>{{ data.Current_Department}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  {% endif %}
-
-
-
-  {% if primary_not %}
-  <div class="col-sm">
-  <h5>Employees Visiting your site</h5>
-  <table class="table table table-striped table-bordered">
-    <thead class="tableColor">
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Primary Department</th>
-        <th scope="col">Current Department</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for data in primary_not %}
-      <tr>
-        <td>{{ data.Name }}</td>
-        <td>{{ data.Primary_Department}}</td>
-        <td>{{ data.Current_Department}}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
 </div>
-{% endif %}
-
-</div>
-</div>
-</div>
-
-
 
 {% endblock %}

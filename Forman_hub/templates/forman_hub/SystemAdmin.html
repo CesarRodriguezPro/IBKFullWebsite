@@ -19,22 +19,22 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="{% url 'home' %}">Administrator</a>
 
-  <div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    {{ current_location_label }}
-    <span class="caret"></span>
-    </button>
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        {{ current_location_label }}
+        <span class="caret"></span>
+        </button>
 
-  <ul class="dropdown-menu">
-    <form method="POST">
-    {% csrf_token %}
-    <li><button type="submit" class="btn" name="" >All Locations</button></li>
-        {% for location in list_locations %}
-          <li><button type="submit" class="btn"  name="{{ location }}" >{{ location }}</button></li>
-        {% endfor %}
-    </form>
-  </ul>
-</div>
+      <ul class="dropdown-menu">
+        <form method="POST">
+        {% csrf_token %}
+        <li><button type="submit" class="btn" name="" >All Locations</button></li>
+            {% for location in list_locations %}
+              <li><button type="submit" class="btn"  name="{{ location }}" >{{ location }}</button></li>
+            {% endfor %}
+        </form>
+      </ul>
+    </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -58,7 +58,7 @@
       <br>
       <div class="row">
         <!--  amount of employees-->
-        <div class="col-sm">
+        <div class="col-md">
         {% if current_location_label != "All Locations" %}
               <div class="jumbotron jumbotron-fluid">
                 <h2 style="text-align: center">Current Employees {{ current_employees }}</h2>
@@ -88,7 +88,7 @@
 
         <!--  list of devices-->
         {% if list_of_devices %}
-            <div class="col-sm">
+            <div class="col-md">
               <h5>Devices</h5>
               <table class="table table table-striped table-bordered table-dark table-sm">
                 <thead class="tableColor">
@@ -195,7 +195,7 @@
     <!--    list of location for employees working in other places-->
   <div class="row">
     {% if current_not %}
-    <div class="col-sm">
+    <div class="col-md">
     <h5>Employees in other locations </h5>
     <table class="table table table-striped table-bordered table-dark table-sm"">
       <thead class="tableColor">
@@ -219,7 +219,7 @@
   {% endif %}
 
   {% if primary_not %}
-  <div class="col-sm">
+  <div class="col-md">
   <h5>Employees Visiting your site</h5>
   <table class="table table table-striped table-bordered table-dark table-sm"">
     <thead class="tableColor">
