@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django import template
-from .FuntionRoot import itcontrol
-from .FuntionRoot.irregular_entries import IrregularEntries
-from .FuntionRoot.hours_greater import HoursGreater
+from UniversalRootFolder import itcontrol
+from UniversalRootFolder.irregular_entries import IrregularEntries
+from UniversalRootFolder.hours_greater import HoursGreater
 from django.http import HttpResponse
 
 register = template.Library()

@@ -17,7 +17,7 @@
 <div class="container ">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="{% url 'home' %}">Administrator</a>
+  <a class="navbar-brand" href="{% url 'home' %}">{{user.first_name}} {{user.last_name}}</a>
 
       <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -190,8 +190,6 @@
     <br>
     {% endif%}
 
-
-
     <!--    list of location for employees working in other places-->
   <div class="row">
     {% if current_not %}
@@ -233,8 +231,8 @@
       {% for data in primary_not %}
       <tr>
         <td>{{ data.Name }}</td>
-        <td>{{ data.Primary_Department}}</td>
-        <td>{{ data.Current_Department}}</td>
+        <td>{{ data.Primary_Department }}</td>
+        <td>{{ data.Current_Department }}</td>
       </tr>
       {% endfor %}
     </tbody>
@@ -242,8 +240,6 @@
   </div>
 </div>
 {% endif %}
-</div>
-</div>
 </div>
 
 </body>
