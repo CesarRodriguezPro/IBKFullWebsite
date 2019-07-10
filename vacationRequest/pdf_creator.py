@@ -67,8 +67,8 @@ def pdf_resource(request):
         'work_and_pay': request.POST.get('work_and_pay', None)
     }
     file=Render_file.render_to_file('vacationRequest/pdf.html', params)
-    
-    # send_mail_to_accounting(file, employee, today_date )
+
+    send_mail_to_accounting(file, employee, today_date )
 
 if __name__ == "__main__":
     pass
