@@ -5,6 +5,8 @@ from UniversalRootFolder import itcontrol
 from UniversalRootFolder.irregular_entries import IrregularEntries
 from UniversalRootFolder.hours_greater import HoursGreater
 from django.http import HttpResponse
+from UniversalRootFolder import pdf_creator_for_timesheet
+from django.views.generic import View
 
 register = template.Library()
 
@@ -53,7 +55,6 @@ def data_collection(request, location_request=None):
     current_working_locations        = active.current_working_locations()
     irregular_entries, greater_hours = especial_funtions_dispatch(location_request)
 
-
     data = {
         'current_employees': active.current_employees_count(),
         'list_of_devices': active.list_of_devices(),
@@ -74,6 +75,7 @@ def system_admin(request):
         form = request.POST
         if len(list(form.keys())) > 1 and list(form.keys())[1] == 'download_current':
                 return download_current_list(request)
+
         else:      
             location_request = list(form.keys())[1] if len(list(form.keys())) > 1 else 'allLocations'
             data = data_collection(request, location_request = location_request)
@@ -82,14 +84,31 @@ def system_admin(request):
     return render(request, 'forman_hub/SystemAdmin.html', context=data)
 
 
+class Pdf(View):
+
+    def get(self, request):
+        current_location_p = itcontrol.ItControl(request.user.first_name, request.user.last_name, location_request=None)
+        current_location = current_location_p.foreman_location()
+        return pdf_creator_for_timesheet.pdf_builder(location=current_location)
+
+
+def timesheet_pass_pdf(request):
+    current_location_p = itcontrol.ItControl(request.user.first_name, request.user.last_name, location_request=None)
+    current_location = current_location_p.foreman_location()
+    return pdf_creator_for_timesheet.pdf_builder(location=current_location)
+
+
 @login_required
 def foreman_main(request):
     user = request.user
     if user.groups.filter(name='Foreman').exists():
         if request.method == "POST":
             form = request.POST
+
             if list(form.keys())[1] == 'download_current':
                 return download_current_list(request)
+            elif len(list(form.keys())) > 1 and list(form.keys())[1] == 'past_time_sheet':
+                return timesheet_pass_pdf(request)
 
         data = data_collection(request=request)
         return render(request, 'forman_hub/main.html', context=data)

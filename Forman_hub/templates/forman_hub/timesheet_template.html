@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ timesheet_for }}</title>
+    <style type="text/css">
+        @page {
+            size: letter landscape;
+            margin: 1cm;
+        }
+        body{
+            font-size:14px
+        }
+        .bold_text{
+            font-weight: 900
+        }
+        table {
+            border-collapse: collapse;
+            vertical-align: center;
+        }
+
+        table, thead, tbody, tr {
+            border: 1px solid black;
+            vertical-align: middle;
+            valign= bottom;
+        }
+        td {
+            text-align: center;
+            vertical-align: bottom;
+            valign= bottom;
+        }
+        tr {
+        vertical-align: bottom;
+        }
+    </style>
+</head>
+<body>
+<div style="overflow-x:auto;">
+<table>
+    <thead>
+        <tr>
+            {% for date in group_dates %}
+            <td>{{ date }}</td>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+       {% for item in data.values %}
+        <tr>
+            {% for x in item.values%}
+            <td>{{ x }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+</div>
+</body>
+</html>

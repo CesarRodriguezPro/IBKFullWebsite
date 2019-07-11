@@ -10,9 +10,15 @@
   </li>
 
   <li class="nav-item">
-      <form method="POST">
+      <form method="POST" class="form-inline">
           {% csrf_token %}
-    <button type="submit" class="btn"  name="download_current" >Download Current</button>
+    <button type="submit" class="btn btn-outline-primary"  name="download_current" >Download Current</button>
+  </form>
+  </li>
+  <li class="nav-item">
+      <form method="POST" class="form-inline">
+          {% csrf_token %}
+    <button type="submit" class="btn btn-outline-primary"  name="past_time_sheet" >Pass TimeSheet</button>
   </form>
   </li>
 
