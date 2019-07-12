@@ -95,7 +95,13 @@ class Pdf(View):
 def timesheet_pass_pdf(request):
     current_location_p = itcontrol.ItControl(request.user.first_name, request.user.last_name, location_request=None)
     current_location = current_location_p.foreman_location()
-    return pdf_creator_for_timesheet.pdf_builder(location=current_location)
+    return pdf_creator_for_timesheet.pdf_builder_last_week(location=current_location)
+
+
+def timesheet_current_pdf(request):
+    current_location_p = itcontrol.ItControl(request.user.first_name, request.user.last_name, location_request=None)
+    current_location = current_location_p.foreman_location()
+    return pdf_creator_for_timesheet.pdf_builder_current(location=current_location)
 
 
 @login_required
@@ -109,6 +115,8 @@ def foreman_main(request):
                 return download_current_list(request)
             elif len(list(form.keys())) > 1 and list(form.keys())[1] == 'past_time_sheet':
                 return timesheet_pass_pdf(request)
+            elif len(list(form.keys())) > 1 and list(form.keys())[1] == 'current_time_sheet':
+                return timesheet_current_pdf(request)
 
         data = data_collection(request=request)
         return render(request, 'forman_hub/main.html', context=data)

@@ -15,10 +15,19 @@
     <button type="submit" class="btn btn-outline-primary"  name="download_current" >Download Current</button>
   </form>
   </li>
-  <li class="nav-item">
+
+
+<li class="nav-item">
       <form method="POST" class="form-inline">
           {% csrf_token %}
-    <button type="submit" class="btn btn-outline-primary"  name="past_time_sheet" >Pass TimeSheet</button>
+    <button type="submit" class="btn btn-outline-primary"  name="past_time_sheet" >Last Week TimeSheet</button>
+  </form>
+  </li>
+
+<li class="nav-item">
+      <form method="POST" class="form-inline">
+          {% csrf_token %}
+    <button type="submit" class="btn btn-outline-primary"  name="current_time_sheet" >Current TimeSheet</button>
   </form>
   </li>
 
