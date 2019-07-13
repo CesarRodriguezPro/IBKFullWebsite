@@ -8,7 +8,7 @@ from django.core.mail import EmailMessage
 
 
 sender = 'cesarr@ibkconstructiongroup.com'
-to = ['cesarr@ibkconstructiongroup.com','lubas@ibkconstructiongroup.com','linag@ibkconstructiongroup.com', 'alyssahg@ibkconstructiongroup.com']
+to = ['cesarr@ibkconstructiongroup.com']
 
 
 class Render_file:
@@ -35,14 +35,14 @@ class Render_file:
         return [file_name, file_path]
 
 
-def send_mail_to_accounting(file, employee):
-
+def send_mail_to_accounting(file, employee, foreman_email ):
+    to_total = to.append(foreman_email)
     subject = f'Absent Request for {employee}'
     message = '''
     Lyuba,
     best,
     '''
-    message = EmailMessage(subject, message,sender,to)
+    message = EmailMessage(subject, message, sender, to_total)
     message.attach_file(file[1])
     message.send()
 
@@ -51,7 +51,7 @@ def pdf_resource(request):
     '''get the information and group for the creating a pdf'''
     today_date = datetime.today().strftime('%m/%d/%Y')
     employee = request.POST.get('employee').title()
-    
+    foreman_email = request.user.email
     params = {
         'current_date':today_date,
         'employee':employee,
@@ -63,5 +63,5 @@ def pdf_resource(request):
    
     file=Render_file.render_to_file('absentRequest/pdf.html', params)
     # return Render_file.render('absentRequest/pdf.html', params)
-    send_mail_to_accounting(file, employee )
+    send_mail_to_accounting(file, employee, foreman_email)
 

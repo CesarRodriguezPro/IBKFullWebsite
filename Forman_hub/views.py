@@ -7,6 +7,7 @@ from UniversalRootFolder.hours_greater import HoursGreater
 from django.http import HttpResponse
 from UniversalRootFolder import pdf_creator_for_timesheet
 from django.views.generic import View
+import datetime
 
 register = template.Library()
 
@@ -110,7 +111,6 @@ def foreman_main(request):
     if user.groups.filter(name='Foreman').exists():
         if request.method == "POST":
             form = request.POST
-
             if list(form.keys())[1] == 'download_current':
                 return download_current_list(request)
             elif len(list(form.keys())) > 1 and list(form.keys())[1] == 'past_time_sheet':

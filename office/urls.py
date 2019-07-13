@@ -9,4 +9,5 @@ app_name='office'
 
 urlpatterns = [
     path('', views.main_view, name = 'main_view'),
+
 ]

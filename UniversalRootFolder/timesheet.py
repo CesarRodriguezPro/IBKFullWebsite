@@ -1,12 +1,12 @@
 import pandas as pd
 import datetime
-import os
+from . import TimeStationKey
 
 today       = datetime.date.today()
 this_monday = today - datetime.timedelta(days=(today.weekday()))
 last_monday = this_monday - datetime.timedelta(weeks=1)
 yesterday   = today - datetime.timedelta(days=1)
-key = os.environ.get('TimeStationKey')
+key         = TimeStationKey.get_key()
 
 
 class PreviousWeekTimeSheet:

@@ -1,6 +1,6 @@
 import pandas as pd
 import datetime
-import os
+from . import TimeStationKey
 
 
 class ItControl:
@@ -11,7 +11,7 @@ class ItControl:
         self.first_name = first_name
         self.last_name = last_name
         self.location_request = location_request
-        self.key_api = os.environ.get('TimeStationKey')
+        self.key_api = TimeStationKey.get_key()
 
         # get the information for current employees
         self.code_current = 37  

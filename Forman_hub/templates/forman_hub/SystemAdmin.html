@@ -25,15 +25,19 @@
         <span class="caret"></span>
         </button>
 
-      <ul class="dropdown-menu">
-        <form method="POST">
-        {% csrf_token %}
-        <li><button type="submit" class="btn" name="" >All Locations</button></li>
-            {% for location in list_locations %}
-              <li><button type="submit" class="btn"  name="{{ location }}" >{{ location }}</button></li>
-            {% endfor %}
-        </form>
-      </ul>
+            <ul class="dropdown-menu">
+              <form method="POST">
+              {% csrf_token %}
+                  <li>
+                    <div class="btn-group-vertical">
+                       <button type="submit" class="btn" name="" >All Locations</button>
+                        {% for location in list_locations %}
+                           <button type="submit" class="dropdown-item"  name="{{ location }}" >{{ location }}</button>
+                       {% endfor %}
+                    </div>
+                 </li>
+              </form>
+            </ul>
     </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

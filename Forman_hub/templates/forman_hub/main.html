@@ -5,38 +5,33 @@
 {% endblock %}
 
 {% block foremanNav %}
- <li class="nav-item">
-    <a class="nav-link active" style="color:#FFDE05;" href="#">{{ current_location_label }}</a>
-  </li>
+       <li class="nav-item">
+          <a class="nav-link active" style="color:#FFDE05;" href="#">{{ current_location_label }}</a>
+        </li>
+        <li class="nav-item">
 
-  <li class="nav-item">
-      <form method="POST" class="form-inline">
-          {% csrf_token %}
-    <button type="submit" class="btn btn-outline-primary"  name="download_current" >Download Current</button>
-  </form>
-  </li>
+<!--          working in this dropdown manu -->
+            <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Downloads
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
+                    <form method="POST">
+                      {% csrf_token %}
+                    <button type="submit" class="dropdown-item" name="download_current" >Download Current</button>
+                    <button type="submit" class="dropdown-item" name="past_time_sheet" >Last Week TimeSheet</button>
+                    <button type="submit" class="dropdown-item" name="current_time_sheet" >Current TimeSheet</button>
+                    </form>
+            </div>
+        </li>
 
-<li class="nav-item">
-      <form method="POST" class="form-inline">
-          {% csrf_token %}
-    <button type="submit" class="btn btn-outline-primary"  name="past_time_sheet" >Last Week TimeSheet</button>
-  </form>
-  </li>
-
-<li class="nav-item">
-      <form method="POST" class="form-inline">
-          {% csrf_token %}
-    <button type="submit" class="btn btn-outline-primary"  name="current_time_sheet" >Current TimeSheet</button>
-  </form>
-  </li>
-
-  <li class="nav-item">
-    <a class="nav-link " href="{% url 'absentRequest:absent_request' %}">Absent Report</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link " href="{% url 'vacationRequest:vacation_request' %}">Vacation Request</a>
-  </li>
+      <li class="nav-item">
+         <a class="nav-link " href="{% url 'absentRequest:absent_request' %}">Absent Report</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link " href="{% url 'vacationRequest:vacation_request' %}">Vacation Request</a>
+      </li>
 
 {% endblock %}
 
