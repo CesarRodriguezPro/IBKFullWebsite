@@ -11,9 +11,6 @@ from django.core.mail import EmailMessage
 sender = 'cesarr@ibkconstructiongroup.com'
 to = [
     'cesarr@ibkconstructiongroup.com',
-    'lubas@ibkconstructiongroup.com',
-    'linag@ibkconstructiongroup.com',
-    'alyssahg@ibkconstructiongroup.com',
 ]
 
 
@@ -41,23 +38,25 @@ class Render_file:
         return [file_name, file_path]
 
 
-def send_mail_to_accounting(file, employee, today_date):
-
+def send_mail_to_accounting(file, employee, today_date, foreman_email):
+    to_include = to.append(foreman_email)
     subject = f'Vacation Request for {employee}- { today_date }'
-    message = '''Lyuba,
+    message = '''
+    Lyuba,
+    
     
     best,
     '''
-    message = EmailMessage(subject, message, sender, to)
+    message = EmailMessage(subject, message, sender, to_include)
     message.attach_file(file[1])
     message.send()
 
 
 def pdf_resource(request):
-    '''get the information and group for the creating a pdf'''
+    ''' get the information and group for the creating a pdf '''
     today_date = datetime.today().strftime('%m/%d/%Y')
     employee = request.POST.get('employee').title()
-    
+    foreman_email = request.user.email
     params = {
         'current_date': today_date,
         'employee': employee,
@@ -66,9 +65,5 @@ def pdf_resource(request):
         'superviser': f"{request.user.first_name} {request.user.last_name} ".title(),
         'work_and_pay': request.POST.get('work_and_pay', None)
     }
-    file=Render_file.render_to_file('vacationRequest/pdf.html', params)
-
-    # send_mail_to_accounting(file, employee, today_date )
-
-if __name__ == "__main__":
-    pass
+    file = Render_file.render_to_file('vacationRequest/pdf.html', params)
+    send_mail_to_accounting(file, employee, today_date, foreman_email)

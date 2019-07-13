@@ -12,15 +12,18 @@
     <span class="caret"></span>
     </button>
 
-      <ul class="dropdown-menu">
+      <ul class="dropdown-menu" style="background-color:#00012f">
         <form method="POST">
           {% csrf_token %}
-          <li><button type="submit" class="btn" name="" >All Locations</button></li>
-              {% for location in list_locations %}
-                  <li><button style='margin-right:5px' type="submit" class="btn"  name="{{ location }}" >{{ location }}</button></li>
-              {% endfor %}
+              <li>
+                <div class="btn-group-vertical" >
+                   <button type="submit" class="btn" name="" >All Locations</button>
+                    {% for location in list_locations %}
+                       <button type="submit" class="btn"  name="{{ location }}" >{{ location }}</button>
+                    {% endfor %}
+                </div>
+             </li>
         </form>
-      </li>
       </ul>
     </li>
   <li class="nav-item">

@@ -1,7 +1,7 @@
 
 import pandas as pd
 import datetime
-import os
+from . import TimeStationKey
 
 today = datetime.date.today()
 past_date = today - datetime.timedelta(6)
@@ -11,7 +11,7 @@ class HoursGreater:
 
     def __init__(self):
 
-        self.key_api = os.environ.get('TimeStationKey')
+        self.key_api = TimeStationKey.get_key()
         self.CODE = 41 # 1 week summary
         self.url = f"https://api.mytimestation.com/v0.1/reports/?api_key={self.key_api}&Report_StartDate={date}&id={self.CODE}&exportformat=csv"
         self.raw_data = pd.read_csv(self.url)

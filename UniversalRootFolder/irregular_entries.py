@@ -1,13 +1,13 @@
 import pandas as pd
 import datetime
-import os
+from . import TimeStationKey
 
 ''' this will check if there is any wrong entry in the timestation entry log '''
 
-class IrregularEntries:
 
+class IrregularEntries:
     def __init__(self):
-        self.key_api = os.environ.get('TimeStationKey')
+        self.key_api = TimeStationKey.get_key()
         self.CODE = 34  # Employee Activity
         self.today = datetime.date.today()
         self.current_monday = self.today - datetime.timedelta(days=self.today.weekday())

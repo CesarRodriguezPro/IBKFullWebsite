@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-import datetime
 
 
 class vacationRequest(models.Model):
@@ -13,5 +12,7 @@ class vacationRequest(models.Model):
     status           = models.CharField(max_length=50, blank=True )
     work_and_pay     = models.BooleanField(default=False)
 
+
     def get_absolute_url(self):
         return reverse('vacationRequest:vacation_viewinfo', kwargs={'pk': self.pk})
+
