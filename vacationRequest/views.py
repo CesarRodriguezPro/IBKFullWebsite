@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from .forms import RequestVacationForm, SignatureForm
+from .forms import RequestVacationForm
 from .models import vacationRequest
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .pdf_creator import pdf_resource
-from jsignature.utils import draw_signature
 
 
 @login_required()

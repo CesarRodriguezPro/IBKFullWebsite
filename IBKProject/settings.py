@@ -62,7 +62,6 @@ INSTALLED_APPS = [
     'vacationRequest',
     'office',
     'absentRequest',
-    'jsignature',
 ]
 JSIGNATURE_WIDTH = 500
 JSIGNATURE_HEIGHT = 200
