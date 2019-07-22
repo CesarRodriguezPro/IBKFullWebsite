@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Sales Report</title>
+    <title>TimeSheet</title>
     <style type="text/css">
         @page {
             size: letter landscape;
@@ -13,6 +13,10 @@
             max-width: 100%;
             margin-bottom: 5px;
             background-color: #fff;
+        }
+
+        table {
+            -fs-table-paginate: paginate;
         }
         .table th,
         .table td {
@@ -34,13 +38,13 @@
         }
         .list-group {
             display: block;
-            width: 75%;
+            width: auto;
             list-style: none;
             margin-top: 15px;
             margin-bottom: 15px;
         }
         .list-group p {
-            width: 100%;
+            width: auto;
             height: 20px;
             line-height: 20px;
             list-style: none;
@@ -52,22 +56,22 @@
 
 <div class="container">
     <div class="card">
-        <table class="table">
+        <table class="table" repeat="1">
             <thead>
                 <tr>
-                    {% for date in group_dates %}
-                    <td>{{ date }}</td>
+                    {% for date in labels %}
+                      <td>{{ date }}</td>
                     {% endfor %}
                 </tr>
             </thead>
             <tbody>
-                   {% for item in data.values %}
+                   {% for item in data %}
                     <tr>
-                        {% for x in item.values%}
-                              <td>{{ x }}</td>
+                        {% for x in item.values %}
+                          <td>{{ x }}</td>
                         {% endfor %}
                     </tr>
-                {% endfor %}
+                    {% endfor %}
              </tbody>
         </table>
     </div>
