@@ -17,7 +17,21 @@
 <div class="container ">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="{% url 'home' %}">{{user.first_name}} {{user.last_name}}</a>
+  <a class="navbar-brand" href="{% url 'home' %}">
+
+  <table>
+
+    <tr>
+      <td>{{user.first_name}} {{user.last_name}}</td>
+    </tr>
+      <tr>
+      <td>{{current_time}}</td>
+    </tr>
+
+  </table>
+
+
+  </a>
 
       <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -39,20 +53,37 @@
               </form>
             </ul>
     </div>
+    
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
+
       <li class="nav-item">
-          <form method="POST">
-              {% csrf_token %}
-        <button type="submit" class="btn"  name="download_current" >Download Current</button>
-      </form>
-      </li>
+        <div class="dropdown">
+              <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Downloads
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                <form method="POST">
+                  {% csrf_token %}
+                <button type="submit" class="dropdown-item" name="download_current" >Download Current</button>
+                <button type="submit" class="dropdown-item" name="past_time_sheet" >Last Week TimeSheet</button>
+                <button type="submit" class="dropdown-item" name="current_time_sheet" >Current TimeSheet</button>
+                </form>
+        </div>
+    </li>
+
+
+
+
+
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'accounts:logout_user' %}">Log Out</a>
       </li>
+
 
     </ul>
   </div>

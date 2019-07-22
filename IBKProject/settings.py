@@ -22,6 +22,7 @@ TEMPLATES_DIR = [
     os.path.join(BASE_DIR, 'absentRequest', 'templates'),
     os.path.join(BASE_DIR, 'templates'),
     os.path.join(BASE_DIR, 'office', 'templates'),
+    os.path.join(BASE_DIR, 'employees', 'templates'),
 ]
 
 
@@ -62,9 +63,12 @@ INSTALLED_APPS = [
     'vacationRequest',
     'office',
     'absentRequest',
+<<<<<<< HEAD
+=======
+    'employees'
+>>>>>>> a87c25455c3fc5f60a688169de1c8083bb5a91a5
 ]
-JSIGNATURE_WIDTH = 500
-JSIGNATURE_HEIGHT = 200
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
@@ -141,13 +145,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)

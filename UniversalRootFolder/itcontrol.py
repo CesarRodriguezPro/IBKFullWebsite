@@ -20,6 +20,10 @@ class ItControl:
 
         # self.current_data = pd.read_csv(r"C:\Users\strea\Desktop\testfiles\test_data.csv")
         self.filter_data_in = self.current_data[self.current_data['Status'].str.contains('In')]
+        self.filter_data_out = self.current_data[self.current_data['Status'].str.contains('Out')]
+
+    def current_employees_out(self):
+        return self.filter_data_out.to_dict()
 
     def save_current_by_location(self):
         data_pd, location_name = self.current_location()
