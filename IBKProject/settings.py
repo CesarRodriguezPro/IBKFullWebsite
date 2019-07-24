@@ -63,10 +63,7 @@ INSTALLED_APPS = [
     'vacationRequest',
     'office',
     'absentRequest',
-<<<<<<< HEAD
-=======
     'employees'
->>>>>>> a87c25455c3fc5f60a688169de1c8083bb5a91a5
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
