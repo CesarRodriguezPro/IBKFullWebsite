@@ -109,9 +109,9 @@ DATABASES = {
 
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'DjangoDatabase',
-        'USER': 'admin',
-        'PASSWORD': 'somepassword',
+        'NAME': 'djangoproject',
+        'USER': 'IBKAdmin',
+        'PASSWORD': os.environ.get('DatabasePassword'),
         'HOST':'localhost',
         'PORT': '',
     }

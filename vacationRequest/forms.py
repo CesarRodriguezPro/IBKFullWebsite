@@ -1,7 +1,6 @@
 from django import forms
 from .models import vacationRequest
 import datetime
-from jsignature.forms import JSignatureField
 
 
 class RequestVacationForm(forms.ModelForm):
@@ -17,7 +16,3 @@ class RequestVacationForm(forms.ModelForm):
             'final_date': forms.DateInput(format=('%m-%d-%Y'),
                               attrs={'class':'form-control', 'type':'date'}),
         }
-
-
-class SignatureForm(forms.Form):
-    signature = JSignatureField()
