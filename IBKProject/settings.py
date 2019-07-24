@@ -111,7 +111,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'djangoproject',
         'USER': 'IBKAdmin',
-        'PASSWORD': 'lore718ibk',
+        'PASSWORD': os.environ.get('DatabasePassword'),
         'HOST':'localhost',
         'PORT': '',
     }
