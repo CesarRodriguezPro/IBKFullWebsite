@@ -63,7 +63,6 @@ INSTALLED_APPS = [
     'vacationRequest',
     'office',
     'absentRequest',
-    'employees'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -109,8 +108,8 @@ DATABASES = {
 
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'djangoproject',
-        'USER': 'IBKAdmin',
+        'NAME': 'DjangoDatabase',
+        'USER': 'admin',
         'PASSWORD': os.environ.get('DatabasePassword'),
         'HOST':'localhost',
         'PORT': '',
