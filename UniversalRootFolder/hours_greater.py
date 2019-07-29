@@ -11,7 +11,7 @@ class HoursGreater:
         self.date = self.past_date.strftime('%Y-%m-%d')
         self.key_api = TimeStationKey.get_key()
         self.CODE = 41 # 1 week summary
-        self.url = f"https://api.mytimestation.com/v0.1/reports/?api_key={self.key_api}&Report_StartDate={date}&id={self.CODE}&exportformat=csv"
+        self.url = f"https://api.mytimestation.com/v0.1/reports/?api_key={self.key_api}&Report_StartDate={self.date}&id={self.CODE}&exportformat=csv"
         self.raw_data = pd.read_csv(self.url)
 
     def get_times(self):
