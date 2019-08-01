@@ -67,8 +67,14 @@
             <tbody>
                    {% for item in data %}
                     <tr>
-                        {% for x in item.values %}
-                          <td>{{ x }}</td>
+                        {% for key, value in item.items %}
+                            {% if key == 'Employee'%}
+                                 <td style="width: 200px">{{ value }}</td>
+                            {% elif key == 'Department' %}
+                                <td style="width: 150px">{{ value }}</td>
+                            {% else %}
+                                 <td style="width:90px">{{ value }}</td>
+                            {% endif %}
                         {% endfor %}
                     </tr>
                     {% endfor %}
