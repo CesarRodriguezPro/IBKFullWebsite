@@ -3,7 +3,14 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 import xhtml2pdf.pisa as pisa
 from  .  import timesheet
+import datetime
 
+def page_layout():
+    week_day = datetime.date.today().weekday()
+    if week_day <= 4:
+        return 'portrait'
+    else:
+        return 'landscape'
 
 class Render_file:
     def render(path: str, params: dict):
@@ -34,6 +41,7 @@ def pdf_builder_last_week(location):
         'timesheet_for': location,
         'labels': label,
         'data': addact_label(data),
+        'layout': 'landscape'
     }
     return Render_file.render('forman_hub/timesheet_template.html', params)
 
@@ -42,10 +50,12 @@ def pdf_builder_current(location):
     raw_data = timesheet.CurrentWeekTimeSheet(location=location)
     data = raw_data.run()
     label = [dates.keys() for dates in data.values()][0]
+
     params = {
         'timesheet_for': location,
         'labels': label,
         'data': addact_label(data),
+        'layout': page_layout(),
     }
     return Render_file.render('forman_hub/timesheet_template.html', params)
 

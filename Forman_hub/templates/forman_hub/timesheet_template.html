@@ -5,51 +5,27 @@
     <title>TimeSheet</title>
     <style type="text/css">
         @page {
-            size: letter landscape;
+            size: letter {{layout}};
             margin: 1cm;
         }
         .table {
             width: 100%;
             max-width: 100%;
-            margin-bottom: 5px;
             background-color: #fff;
         }
 
         table {
             -fs-table-paginate: paginate;
         }
-        .table th,
-        .table td {
-            font-size: 14px;
-            padding: 1px;
+
+        td{
+            border: 1px solid black;
             vertical-align: middle;
-            border-top: 1px solid #000;
             text-align: center;
+            height: 25px;
+            padding-top:2px; 
         }
-        .table thead th {
-            vertical-align: bottom;
-            border-bottom: 2px solid #000;
-        }
-        .table tbody + tbody {
-            border-top: 2px solid #000;
-        }
-        .table .table {
-            background-color: #fff;
-        }
-        .list-group {
-            display: block;
-            width: auto;
-            list-style: none;
-            margin-top: 15px;
-            margin-bottom: 15px;
-        }
-        .list-group p {
-            width: auto;
-            height: 20px;
-            line-height: 20px;
-            list-style: none;
-            font-size: 1.1em;
-        }
+
     </style>
 </head>
 <body>
@@ -60,7 +36,7 @@
             <thead>
                 <tr>
                     {% for date in labels %}
-                      <td>{{ date }}</td>
+                      <td style="font-size: 10pt; height: 20px;">{{ date }}</td>
                     {% endfor %}
                 </tr>
             </thead>
@@ -69,11 +45,11 @@
                     <tr>
                         {% for key, value in item.items %}
                             {% if key == 'Employee'%}
-                                 <td style="width: 200px">{{ value }}</td>
+                                 <td style="width: 300px; font-size: 13pt;">{{ value }}</td>
                             {% elif key == 'Department' %}
-                                <td style="width: 150px">{{ value }}</td>
+                                <td style="width: 200px; font-size: 8pt;">{{ value }}</td>
                             {% else %}
-                                 <td style="width:90px">{{ value }}</td>
+                                 <td style="width:auto; font-size: 13pt;">{{ value }}</td>
                             {% endif %}
                         {% endfor %}
                     </tr>
