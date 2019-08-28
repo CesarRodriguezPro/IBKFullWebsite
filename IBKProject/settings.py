@@ -23,6 +23,7 @@ TEMPLATES_DIR = [
     os.path.join(BASE_DIR, 'templates'),
     os.path.join(BASE_DIR, 'office', 'templates'),
     os.path.join(BASE_DIR, 'employees', 'templates'),
+    os.path.join(BASE_DIR, 'downloadDocuments', 'templates'),
 ]
 
 
@@ -63,6 +64,7 @@ INSTALLED_APPS = [
     'vacationRequest',
     'office',
     'absentRequest',
+    'downloadDocuments',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

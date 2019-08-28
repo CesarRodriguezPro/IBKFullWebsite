@@ -29,4 +29,5 @@ urlpatterns = [
     path('vacation/', include(('vacationRequest.urls', 'vacation'))),
     path('absent/', include(('absentRequest.urls', 'absent'))),
     path('office/', include(('office.urls', 'office'))),
+    path('documents/', include(('downloadDocuments.urls', 'downloadDocuments'))),
     ]
