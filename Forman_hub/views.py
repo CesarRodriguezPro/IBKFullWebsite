@@ -7,11 +7,25 @@ from UniversalRootFolder.hours_greater import HoursGreater
 from django.http import HttpResponse
 from UniversalRootFolder import pdf_creator_for_timesheet
 from django.views.generic import View
+from django.contrib.auth.models import Group 
+
 import datetime
 
 
 register = template.Library()
 
+
+@register.filter(name='has_group') 
+def has_group(user, group_name):
+
+
+    # working in this part
+    group = Group.objects.filter(name=group_name)
+    if group:
+        group = group.first()
+        return group in user.groups.all()
+    else:
+        return False
 
 def download_current_list(request, location_request=None):
     first_name = request.user.first_name
@@ -72,30 +86,7 @@ def data_collection(request, location_request=None):
     }
     return data
 
-
-def system_admin(request):
-    if request.method == 'POST':
-        form = request.POST
-        if len(list(form.keys())) > 1 and list(form.keys())[1] == 'download_current':
-            return download_current_list(request)
-
-        elif len(list(form.keys())) > 1 and list(form.keys())[1] == 'past_time_sheet':
-                return timesheet_pass_pdf(request)
-            
-        elif len(list(form.keys())) > 1 and list(form.keys())[1] == 'current_time_sheet':
-            if datetime.date.today().weekday() != 0:
-                return timesheet_current_pdf(request)
-            else:
-                return timesheet_pass_pdf(request)
-
-        else:      
-            location_request = list(form.keys())[1] if len(list(form.keys())) > 1 else 'allLocations'
-            data = data_collection(request, location_request = location_request)
-            return render(request, 'forman_hub/SystemAdmin.html', context=data)
-    data = data_collection(request)
-    return render(request, 'forman_hub/SystemAdmin.html', context=data)
-
-
+ 
 class Pdf(View):
 
     def get(self, request):
@@ -118,29 +109,25 @@ def timesheet_current_pdf(request):
 
 @login_required
 def foreman_main(request):
-    user = request.user
-    if user.groups.filter(name='Foreman').exists():
+
+    if request.method == "POST":
+        form = request.POST
         
-        if request.method == "POST":
-            form = request.POST
-            
-            if list(form.keys())[1] == 'download_current':
-                return download_current_list(request)
-            
-            elif len(list(form.keys())) > 1 and list(form.keys())[1] == 'past_time_sheet':
+        if list(form.keys())[1] == 'download_current':
+            return download_current_list(request)
+
+        elif len(list(form.keys())) > 1 and list(form.keys())[1] == 'past_time_sheet':
+            return timesheet_pass_pdf(request)
+
+        elif len(list(form.keys())) > 1 and list(form.keys())[1] == 'current_time_sheet':
+            if datetime.date.today().weekday() != 0:
+                return timesheet_current_pdf(request)
+            else:
                 return timesheet_pass_pdf(request)
-            
-            elif len(list(form.keys())) > 1 and list(form.keys())[1] == 'current_time_sheet':
-                if datetime.date.today().weekday() != 0:
-                    return timesheet_current_pdf(request)
-                else:
-                    return timesheet_pass_pdf(request)
+        else:      
+            location_request = list(form.keys())[1] if len(list(form.keys())) > 1 else 'allLocations'
+            data = data_collection(request, location_request = location_request)
+            return render(request, 'forman_hub/main.html', context=data)
 
-        data = data_collection(request=request)
-        return render(request, 'forman_hub/main.html', context=data)
-
-    elif user.groups.filter(name='SystemAdmin').exists():
-        return system_admin(request=request)
-
-    else:
-        return render(request, 'controlapp/home.html')
+    data = data_collection(request=request)
+    return render(request, 'forman_hub/main.html', context=data)

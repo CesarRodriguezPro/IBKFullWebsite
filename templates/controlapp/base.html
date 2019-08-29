@@ -26,21 +26,17 @@
           {% endif %}
 
           {% if user.is_authenticated %}
-           <ul class="navbar-nav justify-content-center">
-              {% if request.session.type == 'foreman' or request.session.type == 'systemAdmin' or request.session.type == 'office' %}
-                  <li class="nav-item">
+           <ul class="navbar-nav justify-content-center">  
                   <a  style="color:#FFDE05;" href="{% url 'foreman_hub:foreman_main'%}">
-                      {{user.first_name}} {{user.last_name}}
+                    <table>
+                      <tr>
+                        <td>{{user.first_name}} {{user.last_name}}</td>
+                      </tr>
+                        <tr>
+                        <td>last update: {{current_time}}</td>
+                      </tr>
+                    </table>
                   </a>
-                  </li>
-     
-              {% else %}
-                  <li class="nav-item">
-                    <a  style="color:#FFDE05;">
-                        No Group Assign Please contact Admin
-                    </a>
-                  </li>
-              {% endif %}
            </ul>
           {% endif %}
 
@@ -52,15 +48,11 @@
        <div class="collapse navbar-collapse  justify-content-end" id="navbarSupportedContent">
          <ul class="navbar-nav ml-auto">
               {% if user.is_authenticated %}
-                    {% if request.session.type == 'foreman' or request.session.type == 'systemAdmin' %}
-                          {% block foremanNav %}
-                               <!-- navication bar for foreman -->
-                          {% endblock%}
-                    {% elif request.session.type == 'office' %}
-                            {% block officeNav %} 
-                               <!-- navigatinbar for office  -->
-                            {% endblock%}
-                    {% endif %}
+                    
+                {% block customNav %}
+                      <!-- custom bar -->
+                  {% endblock%}
+                 
                   <li class="nav-item active">
                     <a class="nav-link" href="{% url 'accounts:logout_user' %}">Log Out</a>
                   </li>

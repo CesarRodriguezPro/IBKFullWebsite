@@ -1,52 +1,106 @@
+
 {% extends 'controlapp/base.html' %}
 
 {% block title %}
   {{user.username}}
 {% endblock %}
 
-{% block foremanNav %}
-       <li class="nav-item">
-          <a class="nav-link active" style="color:#FFDE05;" href="#">{{ current_location_label }}</a>
-        </li>
+
+
+{% block customNav %}
+
+{% if request.user|has_group:"Foreman" %}
+          <li class="nav-item">
+              <a class="nav-link active" style="color:#FFDE05;" href="#">{{ current_location_label }}</a>
+          </li>
+          <li class="nav-item">
+                <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Downloads
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                        <form method="POST">
+                          {% csrf_token %}
+                        <button type="submit" class="dropdown-item" name="download_current" >Download Current</button>
+                        <button type="submit" class="dropdown-item" name="past_time_sheet" >Last Week TimeSheet</button>
+                        <button type="submit" class="dropdown-item" name="current_time_sheet" >Current TimeSheet</button>
+                        </form>
+                </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'absentRequest:absent_request' %}">Absent Report</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link " href="{% url 'vacationRequest:vacation_request' %}">Vacation Request</a>
+          </li>
+
+{% elif request.user|has_group:"SystemAdmin" %}
         <li class="nav-item">
-            <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Downloads
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                    <form method="POST">
-                      {% csrf_token %}
-                    <button type="submit" class="dropdown-item" name="download_current" >Download Current</button>
-                    <button type="submit" class="dropdown-item" name="past_time_sheet" >Last Week TimeSheet</button>
-                    <button type="submit" class="dropdown-item" name="current_time_sheet" >Current TimeSheet</button>
-                    </form>
-            </div>
+              <a class="nav-link active" style="color:#FFDE05;" href="#">{{ current_location_label }}</a>
         </li>
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            {{ current_location_label }}
+            <span class="caret"></span>
+            </button>
 
-      <li class="nav-item">
-         <a class="nav-link " href="{% url 'absentRequest:absent_request' %}">Absent Report</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link " href="{% url 'vacationRequest:vacation_request' %}">Vacation Request</a>
-      </li>
+                <ul class="dropdown-menu">
+                  <form method="POST">
+                  {% csrf_token %}
+                      <li>
+                        <div class="btn-group-vertical">
+                          <button type="submit" class="btn" name="" >All Locations</button>
+                            {% for location in list_locations %}
+                              <button type="submit" class="dropdown-item"  name="{{ location }}" >{{ location }}</button>
+                          {% endfor %}
+                        </div>
+                    </li>
+                  </form>
+                </ul>
+        </div> 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <div class="dropdown">
+                    <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Downloads
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <form method="POST">
+                        {% csrf_token %}
+                      <button type="submit" class="dropdown-item" name="download_current" >Download Current</button>
+                      <button type="submit" class="dropdown-item" name="past_time_sheet" >Last Week TimeSheet</button>
+                      <button type="submit" class="dropdown-item" name="current_time_sheet" >Current TimeSheet</button>
+                      </form>
+              </div>
+          </li>
+          </ul>
+        </div>
 
+{% endif %}
 {% endblock %}
 
-{% block content %}
 
+
+{% block content %}
 <!-- Weather code -->
 <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us" data-label_1="NEW YORK"
   data-label_2="WEATHER" data-theme="original">NEW YORK WEATHER</a>
 <script>
   !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
 </script>
+<!-- end of weather code -->
 
-<div class="container ">
+
+<div class="container-fluid ">
   <br>
   <div class="row">
     <!--  amount of employees-->
-    <div class="col-md">
+    <div class="col-lg">
       <div class="jumbotron jumbotron-fluid">
         <h2 style="text-align: center">Current Employees {{ current_employees }}</h2>
       </div>
@@ -54,7 +108,7 @@
 
     <!--  list of devices-->
     {% if list_of_devices %}
-    <div class="col-md">
+    <div class="col-lg">
       <h5>Devices</h5>
       <table class="table table table-striped table-bordered">
         <thead class="tableColor">
@@ -104,7 +158,6 @@
   </div>
 
   <div class="row">
-
     <!--    list of location for employees working in other places-->
     {% if current_not %}
     <div class="col-lg">
@@ -158,8 +211,6 @@
 
 </div>
 </div>
-</div>
-
 
 
 {% endblock %}
