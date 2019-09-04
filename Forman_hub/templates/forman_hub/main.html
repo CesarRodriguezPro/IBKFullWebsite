@@ -9,33 +9,7 @@
 
 {% block customNav %}
 
-{% if request.user|has_group:"Foreman" %}
-          <li class="nav-item">
-              <a class="nav-link active" style="color:#FFDE05;" href="#">{{ current_location_label }}</a>
-          </li>
-          <li class="nav-item">
-                <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Downloads
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                        <form method="POST">
-                          {% csrf_token %}
-                        <button type="submit" class="dropdown-item" name="download_current" >Download Current</button>
-                        <button type="submit" class="dropdown-item" name="past_time_sheet" >Last Week TimeSheet</button>
-                        <button type="submit" class="dropdown-item" name="current_time_sheet" >Current TimeSheet</button>
-                        </form>
-                </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " href="{% url 'absentRequest:absent_request' %}">Absent Report</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link " href="{% url 'vacationRequest:vacation_request' %}">Vacation Request</a>
-          </li>
-
-{% elif request.user|has_group:"SystemAdmin" %}
+{% if request.session.type == "SystemAdmin" %}
         <li class="nav-item">
               <a class="nav-link active" style="color:#FFDE05;" href="#">{{ current_location_label }}</a>
         </li>
@@ -80,6 +54,32 @@
           </li>
           </ul>
         </div>
+
+{% elif request.session.type == 'Foreman' %}
+          <li class="nav-item">
+              <a class="nav-link active" style="color:#FFDE05;" href="#">{{ current_location_label }}</a>
+          </li>
+          <li class="nav-item">
+                <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Downloads
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                        <form method="POST">
+                          {% csrf_token %}
+                        <button type="submit" class="dropdown-item" name="download_current" >Download Current</button>
+                        <button type="submit" class="dropdown-item" name="past_time_sheet" >Last Week TimeSheet</button>
+                        <button type="submit" class="dropdown-item" name="current_time_sheet" >Current TimeSheet</button>
+                        </form>
+                </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'absentRequest:absent_request' %}">Absent Report</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link " href="{% url 'vacationRequest:vacation_request' %}">Vacation Request</a>
+          </li>
 
 {% endif %}
 {% endblock %}

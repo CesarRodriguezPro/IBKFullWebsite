@@ -13,8 +13,8 @@ login
 <h1> this is from accounts</h1>
 <form method="POST"  action="{% url 'accounts:login_user' %}">
   {% csrf_token %}
-  <input type="text" name=username class=form-control >
-  <input type='password' name=password class=form-control>
+  <input type="text" name=username class=form-control  placeholder="UserName">
+  <input type='password' name=password class=form-control placeholder="Password">
   <button type="submit">Login</button>
 </form>
 </center>

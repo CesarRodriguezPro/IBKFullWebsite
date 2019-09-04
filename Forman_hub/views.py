@@ -15,18 +15,6 @@ import datetime
 register = template.Library()
 
 
-@register.filter(name='has_group') 
-def has_group(user, group_name):
-
-
-    # working in this part
-    group = Group.objects.filter(name=group_name)
-    if group:
-        group = group.first()
-        return group in user.groups.all()
-    else:
-        return False
-
 def download_current_list(request, location_request=None):
     first_name = request.user.first_name
     last_name  = request.user.last_name
@@ -69,6 +57,9 @@ def data_collection(request, location_request=None):
     current_not, primary_not         = active.check_function()
     current_location_label           = active.current_location()[1]
     current_working_locations        = active.current_working_locations()
+
+    #### todo working in placing group to hte template
+    group_belong                     = request.user.groups.values_list
     irregular_entries, greater_hours = especial_funtions_dispatch(location_request)
 
     data = {
