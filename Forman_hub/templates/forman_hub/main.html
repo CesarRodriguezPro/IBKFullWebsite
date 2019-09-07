@@ -5,57 +5,7 @@
   {{user.username}}
 {% endblock %}
 
-
-
 {% block customNav %}
-
-{% if request.session.type == "SystemAdmin" %}
-        <li class="nav-item">
-              <a class="nav-link active" style="color:#FFDE05;" href="#">{{ current_location_label }}</a>
-        </li>
-        <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            {{ current_location_label }}
-            <span class="caret"></span>
-            </button>
-
-                <ul class="dropdown-menu">
-                  <form method="POST">
-                  {% csrf_token %}
-                      <li>
-                        <div class="btn-group-vertical">
-                          <button type="submit" class="btn" name="" >All Locations</button>
-                            {% for location in list_locations %}
-                              <button type="submit" class="dropdown-item"  name="{{ location }}" >{{ location }}</button>
-                          {% endfor %}
-                        </div>
-                    </li>
-                  </form>
-                </ul>
-        </div> 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <div class="dropdown">
-                    <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Downloads
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <form method="POST">
-                        {% csrf_token %}
-                      <button type="submit" class="dropdown-item" name="download_current" >Download Current</button>
-                      <button type="submit" class="dropdown-item" name="past_time_sheet" >Last Week TimeSheet</button>
-                      <button type="submit" class="dropdown-item" name="current_time_sheet" >Current TimeSheet</button>
-                      </form>
-              </div>
-          </li>
-          </ul>
-        </div>
-
-{% elif request.session.type == 'Foreman' %}
           <li class="nav-item">
               <a class="nav-link active" style="color:#FFDE05;" href="#">{{ current_location_label }}</a>
           </li>
@@ -80,10 +30,33 @@
           <li class="nav-item">
               <a class="nav-link " href="{% url 'vacationRequest:vacation_request' %}">Vacation Request</a>
           </li>
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            {{ current_location_label }}
+            <span class="caret"></span>
+            </button>
 
-{% endif %}
+                <ul class="dropdown-menu">
+                  <form method="POST">
+                  {% csrf_token %}
+                      <li>
+                        <div class="btn-group-vertical">
+                          <button type="submit" class="btn" name="" >All Locations</button>
+                            {% for location in list_locations %}
+
+
+                            <!-- Workings in this part  -->
+                              <!-- creating the union between the page and the url to send information to the model -->
+                              <button type="submit" href="{% url 'foreman_hub:foreman_main" class="dropdown-item"  name="{{ location }}" >{{ location }}</button>
+                         
+                         <!-- ------------------------------ -->
+                              {% endfor %}
+                        </div>
+                    </li>
+                  </form>
+                </ul>
+        </div> 
 {% endblock %}
-
 
 
 {% block content %}
@@ -95,74 +68,172 @@
 </script>
 <!-- end of weather code -->
 
-
-<div class="container-fluid ">
-  <br>
-  <div class="row">
-    <!--  amount of employees-->
-    <div class="col-lg">
-      <div class="jumbotron jumbotron-fluid">
-        <h2 style="text-align: center">Current Employees {{ current_employees }}</h2>
-      </div>
-    </div>
-
-    <!--  list of devices-->
-    {% if list_of_devices %}
-    <div class="col-lg">
-      <h5>Devices</h5>
-      <table class="table table table-striped table-bordered">
+  <!--start section of information -->
+        <br>
+        <div class="row">
+          <!--  amount of employees-->
+          <div class="col-lg">
+          {% if current_location_label != "All Locations" %}
+                <div class="jumbotron jumbotron-fluid">
+                  <h2 style="text-align: center">Current Employees {{ current_employees }}</h2>
+                </div>
+          {% else %}
+              <div class="jumbotron ">
+              <h2 style="text-align: center">Current Employees by location</h2>
+                <table class=" table table table-striped table-bordered table-sm">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col"> Location </th>
+                      <th scope="col"> Employees </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {%  for location, item in current_working_locations.items %}
+                          <tr>
+                            <td>{{ location }}</td>
+                            <td>{{ item.Name }}</td>
+                          </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+          {% endif %}
+          </div>
+  
+          <!--  list of devices-->
+          {% if list_of_devices %}
+              <div class="col-lg">
+                <h5>Devices</h5>
+                <table class="table table table-striped table-bordered table-sm">
+                  <thead class="tableColor">
+                    <tr>
+                      <th scope="col">Devices</th>
+                      <th scope="col">Quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for device, quantity in list_of_devices.items %}
+                    <tr>
+                      <td>{{ device }}</td>
+                      <td>{{ quantity }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+          {% endif %}
+        </div>
+  
+  
+        {% if greater_hours.data %}
+          <h5> Irregular Hours </h5>
+          <table class="table table table-striped table-bordered  table-sm">
+            <thead class="tableColor">
+              <tr>
+                {% for columns_labels in greater_hours.columns %}
+                    <th scope="col">{{ columns_labels }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+                {% for items_in_list in greater_hours.data %}
+                  <tr>
+                    {% for items in items_in_list %}
+                          <td>{{ items }}</td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+          <br>
+        {% endif%}
+  
+  
+  
+    <!-- irregular_entries -->
+    {% if irregular_entries %}
+      <h5>Irregular Entries </h5>
+      <table class="table table table-striped table-bordered  table-sm">
         <thead class="tableColor">
           <tr>
-            <th scope="col">Devices</th>
-            <th scope="col">Quantity</th>
+            <th scope="col">Name</th>
+            <th scope="col">Department</th>
+            <th scope="col">Device Used</th>
+            <th scope="col">Time</th>
+            <th scope="col">Date</th>
+            <th scope="col">Activity</th>
           </tr>
         </thead>
         <tbody>
-          {% for device, quantity in list_of_devices.items %}
+          {% for data in irregular_entries.values %}
           <tr>
-            <td>{{ device }}</td>
-            <td>{{ quantity }}</td>
+            <td>{{data.Name}}</td>
+            <td>{{data.Department}}</td>
+            <td>{{data.Device}}</td>
+            <td>{{data.Time}}</td>
+            <td>{{data.Date}}</td>
+            <td>{{data.Activity}}</td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
-    </div>
-    {% endif %}
-  </div>
-
-  <div class="container=flu">
-    {% if warning_not_today_clock_in %}
-    <br>
-    <h4>Warning!</h4>
-    <h5>Employees Still in who didn't Clock in today</h5>
-    <table class="table table table-striped table-bordered">
-      <thead class="tableColor">
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Clock in</th>
-          <th scope="col">Device Used</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for data in warning_not_today_clock_in.values %}
-        <tr>
-          <td>{{ data.Name}}</td>
-          <td>{{ data.Date}}</td>
-          <td>{{ data.Device}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <br>
+      <br>
     {% endif%}
-  </div>
-
-  <div class="row">
-    <!--    list of location for employees working in other places-->
-    {% if current_not %}
+  
+  
+      {% if warning_not_today_clock_in %}
+      <h5>Employees Still 'In' who didn't Clock in today</h5>
+      <table class="table table table-striped table-bordered  table-sm"">
+        <thead class="tableColor">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Clock in</th>
+            <th scope="col">Device Used</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in warning_not_today_clock_in.values %}
+          <tr>
+            <td>{{ data.Name}}</td>
+            <td>{{ data.Date}}</td>
+            <td>{{ data.Device}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br>
+      {% endif%}
+  
+      <!--    list of location for employees working in other places-->
+    <div class="row">
+      {% if current_not %}
+      <div class="col-lg">
+      <h5>Employees in other locations </h5>
+      <table class="table table table-striped table-bordered table-sm"">
+        <thead class="tableColor">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Primary Department</th>
+            <th scope="col">Current Department</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in current_not %}
+          <tr>
+            <td>{{ data.Name }}</td>
+            <td>{{ data.Primary_Department }}</td>
+            <td>{{ data.Current_Department }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    {% endif %}
+  
+    {% if primary_not %}
     <div class="col-lg">
-    <h5>Employees in other locations </h5>
-    <table class="table table table-striped table-bordered">
+    <h5>Employees Visiting your site</h5>
+    <table class="table table table-striped table-bordered  table-sm"">
       <thead class="tableColor">
         <tr>
           <th scope="col">Name</th>
@@ -171,46 +242,19 @@
         </tr>
       </thead>
       <tbody>
-        {% for data in current_not %}
+        {% for data in primary_not %}
         <tr>
           <td>{{ data.Name }}</td>
-          <td>{{ data.Primary_Department}}</td>
-          <td>{{ data.Current_Department}}</td>
+          <td>{{ data.Primary_Department }}</td>
+          <td>{{ data.Current_Department }}</td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
+    </div>
   </div>
   {% endif %}
-
-
-
-  {% if primary_not %}
-  <div class="col-lg">
-  <h5>Employees Visiting your site</h5>
-  <table class="table table table-striped table-bordered">
-    <thead class="tableColor">
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Primary Department</th>
-        <th scope="col">Current Department</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for data in primary_not %}
-      <tr>
-        <td>{{ data.Name }}</td>
-        <td>{{ data.Primary_Department}}</td>
-        <td>{{ data.Current_Department}}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
-{% endif %}
-
-</div>
-</div>
-
+  </div>
+  
 
 {% endblock %}

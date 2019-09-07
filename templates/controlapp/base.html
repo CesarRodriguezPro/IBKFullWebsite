@@ -26,16 +26,10 @@
           {% endif %}
 
           {% if user.is_authenticated %}
-           <ul class="navbar-nav justify-content-center">  
+           <ul class="nav">  
                   <a  style="color:#FFDE05;" href="{% url 'foreman_hub:foreman_main'%}">
-                    <table>
-                      <tr>
-                        <td>{{user.first_name}} {{user.last_name}}</td>
-                      </tr>
-                        <tr>
-                        <td>last update: {{current_time}}</td>
-                      </tr>
-                    </table>
+                        <td class='nav-link nav-item'><h5>{{user.first_name}} {{user.last_name}}</h5></td>
+                        <td class='nav-item'>last update: {{current_time}}</td>
                   </a>
            </ul>
           {% endif %}
@@ -142,10 +136,9 @@
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <!-- Links -->
           <h6 class="text-uppercase font-weight-bold">Contact</h6>
-          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-            <i class="fas fa-home mr-auto"></i>617 Johnson Ave, Brooklyn, NY 11237 </p>
-            <i class="fas fa-phone mr-auto"></i> Tel: (718) 418-0040 </p>
-            <i class="fas fa-print mr-auto"></i> Fax: (718) 732-2670</p>
+            <i class="fas fa-home mr-auto">617 Johnson Ave, Brooklyn, NY 11237</i></p>
+            <i class="fas fa-phone mr-auto"> Tel: (718) 418-0040 </i></p>
+            <i class="fas fa-print mr-auto"> Fax: (718) 732-2670</i></p>
         </div>
         <!-- Grid column -->
       </div>

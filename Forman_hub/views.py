@@ -58,8 +58,6 @@ def data_collection(request, location_request=None):
     current_location_label           = active.current_location()[1]
     current_working_locations        = active.current_working_locations()
 
-    #### todo working in placing group to hte template
-    group_belong                     = request.user.groups.values_list
     irregular_entries, greater_hours = especial_funtions_dispatch(location_request)
 
     data = {
@@ -73,7 +71,7 @@ def data_collection(request, location_request=None):
         'irregular_entries': irregular_entries,
         'current_working_locations':current_working_locations,
         'greater_hours': greater_hours,
-        'current_time': datetime.datetime.now().strftime('%m/%d/%Y %I:%M %p')
+        'current_time': datetime.datetime.now().strftime('%m/%d/%Y %I:%M %p'),
     }
     return data
 
@@ -99,12 +97,16 @@ def timesheet_current_pdf(request):
 
 
 @login_required
-def foreman_main(request):
+def foreman_main(request, request_locations = None):
+
+    if request_locations:
+        data = data_collection(request, location_request = location_request)
+        return render(request, 'forman_hub/main.html', context=data)
 
     if request.method == "POST":
         form = request.POST
         
-        if list(form.keys())[1] == 'download_current':
+        if len(list(form.keys())) > 1 and list(form.keys())[1] == 'download_current':
             return download_current_list(request)
 
         elif len(list(form.keys())) > 1 and list(form.keys())[1] == 'past_time_sheet':
