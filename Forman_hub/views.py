@@ -7,10 +7,8 @@ from UniversalRootFolder.hours_greater import HoursGreater
 from django.http import HttpResponse
 from UniversalRootFolder import pdf_creator_for_timesheet
 from django.views.generic import View
-from django.contrib.auth.models import Group 
-
+from django.contrib.auth.models import Group
 import datetime
-
 
 register = template.Library()
 
@@ -34,7 +32,7 @@ def download_current_list(request, location_request=None):
         return response
 
 
-def especial_funtions_dispatch(location_request):
+def special_funtions_dispatch(location_request):
 
     ''' Downloading data from timestation can make Website Slow down.
     with this function i will download this data only when i requested ALL location View.
@@ -58,7 +56,7 @@ def data_collection(request, location_request=None):
     current_location_label           = active.current_location()[1]
     current_working_locations        = active.current_working_locations()
 
-    irregular_entries, greater_hours = especial_funtions_dispatch(location_request)
+    irregular_entries, greater_hours = special_funtions_dispatch(location_request)
 
     data = {
         'current_employees': active.current_employees_count(),
@@ -99,8 +97,9 @@ def timesheet_current_pdf(request):
 @login_required
 def foreman_main(request, request_locations = None):
 
+    print(request)
     if request_locations:
-        data = data_collection(request, location_request = location_request)
+        data = data_collection(request, location_request = request_locations)
         return render(request, 'forman_hub/main.html', context=data)
 
     if request.method == "POST":
@@ -117,10 +116,7 @@ def foreman_main(request, request_locations = None):
                 return timesheet_current_pdf(request)
             else:
                 return timesheet_pass_pdf(request)
-        else:      
-            location_request = list(form.keys())[1] if len(list(form.keys())) > 1 else 'allLocations'
-            data = data_collection(request, location_request = location_request)
-            return render(request, 'forman_hub/main.html', context=data)
+
 
     data = data_collection(request=request)
     return render(request, 'forman_hub/main.html', context=data)
