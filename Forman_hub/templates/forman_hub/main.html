@@ -41,15 +41,9 @@
                   {% csrf_token %}
                       <li>
                         <div class="btn-group-vertical">
-                          <button type="submit" class="btn" name="" >All Locations</button>
+                          <a class="dropdown-item" href="{% url 'foreman_hub:foreman_main' %} Alllocation"  name="" >All Locations</a>
                             {% for location in list_locations %}
-
-
-                            <!-- Workings in this part  -->
-                              <!-- creating the union between the page and the url to send information to the model -->
-                              <button type="submit" href="{% url 'foreman_hub:foreman_main" class="dropdown-item"  name="{{ location }}" >{{ location }}</button>
-                         
-                         <!-- ------------------------------ -->
+                              <a  href="{% url 'foreman_hub:foreman_main' %}{{location}}"  class="dropdown-item">{{ location }}</a>
                               {% endfor %}
                         </div>
                     </li>
