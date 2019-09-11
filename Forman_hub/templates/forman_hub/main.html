@@ -5,6 +5,15 @@
   {{user.username}}
 {% endblock %}
 
+{%  block username_block %}
+<a  style="color:#FFDE05;" href="{% url 'foreman_hub:foreman_main' %}">
+         <ul class="nav">  
+            <li class='nav-link nav-item'><h5> {{request.user.first_name}}</h5></li>
+            <li class='nav-item'>last update: {{current_time}}</li>         
+          </ul>
+          </a>
+{% endblock %}
+
 {% block customNav %}
           <li class="nav-item">
               <a class="nav-link active" style="color:#FFDE05;" href="#">{{ current_location_label }}</a>
@@ -41,7 +50,7 @@
                   {% csrf_token %}
                       <li>
                         <div class="btn-group-vertical">
-                          <a class="dropdown-item" href="{% url 'foreman_hub:foreman_main' %} Alllocation"  name="" >All Locations</a>
+                          <a class="dropdown-item" href="{% url 'foreman_hub:foreman_main' %}"  name="" >All Locations</a>
                             {% for location in list_locations %}
                               <a  href="{% url 'foreman_hub:foreman_main' %}{{location}}"  class="dropdown-item">{{ location }}</a>
                               {% endfor %}

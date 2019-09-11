@@ -26,12 +26,12 @@
           {% endif %}
 
           {% if user.is_authenticated %}
-           <ul class="nav">  
-                  <a  style="color:#FFDE05;" href="{% url 'foreman_hub:foreman_main'%}">
-                        <td class='nav-link nav-item'><h5>{{user.first_name}} {{user.last_name}}</h5></td>
-                        <td class='nav-item'>last update: {{current_time}}</td>
-                  </a>
-           </ul>
+              
+                    {% block username_block %}
+
+
+                    {% endblock %}
+            
           {% endif %}
 
        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
