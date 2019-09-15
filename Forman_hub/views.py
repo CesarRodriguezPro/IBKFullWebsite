@@ -8,6 +8,8 @@ from django.http import HttpResponse
 from UniversalRootFolder import pdf_creator_for_timesheet
 from django.views.generic import View
 from django.contrib.auth.models import Group
+from .models import CurrentPageModel
+from .forms import CurrentLocationForm
 import datetime
 
 register = template.Library()
@@ -55,10 +57,11 @@ def data_collection(request, location_request=None):
     current_not, primary_not         = active.check_function()
     current_location_label           = active.current_location()[1]
     current_working_locations        = active.current_working_locations()
-
     irregular_entries, greater_hours = special_funtions_dispatch(location_request)
 
     data = {
+        'first_name':first_name,
+        'last_name':last_name,
         'current_employees': active.current_employees_count(),
         'list_of_devices': active.list_of_devices(),
         'warning_not_today_clock_in': active.warning_not_today_clock_in,
@@ -97,25 +100,24 @@ def timesheet_current_pdf(request):
 @login_required
 def foreman_main(request, request_locations = None):
 
-    print(request)
     if request_locations:
         data = data_collection(request, location_request = request_locations)
         return render(request, 'forman_hub/main.html', context=data)
 
-    if request.method == "POST":
-        form = request.POST
+    # if request.method == "POST":
+    #     form = request.POST
         
-        if len(list(form.keys())) > 1 and list(form.keys())[1] == 'download_current':
-            return download_current_list(request)
+    #     if len(list(form.keys())) > 1 and list(form.keys())[1] == 'download_current':
+    #         return download_current_list(request)
 
-        elif len(list(form.keys())) > 1 and list(form.keys())[1] == 'past_time_sheet':
-            return timesheet_pass_pdf(request)
+    #     elif len(list(form.keys())) > 1 and list(form.keys())[1] == 'past_time_sheet':
+    #         return timesheet_pass_pdf(request)
 
-        elif len(list(form.keys())) > 1 and list(form.keys())[1] == 'current_time_sheet':
-            if datetime.date.today().weekday() != 0:
-                return timesheet_current_pdf(request)
-            else:
-                return timesheet_pass_pdf(request)
+    #     elif len(list(form.keys())) > 1 and list(form.keys())[1] == 'current_time_sheet':
+    #         if datetime.date.today().weekday() != 0:
+    #             return timesheet_current_pdf(request)
+    #         else:
+    #             return timesheet_pass_pdf(request)
 
 
     data = data_collection(request=request)

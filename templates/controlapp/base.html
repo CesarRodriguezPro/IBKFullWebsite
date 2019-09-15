@@ -27,10 +27,11 @@
 
           {% if user.is_authenticated %}
               
-                    {% block username_block %}
-
-
-                    {% endblock %}
+                  <a  style="color:#FFDE05;" href="{% url 'foreman_hub:foreman_main' %}">
+           
+                        <li class='nav-link nav-item'><h5> Foreman Hub</h5></li>
+         
+                    </a>
             
           {% endif %}
 

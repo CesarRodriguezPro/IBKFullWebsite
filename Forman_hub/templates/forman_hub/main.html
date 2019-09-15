@@ -1,64 +1,10 @@
 
-{% extends 'controlapp/base.html' %}
-
-{% block title %}
-  {{user.username}}
-{% endblock %}
-
-{%  block username_block %}
-<a  style="color:#FFDE05;" href="{% url 'foreman_hub:foreman_main' %}">
-         <ul class="nav">  
-            <li class='nav-link nav-item'><h5> {{request.user.first_name}}</h5></li>
-            <li class='nav-item'>last update: {{current_time}}</li>         
-          </ul>
-          </a>
-{% endblock %}
-
-{% block customNav %}
-          <li class="nav-item">
-              <a class="nav-link active" style="color:#FFDE05;" href="#">{{ current_location_label }}</a>
-          </li>
-          <li class="nav-item">
-                <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Downloads
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                        <form method="POST">
-                          {% csrf_token %}
-                        <button type="submit" class="dropdown-item" name="download_current" >Download Current</button>
-                        <button type="submit" class="dropdown-item" name="past_time_sheet" >Last Week TimeSheet</button>
-                        <button type="submit" class="dropdown-item" name="current_time_sheet" >Current TimeSheet</button>
-                        </form>
-                </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " href="{% url 'absentRequest:absent_request' %}">Absent Report</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link " href="{% url 'vacationRequest:vacation_request' %}">Vacation Request</a>
-          </li>
-        <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            {{ current_location_label }}
-            <span class="caret"></span>
-            </button>
-
-                <ul class="dropdown-menu">
-                  <form method="POST">
-                  {% csrf_token %}
-                      <li>
-                        <div class="btn-group-vertical">
-                          <a class="dropdown-item" href="{% url 'foreman_hub:foreman_main' %}"  name="" >All Locations</a>
-                            {% for location in list_locations %}
-                              <a  href="{% url 'foreman_hub:foreman_main' %}{{location}}"  class="dropdown-item">{{ location }}</a>
-                              {% endfor %}
-                        </div>
-                    </li>
-                  </form>
-                </ul>
-        </div> 
+{% extends 'forman_hub/base.html' %}
+{% block head_navbar %}
+    <ul class="nav">  
+        <li class='nav-item'>{{first_name}} {{ast_name}}</li>
+        <li class='nav-item'>Last Update: {{current_time}}</li>         
+    </ul>
 {% endblock %}
 
 
@@ -126,7 +72,6 @@
               </div>
           {% endif %}
         </div>
-  
   
         {% if greater_hours.data %}
           <h5> Irregular Hours </h5>
@@ -261,3 +206,4 @@
   
 
 {% endblock %}
+
