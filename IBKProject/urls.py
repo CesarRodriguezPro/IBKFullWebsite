@@ -26,8 +26,5 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('hub/', include(('Forman_hub.urls', 'forman_hub'))),
     path('accounts/', include(('accounts.urls', 'accounts'))),
-    path('vacation/', include(('vacationRequest.urls', 'vacation'))),
-    path('absent/', include(('absentRequest.urls', 'absent'))),
-    path('office/', include(('office.urls', 'office'))),
     path('documents/', include(('downloadDocuments.urls', 'downloadDocuments'))),
     ]
