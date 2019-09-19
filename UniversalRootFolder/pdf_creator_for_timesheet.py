@@ -45,7 +45,7 @@ def pdf_builder_last_week(location):
         'data': addact_label(data),
         'layout': 'landscape'
     }
-    return Render_file.render('forman_hub/timesheet_template.html', params)
+    return Render_file.render('main_hub/timesheet_template.html', params)
 
 
 def pdf_builder_current(location):
@@ -59,6 +59,6 @@ def pdf_builder_current(location):
         'data': addact_label(data),
         'layout': page_layout(),
     }
-    return Render_file.render('forman_hub/timesheet_template.html', params)
+    return Render_file.render('main_hub/timesheet_template.html', params)
 
 

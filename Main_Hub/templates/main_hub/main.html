@@ -1,5 +1,5 @@
 
-{% extends 'forman_hub/base.html' %}
+{% extends 'main_hub/base.html' %}
 {% block head_navbar %}
     <ul class="nav">  
         <li class='nav-item'>  Last Update: {{current_time}}</li>         
@@ -18,83 +18,85 @@
 <!-- end of weather code -->
 
   <!--start section of information -->
-        <br>
-        <div class="row">
-          <!--  amount of employees-->
-          <div class="col-lg">
-          {% if current_location_label != "All Locations" %}
-                <div class="jumbotron jumbotron-fluid">
+
+  <br>
+    <div class="row">
+      <!--  amount of employees-->
+      <div class="col-lg">
+      {% if current_location_label == "All Locations" %}
+
+        <div class="jumbotron ">
+          <h2 style="text-align: center">Current Employees by location</h2>
+            <table class=" table table table-striped table-bordered table-sm">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col"> Location </th>
+                  <th scope="col"> Employees </th>
+                </tr>
+              </thead>
+              <tbody>
+                {%  for location, item in current_working_locations.items %}
+                      <tr>
+                        <td>{{ location }}</td>
+                        <td>{{ item.Name }}</td>
+                      </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+      {% else %}
+           <div class="jumbotron jumbotron-fluid">
                   <h2 style="text-align: center">Current Employees {{ current_employees }}</h2>
                 </div>
-          {% else %}
-              <div class="jumbotron ">
-              <h2 style="text-align: center">Current Employees by location</h2>
-                <table class=" table table table-striped table-bordered table-sm">
-                  <thead class="thead-dark">
-                    <tr>
-                      <th scope="col"> Location </th>
-                      <th scope="col"> Employees </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {%  for location, item in current_working_locations.items %}
-                          <tr>
-                            <td>{{ location }}</td>
-                            <td>{{ item.Name }}</td>
-                          </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
-              </div>
-          {% endif %}
+      {% endif %}
+      </div>
+
+      <!--  list of devices-->
+      {% if list_of_devices %}
+          <div class="col-lg">
+            <h5>Devices</h5>
+            <table class="table table table-striped table-bordered table-sm">
+              <thead class="tableColor">
+                <tr>
+                  <th scope="col">Devices</th>
+                  <th scope="col">Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for device, quantity in list_of_devices.items %}
+                <tr>
+                  <td>{{ device }}</td>
+                  <td>{{ quantity }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
           </div>
-  
-          <!--  list of devices-->
-          {% if list_of_devices %}
-              <div class="col-lg">
-                <h5>Devices</h5>
-                <table class="table table table-striped table-bordered table-sm">
-                  <thead class="tableColor">
-                    <tr>
-                      <th scope="col">Devices</th>
-                      <th scope="col">Quantity</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for device, quantity in list_of_devices.items %}
-                    <tr>
-                      <td>{{ device }}</td>
-                      <td>{{ quantity }}</td>
-                    </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
-              </div>
-          {% endif %}
-        </div>
-  
-        {% if greater_hours.data %}
-          <h5> Irregular Hours </h5>
-          <table class="table table table-striped table-bordered  table-sm">
-            <thead class="tableColor">
+      {% endif %}
+    </div>
+
+    {% if greater_hours.data %}
+      <h5> Irregular Hours </h5>
+      <table class="table table table-striped table-bordered  table-sm">
+        <thead class="tableColor">
+          <tr>
+            {% for columns_labels in greater_hours.columns %}
+                <th scope="col">{{ columns_labels }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+            {% for items_in_list in greater_hours.data %}
               <tr>
-                {% for columns_labels in greater_hours.columns %}
-                    <th scope="col">{{ columns_labels }}</th>
+                {% for items in items_in_list %}
+                      <td>{{ items }}</td>
                 {% endfor %}
               </tr>
-            </thead>
-            <tbody>
-                {% for items_in_list in greater_hours.data %}
-                  <tr>
-                    {% for items in items_in_list %}
-                          <td>{{ items }}</td>
-                    {% endfor %}
-                  </tr>
-                {% endfor %}
-            </tbody>
-          </table>
-          <br>
-        {% endif%}
+            {% endfor %}
+        </tbody>
+      </table>
+      <br>
+    {% endif%}
   
   
   
@@ -129,7 +131,7 @@
     {% endif%}
   
   
-      {% if warning_not_today_clock_in %}
+    {% if warning_not_today_clock_in %}
       <h5>Employees Still 'In' who didn't Clock in today</h5>
       <table class="table table table-striped table-bordered  table-sm"">
         <thead class="tableColor">
@@ -200,8 +202,9 @@
       </tbody>
     </table>
     </div>
-  </div>
-  {% endif %}
+    </div>
+    {% endif %}
+
   </div>
   
 

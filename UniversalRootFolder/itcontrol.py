@@ -111,6 +111,4 @@ class ItControl:
 
 if __name__ == '__main__':
     pass
-    # active = ItControl('Pavlo', 'Nalyvayko', None)
-    # # active.current_data.to_csv('test_data.csv')
-    # active.save_current()
+

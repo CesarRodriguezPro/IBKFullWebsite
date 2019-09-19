@@ -16,7 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 TEMPLATES_DIR = [
-    os.path.join(BASE_DIR, 'Forman_hub', 'templates'),
+    os.path.join(BASE_DIR, 'Main_Hub', 'templates'),
     os.path.join(BASE_DIR, 'accounts', 'templates'),
     os.path.join(BASE_DIR, 'templates'),
     os.path.join(BASE_DIR, 'downloadDocuments', 'templates'),
@@ -26,14 +26,10 @@ TEMPLATES_DIR = [
 # Email Configuration
 EMAIL_HOST = 'smtp.ibkconstructiongroup.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'cesarr'
+EMAIL_HOST_USER = os.environ.get('email_username')
 EMAIL_HOST_PASSWORD = os.environ.get('email_password')
 EMAIL_USE_TLS = False
 
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 secret_key_file = os.path.join(BASE_DIR, 'secret_key.txt')
@@ -55,7 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    'Forman_hub',
+    'Main_Hub',
     'accounts',
     'downloadDocuments',
 ]
@@ -104,7 +100,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'DjangoDatabase',
-        'USER': 'admin',
+        'USER': os.environ.get('DatabaseUser'),
         'PASSWORD': os.environ.get('DatabasePassword'),
         'HOST':'localhost',
         'PORT': '',

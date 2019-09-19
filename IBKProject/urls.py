@@ -24,7 +24,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('hub/', include(('Forman_hub.urls', 'forman_hub'))),
+    path('hub/', include(('Main_Hub.urls', 'main_hub'))),
     path('accounts/', include(('accounts.urls', 'accounts'))),
     path('documents/', include(('downloadDocuments.urls', 'downloadDocuments'))),
     ]

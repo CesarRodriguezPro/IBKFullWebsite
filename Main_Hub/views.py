@@ -76,17 +76,10 @@ def data_collection(request, location_request):
     }
     return data
 
- 
-class Pdf(View):
-
-    def get(self, request):
-        current_location_p = itcontrol.ItControl(request.user.first_name, request.user.last_name, location_request=None)
-        current_location = current_location_p.foreman_location()
-        return pdf_creator_for_timesheet.pdf_builder(location=current_location)
 
 
 @login_required
-def foreman_main(request, requested_location = None, options=None):
+def main_hub(request, requested_location = None, options=None):
     if options:
         if options == 'DownloadCurrent':
             return download_current_list(request, requested_location)
@@ -99,5 +92,5 @@ def foreman_main(request, requested_location = None, options=None):
                 return pdf_creator_for_timesheet.pdf_builder_current(location=requested_location)
 
     data = data_collection(request, requested_location)
-    return render(request, 'forman_hub/main.html', context=data)
+    return render(request, 'main_hub/main.html', context=data)
 
