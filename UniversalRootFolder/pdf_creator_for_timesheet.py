@@ -5,12 +5,14 @@ import xhtml2pdf.pisa as pisa
 from  .  import timesheet
 import datetime
 
+
 def page_layout():
     week_day = datetime.date.today().weekday()
     if week_day <= 4:
         return 'portrait'
     else:
         return 'landscape'
+
 
 class Render_file:
     def render(path: str, params: dict):
@@ -47,7 +49,7 @@ def pdf_builder_last_week(location):
 
 
 def pdf_builder_current(location):
-    raw_data = timesheet.CurrentWeekTimeSheet(location=location)
+    raw_data = timesheet.CurrentWeekTimeSheet(location)
     data = raw_data.run()
     label = [dates.keys() for dates in data.values()][0]
 

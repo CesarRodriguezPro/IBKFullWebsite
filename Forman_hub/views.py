@@ -15,13 +15,13 @@ import datetime
 register = template.Library()
 
 
-def download_current_list(request, location_request=None):
+def download_current_list(request, location_request):
     first_name = request.user.first_name
     last_name  = request.user.last_name
-    active     = itcontrol.ItControl(first_name, last_name,location_request=location_request)
+    active     = itcontrol.ItControl(first_name, last_name, location_request)
     user = request.user
 
-    if user.groups.filter(name='SystemAdmin').exists() or user.groups.filter(name='office').exists():
+    if location_request == 'All Locations':
         csv_file = active.save_current_all()
         response = HttpResponse(csv_file, content_type='text/csv')
         response['Content-Disposition'] = f'attachment; filename="{first_name}.{last_name}.allLocations.csv"'
@@ -34,13 +34,12 @@ def download_current_list(request, location_request=None):
         return response
 
 
-def special_funtions_dispatch(location_request):
-
+def special_functions_dispatch(location_request):
     ''' Downloading data from timestation can make Website Slow down.
     with this function i will download this data only when i requested ALL location View.
     this will reduce the server use.'''
 
-    if location_request == 'allLocations':
+    if location_request == 'AllLocations':
         irregular = IrregularEntries()
         greater = HoursGreater()
         return irregular.send_to_website(), greater.get_times()
@@ -48,7 +47,7 @@ def special_funtions_dispatch(location_request):
         return None, None
 
 
-def data_collection(request, location_request=None):
+def data_collection(request, location_request):
 
     first_name                       = request.user.first_name
     last_name                        = request.user.last_name
@@ -57,7 +56,7 @@ def data_collection(request, location_request=None):
     current_not, primary_not         = active.check_function()
     current_location_label           = active.current_location()[1]
     current_working_locations        = active.current_working_locations()
-    irregular_entries, greater_hours = special_funtions_dispatch(location_request)
+    irregular_entries, greater_hours = special_functions_dispatch(location_request)
 
     data = {
         'first_name':first_name,
@@ -85,40 +84,19 @@ class Pdf(View):
         return pdf_creator_for_timesheet.pdf_builder(location=current_location)
 
 
-def timesheet_pass_pdf(request):
-    current_location_p = itcontrol.ItControl(request.user.first_name, request.user.last_name, location_request=None)
-    current_location = current_location_p.foreman_location()
-    return pdf_creator_for_timesheet.pdf_builder_last_week(location=current_location)
-
-
-def timesheet_current_pdf(request):
-    current_location_p = itcontrol.ItControl(request.user.first_name, request.user.last_name, location_request=None)
-    current_location = current_location_p.foreman_location()
-    return pdf_creator_for_timesheet.pdf_builder_current(location=current_location)
-
-
 @login_required
-def foreman_main(request, request_locations = None):
+def foreman_main(request, requested_location = None, options=None):
+    if options:
+        if options == 'DownloadCurrent':
+            return download_current_list(request, requested_location)
+        elif options == 'last_week_timesheet':
+            return pdf_creator_for_timesheet.pdf_builder_last_week(location=requested_location)
+        elif options == 'current_Timesheet':
+            if datetime.date.today().weekday() == 0:
+                return pdf_creator_for_timesheet.pdf_builder_last_week(location=requested_location)
+            else:
+                return pdf_creator_for_timesheet.pdf_builder_current(location=requested_location)
 
-    if request_locations:
-        data = data_collection(request, location_request = request_locations)
-        return render(request, 'forman_hub/main.html', context=data)
-
-    # if request.method == "POST":
-    #     form = request.POST
-        
-    #     if len(list(form.keys())) > 1 and list(form.keys())[1] == 'download_current':
-    #         return download_current_list(request)
-
-    #     elif len(list(form.keys())) > 1 and list(form.keys())[1] == 'past_time_sheet':
-    #         return timesheet_pass_pdf(request)
-
-    #     elif len(list(form.keys())) > 1 and list(form.keys())[1] == 'current_time_sheet':
-    #         if datetime.date.today().weekday() != 0:
-    #             return timesheet_current_pdf(request)
-    #         else:
-    #             return timesheet_pass_pdf(request)
-
-
-    data = data_collection(request=request)
+    data = data_collection(request, requested_location)
     return render(request, 'forman_hub/main.html', context=data)
+

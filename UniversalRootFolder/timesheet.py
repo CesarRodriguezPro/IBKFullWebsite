@@ -5,6 +5,7 @@ from . import TimeStationKey
 
 key = TimeStationKey.get_key()
 
+
 class PreviousWeekTimeSheet:
 
     def __init__(self, location):
@@ -21,14 +22,17 @@ class PreviousWeekTimeSheet:
         self.raw_data = pd.read_csv(self.url)
 
     def run(self):
+
         data_clean = self.raw_data.drop(['Employee ID', 'Title', 'Hourly Rate', 'Total Pay'], axis=1)
-        filter_data = data_clean[data_clean['Department'].isin([self.location])]
-        return filter_data.to_dict('index')
+        if self.location == 'All Locations':
+            return data_clean.to_dict('index')
+        else:
+            filter_data = data_clean[data_clean['Department'].isin([self.location])]
+            return filter_data.to_dict('index')
 
 
 class CurrentWeekTimeSheet:
-
-    def __init__(self, location):
+    def __init__(self, location=None):
 
         self.today       = datetime.date.today()
         self.this_monday = self.today - datetime.timedelta(days=(self.today.weekday()))
@@ -42,7 +46,8 @@ class CurrentWeekTimeSheet:
 
     def run(self):
         data_clean = self.raw_data.drop(['Employee ID', 'Title', 'Hourly Rate', 'Total Pay'], axis=1)
-        filter_data = data_clean[data_clean['Department'].isin([self.location])]
-        return filter_data.to_dict('index')
-
-
+        if self.location == 'All Locations':
+            return data_clean.to_dict('index')
+        else:
+            filter_data = data_clean[data_clean['Department'].isin([self.location])]
+            return filter_data.to_dict('index')
