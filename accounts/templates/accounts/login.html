@@ -10,11 +10,13 @@ login
 <div class="jumbotron">
 <center>
 
-<h1> this is from accounts</h1>
-<form method="POST"  action="{% url 'accounts:login_user' %}">
+<h1>Please Login To Continue</h1>
+<label method="POST"  action="{% url 'accounts:login_user' %}">
   {% csrf_token %}
-  <input type="text" name=username class=form-control  placeholder="UserName">
-  <input type='password' name=password class=form-control placeholder="Password">
+  <label for="username">UserName</label>
+  <input type="text" id="username" name=username class=form-control  placeholder="UserName">
+  <label for="password">Password</label>
+  <input type='password' name=password id="password" class=form-control placeholder="Password">
   <button type="submit">Login</button>
 </form>
 </center>

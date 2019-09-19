@@ -19,7 +19,7 @@ def download_current_list(request, location_request):
     first_name = request.user.first_name
     last_name  = request.user.last_name
     active     = itcontrol.ItControl(first_name, last_name, location_request)
-    user = request.user
+    user       = request.user
 
     if location_request == 'All Locations':
         csv_file = active.save_current_all()
@@ -35,11 +35,12 @@ def download_current_list(request, location_request):
 
 
 def special_functions_dispatch(location_request):
-    ''' Downloading data from timestation can make Website Slow down.
+
+    ''' Downloading data from timeStation can make Website Slow down.
     with this function i will download this data only when i requested ALL location View.
     this will reduce the server use.'''
 
-    if location_request == 'AllLocations':
+    if location_request == 'allLocations':
         irregular = IrregularEntries()
         greater = HoursGreater()
         return irregular.send_to_website(), greater.get_times()

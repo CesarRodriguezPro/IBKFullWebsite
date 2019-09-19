@@ -18,11 +18,7 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 TEMPLATES_DIR = [
     os.path.join(BASE_DIR, 'Forman_hub', 'templates'),
     os.path.join(BASE_DIR, 'accounts', 'templates'),
-    os.path.join(BASE_DIR, 'vacationRequest', 'templates'),
-    os.path.join(BASE_DIR, 'absentRequest', 'templates'),
     os.path.join(BASE_DIR, 'templates'),
-    os.path.join(BASE_DIR, 'office', 'templates'),
-    os.path.join(BASE_DIR, 'employees', 'templates'),
     os.path.join(BASE_DIR, 'downloadDocuments', 'templates'),
 ]
 
@@ -61,9 +57,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'Forman_hub',
     'accounts',
-    'vacationRequest',
-    'office',
-    'absentRequest',
     'downloadDocuments',
 ]
 
