@@ -1,0 +1,23 @@
+{% extends 'employees/base.html' %}
+{% block content%}
+<div class="jumbotron">
+    <h5>Employees Request For Hours</h5>
+
+    <form method="post">
+        <div class="form-group">
+         {% csrf_token %}
+            <label for="LastName">Last Name</label>
+            <input id="LastName" class="form-control" name="LastName">
+            
+        </div>
+        <div class="form-group">
+            <label for="CardNumber" > Card Number</label>
+            <input id="CardNumber" class="form-control" name="CardNumber">
+            <small id="emailHelp" class="form-text text-muted">the card number is located in you punching card.</small>
+
+        </div>
+    <button class="btn btn-primary" type="submit">Summit</button>
+    </form>
+</div>
+<h1></h1>
+{% endblock%}

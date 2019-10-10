@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+{% load  staticfiles %}
+
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<!-- ----------------------------------- main Picture--------------------------------------- -->
+
+<div class="container-flu">
+<!--    main Image-->
+
+<div >
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner ">
+    <div class="carousel-item active">
+      <img src="{% static 'images/controlapp/home/MainImage.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/controlapp/home/MainImage2.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/controlapp/home/MainImage3.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+</div>
+
+    <!-- --------------------------------Projects------------------------------------------- -->
+<div class="container-flu" style="background-color:#00013f;" >
+<div class="container">
+    <br>
+  <div class="row ">
+
+<!--  column 1 text -->
+
+    <div class="col-ms" style="color:white; padding-top: 50px">
+        <br>
+        <p>
+        At IBK Construction Group, LLC, we’ve developed a culture that promotes an injury-free environment
+            and provides the safest workplace possible for our employees and clients.
+            We are dedicated to achieving a perfect safety record through a wide variety of methods.
+        </p>
+    </div>
+
+
+<!--  Column 2 Pictures-->
+    <div class="col-lg ">
+        <center>
+        <div class="bd-example">
+          <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" style="width:240px; height: 300px">
+            <ol class="carousel-indicators" >
+              <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+              <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" >
+              <div class="carousel-item active">
+                <img src="{% static 'images/ibk_building/262kent1.jpg' %}" class="d-block w-100" alt="..." style="height: 300px">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>262 Kent Ave Brooklyn NY</h5>
+                    <p>45 Floors Superstructure</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="{% static 'images/ibk_building/509-West.jpg' %}" class="d-block w-100" alt="..." style="height: 300px">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>509 West 38th St, New York, NY</h5>
+                    <p>30-Story Rental Tower, Concrete Superstructure</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="{% static 'images/ibk_building/522-west.jpg' %}" class="d-block w-100" alt="..." style="height: 300px">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>522 West 29th Street New York NY 10001</h5>
+                    <p>12 Floor Superstructure</p>
+                </div>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+        </center>
+    </div>
+
+<!-- Column 3 pictures -->
+    <div class="col-lg">
+      <center>
+      <div class="bd-example">
+        <div id="carousel2" class="carousel slide" data-ride="carousel" style="width:240px; height: 300px">
+          <ol class="carousel-indicators" >
+            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner" >
+            <div class="carousel-item active">
+              <img src="{% static 'images/ibk_building/50oceana.jpg' %}" class="d-block w-100" alt="..." style="height: 300px">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>50 Oceana Drive Brooklyn NY</h5>
+                  <p>13 Floors Superstructure</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="{% static 'images/ibk_building/507west28.jpg' %}" class="d-block w-100" alt="..." style="height: 300px">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>507 West 28th Street ( Highline Hotel)</h5>
+                  <p>13-Story Tower</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="{% static 'images/ibk_building/501-East-74th.jpg' %}" class="d-block w-100" alt="..." style="height: 300px">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>501 East 74th Street New York NY</h5>
+                  <p>21 Floor Superstructure</p>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carousel2" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carousel2" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      </center>
+    </div>
+
+
+    <!-- picture columns 4 -->
+    <div class="col-lg">
+      <center>
+      <div class="bd-example">
+        <div id="carousel3" class="carousel slide" data-ride="carousel" style="width:240px; height: 300px">
+          <ol class="carousel-indicators" >
+            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner" >
+            <div class="carousel-item active">
+              <img src="{% static 'images/ibk_building/313Gold.jpg' %}" class="d-block w-100" alt="..." style="height: 300px">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>313 Gold Street Brooklyn NY</h5>
+                  <p> Superstructure</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="{% static 'images/ibk_building/500-metropolitan.png' %}" class="d-block w-100" alt="..." style="height: 300px">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>500 Metropolitan Avenue, Brooklyn, NY</h5>
+                  <p>14-Story Superstructure</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="{% static 'images/ibk_building/60-Water-Street.jpg' %}" class="d-block w-100" alt="..." style="height: 300px">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>60 Water Street Brooklyn NY</h5>
+                  <p>19 Floor Superstructure</p>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carousel3" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carousel3" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      </center>
+    </div>
+
+  </div>
+</div>
+<br>
+
+
+<!-- ------------------------------------------------- Skill section --------------------------------- -->
+    <div>
+
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

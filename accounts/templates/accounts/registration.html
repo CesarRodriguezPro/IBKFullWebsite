@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}
+registration
+{% endblock %}
+
+{% block content%}
+
+<div style="background-color:#00012f">
+<div class="container" style="background-color:#00012f; padding-bottom:20px">
+<div class="jumbotron">
+<center>
+
+<h1> this is from accounts</h1>
+<form method="POST"  action="{% url 'accounts:registration_user' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+</form>
+</center>
+</div>
+</div>
+</div>
+
+{% endblock%}

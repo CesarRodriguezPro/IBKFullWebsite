@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}
+login
+{% endblock %}
+
+{% block content%}
+
+<div style="background-color:#00012f">
+<div class="container" style="background-color:#00012f; padding-bottom:20px">
+<div class="jumbotron">
+<center>
+
+<h1>Please Login To Continue</h1>
+<form method="POST"  action="{% url 'accounts:login_user' %}">
+  {% csrf_token %}
+  <label for="username">UserName</label>
+  <input type="text" id="username" name=username class=form-control  placeholder="UserName">
+  <label for="password">Password</label>
+  <input type='password' name=password id="password" class=form-control placeholder="Password">
+  <button type="submit">Login</button>
+</form>
+</center>
+</div>
+</div>
+</div>
+
+{% endblock%}

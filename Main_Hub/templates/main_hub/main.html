@@ -1,0 +1,208 @@
+
+{% extends 'main_hub/base.html' %}
+
+
+
+{% block content %}
+
+<!-- Weather code -->
+<a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us" data-label_1="NEW YORK"
+  data-label_2="WEATHER" data-theme="original">NEW YORK WEATHER</a>
+<script>
+  !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
+</script>
+<!-- end of weather code -->
+
+  <!--start section of information -->
+
+  <br>
+    <div class="row">
+      <!--  amount of employees-->
+      <div class="col-lg">
+      {% if current_location_label == "All Locations" %}
+
+        <div class="jumbotron ">
+          <h2 style="text-align: center">Current Employees by location</h2>
+            <table class=" table table table-striped table-bordered table-sm">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col"> Location </th>
+                  <th scope="col"> Employees </th>
+                </tr>
+              </thead>
+              <tbody>
+                {%  for location, item in current_working_locations.items %}
+                      <tr>
+                        <td>{{ location }}</td>
+                        <td>{{ item.Name }}</td>
+                      </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+      {% else %}
+           <div class="jumbotron jumbotron-fluid">
+                  <h2 style="text-align: center">Current Employees {{ current_employees }}</h2>
+                </div>
+      {% endif %}
+      </div>
+
+      <!--  list of devices-->
+      {% if list_of_devices %}
+          <div class="col-lg">
+            <h5>Devices</h5>
+            <table class="table table table-striped table-bordered table-sm">
+              <thead class="tableColor">
+                <tr>
+                  <th scope="col">Devices</th>
+                  <th scope="col">Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for device, quantity in list_of_devices.items %}
+                <tr>
+                  <td>{{ device }}</td>
+                  <td>{{ quantity }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+      {% endif %}
+    </div>
+
+    {% if greater_hours.data %}
+      <h5> Irregular Hours </h5>
+      <table class="table table table-striped table-bordered  table-sm">
+        <thead class="tableColor">
+          <tr>
+            {% for columns_labels in greater_hours.columns %}
+                <th scope="col">{{ columns_labels }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+            {% for items_in_list in greater_hours.data %}
+              <tr>
+                {% for items in items_in_list %}
+                      <td>{{ items }}</td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+      <br>
+    {% endif%}
+  
+  
+  
+    <!-- irregular_entries -->
+    {% if irregular_entries %}
+      <h5>Irregular Entries </h5>
+      <table class="table table table-striped table-bordered  table-sm">
+        <thead class="tableColor">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Department</th>
+            <th scope="col">Device Used</th>
+            <th scope="col">Time</th>
+            <th scope="col">Date</th>
+            <th scope="col">Activity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in irregular_entries.values %}
+          <tr>
+            <td>{{data.Name}}</td>
+            <td>{{data.Department}}</td>
+            <td>{{data.Device}}</td>
+            <td>{{data.Time}}</td>
+            <td>{{data.Date}}</td>
+            <td>{{data.Activity}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br>
+    {% endif%}
+  
+  
+    {% if warning_not_today_clock_in %}
+      <h5>Employees Still 'In' who didn't Clock in today</h5>
+      <table class="table table table-striped table-bordered  table-sm"">
+        <thead class="tableColor">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Clock in</th>
+            <th scope="col">Device Used</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in warning_not_today_clock_in.values %}
+          <tr>
+            <td>{{ data.Name}}</td>
+            <td>{{ data.Date}}</td>
+            <td>{{ data.Device}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br>
+      {% endif%}
+  
+      <!--    list of location for employees working in other places-->
+    <div class="row">
+      {% if current_not %}
+      <div class="col-lg">
+      <h5>Employees in other locations </h5>
+      <table class="table table table-striped table-bordered table-sm"">
+        <thead class="tableColor">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Primary Department</th>
+            <th scope="col">Current Department</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in current_not %}
+          <tr>
+            <td>{{ data.Name }}</td>
+            <td>{{ data.Primary_Department }}</td>
+            <td>{{ data.Current_Department }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    {% endif %}
+  
+    {% if primary_not %}
+    <div class="col-lg">
+    <h5>Employees Visiting your site</h5>
+    <table class="table table table-striped table-bordered  table-sm"">
+      <thead class="tableColor">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Primary Department</th>
+          <th scope="col">Current Department</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in primary_not %}
+        <tr>
+          <td>{{ data.Name }}</td>
+          <td>{{ data.Primary_Department }}</td>
+          <td>{{ data.Current_Department }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+    </div>
+    {% endif %}
+
+  </div>
+  
+
+{% endblock %}
+

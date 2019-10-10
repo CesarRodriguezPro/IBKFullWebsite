@@ -1,0 +1,5 @@
+*.pyc
+.vscode
+DjangoEnv
+.idea/
+*.DS_Store

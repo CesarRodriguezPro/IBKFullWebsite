@@ -1,0 +1,62 @@
+{% extends 'employees/base.html' %}
+
+{% block content %}
+<br>
+<br>
+<div class="jumbotron">
+    <center><h4>Last update was {{ timestamp_log }}</h4></center>
+
+</div>
+<br>
+<br>
+
+<!-- --------------------------- detail Hours ----------------------------- -->
+<h2> Detail Hours </h2>
+<table class="table table-striped table-sm table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            {% for x in separate_time %}
+                    <td scope="col">{{x}}</td>
+            {% endfor  %}
+        </tr>
+    </thead>
+
+        <tbody>
+                {% for x in separate_time.values %}
+                 <tr>
+                     {% for item in x %}
+                            <td >
+                              <a name="{{ item }}" scope="row">{{ item }}</a>
+                           </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor  %}
+        </tbody>
+</table>
+<br>
+<!-- ------------------------------  Combine Hours  ---------------------------- -->
+<h2> Total Hours Combine </h2>
+<table class="table table-striped table-sm table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            {% for x in combine_data %}
+                    <td scope="col">{{x}}</td>
+            {% endfor  %}
+        </tr>
+    </thead>
+
+        <tbody>
+                {% for x in combine_data.values %}
+                 <tr>
+                     {% for item in x %}
+                            <td scope="row" >{{ item }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor  %}
+        </tbody>
+</table>
+
+{% endblock %}
+
+
+
