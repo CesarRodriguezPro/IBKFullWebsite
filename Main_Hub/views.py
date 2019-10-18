@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django import template
 from UniversalRootFolder import itcontrol
-from UniversalRootFolder.irregular_entries import IrregularEntries
+from UniversalRootFolder.irregular_entries import IrregularEntries, TooShortEntries
 from UniversalRootFolder.hours_greater import HoursGreater
 from django.http import HttpResponse
 from UniversalRootFolder import pdf_creator_for_timesheet
@@ -41,21 +41,22 @@ def special_functions_dispatch(location_request):
     if location_request == 'allLocations':
         irregular = IrregularEntries()
         greater = HoursGreater()
-        return irregular.send_to_website(), greater.get_times()
+        too_short_entries = TooShortEntries()
+        return irregular.send_to_website(), greater.get_times(), too_short_entries.get_data()
     else:
-        return None, None
+        return None, None, None
 
 
 def data_collection(request, location_request):
 
-    first_name                       = request.user.first_name
-    last_name                        = request.user.last_name
-    active                           = itcontrol.ItControl(first_name, last_name, location_request)
-    list_locations                   = active.get_list_of_location()
-    current_not, primary_not         = active.check_function()
-    current_location_label           = active.current_location()[1]
-    current_working_locations        = active.current_working_locations()
-    irregular_entries, greater_hours = special_functions_dispatch(location_request)
+    first_name                                          = request.user.first_name
+    last_name                                           = request.user.last_name
+    active                                              = itcontrol.ItControl(first_name, last_name, location_request)
+    list_locations                                      = active.get_list_of_location()
+    current_not, primary_not                            = active.check_function()
+    current_location_label                              = active.current_location()[1]
+    current_working_locations                           = active.current_working_locations()
+    irregular_entries, greater_hours, too_short_entries = special_functions_dispatch(location_request)
 
     data = {
         'first_name': first_name,
@@ -70,6 +71,7 @@ def data_collection(request, location_request):
         'irregular_entries': irregular_entries,
         'current_working_locations':current_working_locations,
         'greater_hours': greater_hours,
+        'too_short_entries': too_short_entries,
         'current_time': datetime.datetime.now().strftime('%m/%d/%Y %I:%M %p'),
     }
     return data

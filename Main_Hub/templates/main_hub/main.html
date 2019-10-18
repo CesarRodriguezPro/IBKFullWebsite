@@ -125,7 +125,37 @@
       </table>
       <br>
     {% endif%}
-  
+
+
+    {% if too_short_entries %}
+      <h5> Entries Too short  </h5>
+      <table class="table table table-striped table-bordered  table-sm">
+        <thead class="tableColor">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Department</th>
+            <th scope="col">Device Used</th>
+            <th scope="col">Punch In</th>
+            <th scope="col">Punch Out</th>
+            <th scope="col">Min</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in too_short_entries.values %}
+          <tr>
+            <td>{{data.Name}}</td>
+            <td>{{data.Department}}</td>
+            <td>{{data.Device}}</td>
+            <td>{{data.in}}</td>
+            <td>{{data.out}}</td>
+            <td>{{data.total}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br>
+    {% endif%}
+
   
     {% if warning_not_today_clock_in %}
       <h5>Employees Still 'In' who didn't Clock in today</h5>
