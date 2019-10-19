@@ -41,22 +41,22 @@ def special_functions_dispatch(location_request):
     if location_request == 'allLocations':
         irregular = IrregularEntries()
         greater = HoursGreater()
-        too_short_entries = TooShortEntries()
-        return irregular.send_to_website(), greater.get_times(), too_short_entries.get_data()
+        return irregular.send_to_website(), greater.get_times()
     else:
-        return None, None, None
+        return None, None
 
 
 def data_collection(request, location_request):
 
-    first_name                                          = request.user.first_name
-    last_name                                           = request.user.last_name
-    active                                              = itcontrol.ItControl(first_name, last_name, location_request)
-    list_locations                                      = active.get_list_of_location()
-    current_not, primary_not                            = active.check_function()
-    current_location_label                              = active.current_location()[1]
-    current_working_locations                           = active.current_working_locations()
-    irregular_entries, greater_hours, too_short_entries = special_functions_dispatch(location_request)
+    first_name                       = request.user.first_name
+    last_name                        = request.user.last_name
+    active                           = itcontrol.ItControl(first_name, last_name, location_request)
+    list_locations                   = active.get_list_of_location()
+    current_not, primary_not         = active.check_function()
+    current_location_label           = active.current_location()[1]
+    current_working_locations        = active.current_working_locations()
+    too_short_entries                = TooShortEntries()
+    irregular_entries, greater_hours = special_functions_dispatch(location_request)
 
     data = {
         'first_name': first_name,
@@ -71,7 +71,7 @@ def data_collection(request, location_request):
         'irregular_entries': irregular_entries,
         'current_working_locations':current_working_locations,
         'greater_hours': greater_hours,
-        'too_short_entries': too_short_entries,
+        'too_short_entries': too_short_entries.get_data(current_location_label),
         'current_time': datetime.datetime.now().strftime('%m/%d/%Y %I:%M %p'),
     }
     return data
@@ -91,11 +91,15 @@ def main_hub(request, requested_location = None, options=None):
                 return pdf_creator_for_timesheet.pdf_builder_last_week(location=requested_location)
             elif options == 'current_Timesheet':
                 if datetime.date.today().weekday() == 0:
+
                     return pdf_creator_for_timesheet.pdf_builder_last_week(location=requested_location)
                 else:
                     return pdf_creator_for_timesheet.pdf_builder_current(location=requested_location)
+
             data = data_collection(request, requested_location)
             return render(request, 'main_hub/main.html', context=data)
+
         data = data_collection(request, requested_location)
         return render(request, 'main_hub/main.html', context=data)
+
     return HttpResponseRedirect(reverse('redirect_to'))

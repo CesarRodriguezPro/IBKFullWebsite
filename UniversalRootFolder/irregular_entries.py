@@ -66,8 +66,11 @@ class TooShortEntries:
         filtered_data['total'] = filtered_data['total'] // np.timedelta64(1, 'm')
         return filtered_data
 
-    def get_data(self):
+    def get_data(self, location):
         data = self.process_info()
+        print(f'---------->>>> {location}')
+        if location != 'All Locations':
+            data = data[data['Department'].isin([location])]
         data = data[data['total'] < self.max_time]
         return data.to_dict('index')
 
