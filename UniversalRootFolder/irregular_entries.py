@@ -41,11 +41,11 @@ class TooShortEntries:
         self.key_api = TimeStationKey.get_key()
         self.CODE = 34  # Employee Activity
         self.today = datetime.date.today()
-        self.week_ago = self.today - datetime.timedelta(weeks=1)
+        self.four_days_ago = self.today - datetime.timedelta(days=4) 
         self.yesterday = self.today - datetime.timedelta(days=1)
 
         self.url_data = f"https://api.mytimestation.com/v0.1/reports/?api_key={self.key_api}&" \
-                        f"Report_StartDate={self.week_ago}&Report_EndDate={self.yesterday}&id={self.CODE}&exportformat=csv"
+                        f"Report_StartDate={self.four_days_ago}&Report_EndDate={self.yesterday}&id={self.CODE}&exportformat=csv"
         self.raw_data = pd.read_csv(self.url_data)
 
     def process_info(self):
