@@ -21,6 +21,7 @@ TEMPLATES_DIR = [
     os.path.join(BASE_DIR, 'templates'),
     os.path.join(BASE_DIR, 'downloadDocuments', 'templates'),
     os.path.join(BASE_DIR, 'employees', 'templates'),
+    os.path.join(BASE_DIR, 'documents', 'templates'),
 ]
 
 
@@ -55,6 +56,7 @@ INSTALLED_APPS = [
     'Main_Hub',
     'accounts',
     'employees',
+    'documents',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

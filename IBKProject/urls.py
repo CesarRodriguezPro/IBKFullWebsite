@@ -28,4 +28,5 @@ urlpatterns = [
     path('hub/', include(('Main_Hub.urls', 'main_hub'))),
     path('accounts/', include(('accounts.urls', 'accounts'))),
     path('employees/', include(('employees.urls', 'employees'))),
+    path('documents/', include(('documents.urls', 'documents'))),
     ]
