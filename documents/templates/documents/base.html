@@ -36,13 +36,16 @@
                             <li class="nav-item">
                                  <a class=" btn btn-secondary" style="margin-right: 5px;" href="{% url 'redirect_to' %}">Return</a>
                             </li>
-
+                            {% if request.session.type == 'office' or request.session.type == 'SystemAdmin' %}
                             <li class="nav-item">
                                  <a class=" btn btn-secondary" style="margin-right: 5px;" href="{% url 'documents:upload' %}">Upload</a>
                               </li>
+                        {% endif %}
+                        {% if request.session.type == 'office' or request.session.type == 'SystemAdmin' or request.session.type == 'Foreman' %}
                              <li class="nav-item">
                                  <a class=" btn btn-secondary" style="margin-right: 5px;" href="{% url 'documents:list_documents' %}">Document List</a>
                               </li>
+                        {% endif %}
                             <li class="nav-item">
                                  <a class="btn btn-secondary " style="margin-right: 5px;" href="{% url 'accounts:logout_user' %}">Log Out</a>
                               </li>
