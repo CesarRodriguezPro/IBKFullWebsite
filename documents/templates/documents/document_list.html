@@ -1,0 +1,35 @@
+{% extends 'documents/base.html' %}
+{% block content %}
+<br>
+<table  class="table table table-striped table-bordered table-sm">
+    <thead class="tableColor">
+    <tr>
+        <td scope="col">ID</td>
+        <td scope="col">File Name</td>
+        <td scope="col"> Date Uploaded </td>
+        <td scope="col"> Download </td>
+        <td scope="col"> Delete Document </td>
+    </tr>
+    </thead>
+        {% for file_name in object_list %}
+         <tr>
+             <td>{{ file_name.id }}</td>
+             <td>{{ file_name.file_name }}</td>
+             <td>{{ file_name.uploaded_at }}</td>
+             <td>
+                 <a href="{{ file_name.document.url }}">Download</a>
+             </td>
+             <td>
+                 <form method="POST" action="{% url 'documents:delete' file_name.id %}">
+                     {% csrf_token %}
+                     <button type="submit" class="btn btn-danger">Delete</button>
+             </form>
+             </td>
+         </tr>
+        {% empty %}
+            <td>No Documents Yet</td>
+        {% endfor %}
+</table>
+
+
+{% endblock %}

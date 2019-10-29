@@ -7,8 +7,9 @@ from . import views
 app_name = 'documents'
 
 urlpatterns = [
-    path('', views.Home.as_view()),
-    path('upload/', views.simple_upload, name ='upload'),
+    path('', views.ListDocument.as_view(), name='list_documents'),
+    path('upload/', views.model_form_upload, name='upload'),
+    path('delete/<int:pk>', views.delete_document, name='delete'),
 ]
 
 if settings.DEBUG:

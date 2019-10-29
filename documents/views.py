@@ -1,23 +1,35 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render
+from .forms import DocumentForm
+from django.shortcuts import redirect
+from .models import Document
 
 
-def simple_upload(request):
-    if request.method == 'POST' and request.FILES['myfile']:
-        myfile = request.FILES['myfile']
-        fs = FileSystemStorage()
-        filename = fs.save(myfile.name, myfile)
-        uploaded_file_url = fs.url(filename)
-        return render(request, 'documents/upload.html', {
-            'uploaded_file_url': uploaded_file_url
-        })
-    return render(request, 'documents/upload.html')
+class ListDocument(LoginRequiredMixin, ListView):
+    model = Document
 
 
-class Home(LoginRequiredMixin, TemplateView):
-    template_name = 'documents/home.html'
+def delete_document(request, pk):
+    print(pk)
+    if request.method == 'POST':
+        document = Document.objects.get(pk=pk)
+        document.delete()
+    return redirect('documents:list_documents')
+
+
+def model_form_upload(request):
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('documents:list_documents')
+    else:
+        form = DocumentForm()
+    return render(request, 'documents/upload.html', {
+        'form': form
+    })
+
 
 
 
