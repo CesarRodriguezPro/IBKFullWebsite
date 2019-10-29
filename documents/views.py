@@ -1,6 +1,7 @@
-from django.views.generic import TemplateView, ListView, DeleteView
+from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from .forms import DocumentForm
 from django.shortcuts import redirect
 from .models import Document
@@ -18,6 +19,7 @@ def delete_document(request, pk):
     return redirect('documents:list_documents')
 
 
+@login_required()
 def model_form_upload(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
