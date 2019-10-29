@@ -3,3 +3,6 @@
 DjangoEnv
 .idea/
 *.DS_Store
+*.doc
+*.pdf
+*.csv
