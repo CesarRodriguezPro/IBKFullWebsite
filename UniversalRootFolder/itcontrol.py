@@ -14,13 +14,21 @@ class ItControl:
         self.key_api = TimeStationKey.get_key()
 
         # get the information for current employees
-        self.code_current = 37  
+        self.code_current = 37   # Current Employees status report.
         self.url_current = f"https://api.mytimestation.com/v0.1/reports/?api_key={self.key_api}&id={self.code_current}&exportformat=csv"
         self.current_data = pd.read_csv(self.url_current)
-
-        # self.current_data = pd.read_csv(r"C:\Users\strea\Desktop\testfiles\test_data.csv")
         self.filter_data_in = self.current_data[self.current_data['Status'].str.contains('In')]
         self.filter_data_out = self.current_data[self.current_data['Status'].str.contains('Out')]
+
+    def employees_late(self):
+        data_current, location = self.current_location()
+        after_time = data_current[data_current['Time'] > '07:10:00']
+        before_time = data_current[data_current['Time'] < '08:10:00']
+        df = before_time[before_time['Name'].isin(after_time['Name'])]
+        if df.empty:
+            return None
+        else:
+            return df.to_dict('index')
 
     def current_employees_out(self):
         return self.filter_data_out.to_dict()

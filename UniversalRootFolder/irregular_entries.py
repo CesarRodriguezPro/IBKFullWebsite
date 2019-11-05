@@ -31,7 +31,7 @@ class IrregularEntries:
         return sorted_db.to_dict('index')
 
 
-class TooShortEntries:
+class DailyForemanInfo:
     ''' sometimes the foreman don't clock people in after lunch but clock them in and out by the
     end of the day. this class will catch any entry with less than 10 min different '''
 
@@ -66,7 +66,7 @@ class TooShortEntries:
         filtered_data['total'] = filtered_data['total'] // np.timedelta64(1, 'm')
         return filtered_data
 
-    def get_data(self, location):
+    def get_short_hours(self, location):
         data = self.process_info()
         print(f'---------->>>> {location}')
         if location != 'All Locations':

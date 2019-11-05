@@ -91,7 +91,28 @@
       <br>
     {% endif%}
   
-  
+    {% if  employees_late %}
+      <h5>Employees Click in Late Today. (between 7:10am 8:00am)</h5>
+      <table class="table table table-striped table-bordered  table-sm"">
+        <thead class="tableColor">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Time</th>
+            <th scope="col">Device Used</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in employees_late.values %}
+          <tr>
+            <td>{{ data.Name}}</td>
+            <td>{{ data.Time}}</td>
+            <td>{{ data.Device}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br>
+      {% endif%}
   
     <!-- irregular_entries -->
     {% if irregular_entries %}
