@@ -6,7 +6,7 @@ registration
 {% block content%}
 
 <div style="background-color:#00012f">
-<div class="container" style="background-color:#00012f; padding-bottom:20px">
+<div class="container" style="background-color:#00012f; padding-top:30px; padding-bottom:20px">
 <div class="jumbotron">
 <center>
 
@@ -14,7 +14,7 @@ registration
 <form method="POST"  action="{% url 'accounts:registration_user' %}">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit">Login</button>
+  <button type="submit">Registration</button>
 </form>
 </center>
 </div>
