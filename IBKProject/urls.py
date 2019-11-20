@@ -24,7 +24,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
     path('', views.home, name='home'),
     path('redirect', views.redirect_to, name='redirect_to'),
     path('hub/', include(('Main_Hub.urls', 'main_hub'))),

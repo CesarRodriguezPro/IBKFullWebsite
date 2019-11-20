@@ -15,16 +15,26 @@
 					<span class="login100-form-title p-b-34">
 						Your are Login
 					</span>
+
 					<ul class="list-group wrap-input100">
+					  {% if request.session.type == 'SystemAdmin' or request.session.type == 'Foreman' or request.session.type == 'office'%}
 						<a class=" btn btn-sm list-group-item" href="{% url 'redirect_to' %}">
 							<li class="nav-link" style="font-size: 1.2rem; padding: .2rem 1rem;"> Foreman Hub</li>
-						</a>
-						<a class=" btn btn-sm list-group-item" href="{% url 'employees:Hub' %}">
-							<li class="nav-link" style="font-size: 1.2rem; padding: .2rem 1rem;"> Your Hours</li>
 						</a>
 						<a class=" btn btn-sm list-group-item" href="{% url 'documents:list_documents' %}">
 							<li class="nav-link" style="font-size: 1.2rem; padding: .2rem 1rem;"> Documents</li>
 						</a>
+								{% if request.session.type == 'SystemAdmin' %}
+									<a class=" btn btn-sm list-group-item" href="{% url 'admin:index' %}">
+										<li class="nav-link" style="font-size: 1.2rem; padding: .2rem 1rem;">Administrative Page</li>
+									</a>
+								{% endif %}
+
+						{% endif %}
+						<a class=" btn btn-sm list-group-item" href="{% url 'employees:Hub' %}">
+							<li class="nav-link" style="font-size: 1.2rem; padding: .2rem 1rem;"> Your Hours</li>
+						</a>
+
 						<a class=" btn btn-sm login100-form-btn list-group-item " href="{% url 'accounts:logout_user' %}">
 							<li class="nav-link" > Log Out</li>
 						</a>

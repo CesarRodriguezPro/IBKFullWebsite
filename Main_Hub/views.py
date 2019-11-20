@@ -79,6 +79,14 @@ def data_collection(request, location_request):
     return data
 
 
+# @login_required
+# def main_hub(request):
+#     return render(request, 'main_hub/main.html')
+
+
+
+
+
 @login_required
 def main_hub(request, requested_location=None, options=None):
 
