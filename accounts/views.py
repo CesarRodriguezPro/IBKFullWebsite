@@ -20,7 +20,7 @@ def login_user(request):
         else:
             return HttpResponse('<h1>Wrong Password</h1>')
     else:
-        return render(request, 'index.html')
+        return render(request,'index.html')
 
 
 @login_required

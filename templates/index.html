@@ -2,93 +2,95 @@
 {% load staticfiles %}
 
 {% block content %}
-	<div class="limiter">
+<div class="limiter">
 
-		{% if user.is_authenticated %}
-		<div class="container-login100 ">
-			<div class="wrap-login100">
+	{% if user.is_authenticated %}
+	<div class="container-login100 ">
+		<div class="wrap-login100">
 
-				<div class='login100-form'>
-					<span class="login100-form-title p-b-34">
-						<image src="{% static 'images/controlapp/base/ibklogo.jpg' %}">
-					</span>
-					<span class="login100-form-title p-b-34">
-						Your are Login
-					</span>
+			<div class='login100-form'>
+				<span class="login100-form-title p-b-34">
+					<image src="{% static 'images/controlapp/base/ibklogo.jpg' %}">
+				</span>
+				<span class="login100-form-title p-b-34">
+					Your are Login
+				</span>
 
-					<ul class="list-group wrap-input100">
-					  {% if request.session.type == 'SystemAdmin' or request.session.type == 'Foreman' or request.session.type == 'office'%}
-						<a class=" btn btn-sm list-group-item" href="{% url 'redirect_to' %}">
-							<li class="nav-link" style="font-size: 1.2rem; padding: .2rem 1rem;"> Foreman Hub</li>
-						</a>
-						<a class=" btn btn-sm list-group-item" href="{% url 'documents:list_documents' %}">
-							<li class="nav-link" style="font-size: 1.2rem; padding: .2rem 1rem;"> Documents</li>
-						</a>
-								{% if request.session.type == 'SystemAdmin' %}
-									<a class=" btn btn-sm list-group-item" href="{% url 'admin:index' %}">
-										<li class="nav-link" style="font-size: 1.2rem; padding: .2rem 1rem;">Administrative Page</li>
-									</a>
-								{% endif %}
+				<ul class="list-group wrap-input100">
+					{% if request.session.type == 'SystemAdmin' or request.session.type == 'Foreman' or request.session.type == 'office'%}
+					<a class=" btn btn-sm list-group-item" href="{% url 'redirect_to' %}">
+						<li class="nav-link" style="font-size: 1.2rem; padding: .2rem 1rem;"> Foreman Hub</li>
+					</a>
+					<a class=" btn btn-sm list-group-item" href="{% url 'documents:list_documents' %}">
+						<li class="nav-link" style="font-size: 1.2rem; padding: .2rem 1rem;"> Documents</li>
+					</a>
+					{% if request.session.type == 'SystemAdmin' %}
+					<a class=" btn btn-sm list-group-item" href="{% url 'admin:index' %}">
+						<li class="nav-link" style="font-size: 1.2rem; padding: .2rem 1rem;">Administrative Page</li>
+					</a>
+					{% endif %}
 
-						{% endif %}
-						<a class=" btn btn-sm list-group-item" href="{% url 'employees:Hub' %}">
-							<li class="nav-link" style="font-size: 1.2rem; padding: .2rem 1rem;"> Your Hours</li>
-						</a>
+					{% endif %}
+					<a class=" btn btn-sm list-group-item" href="{% url 'employees:Hub' %}">
+						<li class="nav-link" style="font-size: 1.2rem; padding: .2rem 1rem;"> Your Hours</li>
+					</a>
 
-						<a class=" btn btn-sm login100-form-btn list-group-item " href="{% url 'accounts:logout_user' %}">
-							<li class="nav-link" > Log Out</li>
-						</a>
-					</ul>
-				</div>
-
-				<div class="login100-more" style="background-image: url('{% static 'images/controlapp/home/MainImage.jpg' %}');">
-				</div>
-
+					<a class=" btn btn-sm login100-form-btn list-group-item " href="{% url 'accounts:logout_user' %}">
+						<li class="nav-link"> Log Out</li>
+					</a>
+				</ul>
 			</div>
-		</div>
 
-
-		{% else %}
-		<div class="container-login100">
-			<div class="wrap-login100">
-
-				<form method="POST" action="{% url 'accounts:login_user' %}" class="login100-form validate-form">
-					{% csrf_token %}
-					<span class="login100-form-title p-b-34">
-						<image style="width: 200px;"src="{% static 'images/controlapp/base/ibklogo.jpg' %}">
-					</span>
-					<span class="login100-form-title p-b-34">
-						Account Login
-					</span>
-
-					<div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
-						<input id="username" class="input100" type="text" name="username" placeholder="Username">
-						<span class="focus-input100"></span>
-					</div>
-					<div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20">
-						<input class="input100" type="password" id="exampleInputPassword1" name="password" placeholder="Password">
-						<span class="focus-input100"></span>
-					</div>
-
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" type='submit'>
-							Sign in
-						</button>
-					</div>
-
-					<div class=" text-center p-t-27 p-b-239">
-						<a class="login100-form-btn btn" href="{% url 'employees:Home' %}">
-							<li>Employees</li>
-						</a>
-					</div>
-				</form>
-
-				<div class="login100-more" style="background-image: url('{% static 'images/FrontPage.jpg' %}');">
-
-				</div>
+			<div class="login100-more"
+				style="background-image: url('{% static 'images/controlapp/home/MainImage.jpg' %}');">
 			</div>
 
 		</div>
-		{% endif %}
 	</div>
+
+
+	{% else %}
+	<div class="container-login100">
+		<div class="wrap-login100">
+
+			<form method="POST" action="{% url 'accounts:login_user' %}" class="login100-form validate-form">
+				{% csrf_token %}
+				<span class="login100-form-title p-b-34">
+					<image style="width: 200px;" src="{% static 'images/controlapp/base/ibklogo.jpg' %}">
+				</span>
+				<span class="login100-form-title p-b-34">
+					Account Login
+				</span>
+
+				<div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
+					<input id="username" class="input100" type="text" name="username" placeholder="Username">
+					<span class="focus-input100"></span>
+				</div>
+				<div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20">
+					<input class="input100" type="password" id="exampleInputPassword1" name="password"
+						placeholder="Password">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="container-login100-form-btn">
+					<button class="login100-form-btn" type='submit'>
+						Sign in
+					</button>
+				</div>
+
+				<div class=" text-center p-t-27 p-b-239">
+					<a class="login100-form-btn btn" href="{% url 'employees:Home' %}">
+						<li>Employees</li>
+					</a>
+				</div>
+			</form>
+
+			<div class="login100-more" style="background-image: url('{% static 'images/FrontPage.jpg' %}');">
+
+			</div>
+		</div>
+
+	</div>
+	{% endif %}
+</div>
 {% endblock content %}

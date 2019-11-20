@@ -58,22 +58,22 @@
   <div class="col-lg">
     <h5>Devices</h5>
     <div class="table-responsive">
-    <table class="table table table-striped table-bordered table-sm">
-      <thead class="tableColor">
-        <tr>
-          <th scope="col">Devices</th>
-          <th scope="col">Quantity</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for device, quantity in list_of_devices.items %}
-        <tr>
-          <td>{{ device }}</td>
-          <td>{{ quantity }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+      <table class="table table table-striped table-bordered table-sm">
+        <thead class="tableColor">
+          <tr>
+            <th scope="col">Devices</th>
+            <th scope="col">Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for device, quantity in list_of_devices.items %}
+          <tr>
+            <td>{{ device }}</td>
+            <td>{{ quantity }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
   {% endif %}

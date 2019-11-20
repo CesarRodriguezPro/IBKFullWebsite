@@ -110,6 +110,6 @@ def main_hub(request, requested_location=None, options=None):
             return render(request, 'main_hub/main.html', context=data)
 
         data = data_collection(request, requested_location)
-        return render(request, 'main_hub/main.html', context=data)
+        return render(request, 'main_hub/main.html',context=data)
 
     return HttpResponseRedirect(reverse('redirect_to'))
