@@ -8,11 +8,14 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 data_store = os.path.join(BASE_DIR, 'data_stores')
 path_data = os.path.join(data_store, 'raw_data')
+UPDATE_TIME = 4
 
 
 class GettingTimeSheet:
 
     def __init__(self):
+        ''' here are 3 values url for pandas, save_data (which is boolean) that checks if there
+        are data already save,and time that was dowload it. '''
         self.url, self.save_data, self.update_time = self.data_selector()
         self.raw_data = pd.read_csv(self.url)
         if self.save_data:
@@ -35,7 +38,7 @@ class GettingTimeSheet:
                     file = file.replace('.csv', '')       
                     start_date = datetime.datetime.fromtimestamp(float(file))
                     difference = relativedelta.relativedelta(date_now, start_date)
-                    if difference.days > 0 or difference.hours > 2:
+                    if difference.days > 0 or difference.hours >= UPDATE_TIME:
                         os.remove(os.path.join(path_data, f'{file}.csv'))
                         return PATH_TO_TIMESTATION, True, date_now
                     return os.path.join(path_data, f'{file}.csv'), False, start_date
@@ -56,10 +59,10 @@ class GettingTimeSheet:
         detail_data = self.raw_data[self.raw_data['Employee'].isin([employee])].drop([ 'Unnamed: 0', 'Employee ID', 'Title','Hourly Rate','Total Pay'],axis=1, errors='ignore')
         combine_data = detail_data.groupby(by='Employee').sum()
         detail_data = detail_data.drop('Employee',axis=1)
-        return combine_data, detail_data, self.update_time
+        next_update_label = self.next_update()
+        return combine_data, detail_data, self.update_time, next_update_label
 
     def employees_to_data_store(self):
-
         current_time = datetime.datetime.now().timestamp()
         path_to_file = os.path.join(path_data, f'{current_time}.csv')
         if os.path.isdir(path_data):
@@ -67,8 +70,12 @@ class GettingTimeSheet:
         else:
             os.makedirs(path_data)
             self.raw_data.to_csv(os.path.normpath(path_to_file))
-
+    
+    def next_update(self):
+        next_update = self.update_time + datetime.timedelta(hours=UPDATE_TIME)
+        return next_update.strftime('%b. %d, %Y, %H:%M %p')
 
 if __name__ == '__main__':
     
-    pass
+    x = GettingTimeSheet()
+    x.next_update()

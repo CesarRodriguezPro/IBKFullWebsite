@@ -15,13 +15,15 @@ def hour_change(request):
 def get_user_info(request, last, name):
     data = GettingTimeSheet()
     full_name = f'{last}, {name}'
-    combine_time, separate_time, updated_time = data.run(full_name)
+    combine_time, separate_time, updated_time, next_update = data.run(full_name)
 
     data = {
         'timestamp_log':updated_time,
+        'next_update':next_update,
         'name' : full_name,
         'combine_data': combine_time,
         'separate_time': separate_time,
+
     }    
     return render(request, 'employees/employees_hub.html', context=data)
 

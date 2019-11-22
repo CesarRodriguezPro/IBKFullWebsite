@@ -42,7 +42,7 @@ class Verify:
                     end_date = datetime.datetime.now()
                     difference = relativedelta.relativedelta(end_date, start_date)
 
-                    if difference.days > 0 or difference.hours > 4:
+                    if difference.days > 0 or difference.hours > 12:
                         os.remove(os.path.join(data_store, 'list_employees', f'{file}.csv'))
                         return PATH_TO_TIMESTATION, True
                     return os.path.join(path_list_employees, f'{file}.csv'), False

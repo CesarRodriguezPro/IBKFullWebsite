@@ -17,7 +17,6 @@ def download_current_list(request, location_request):
     first_name = request.user.first_name
     last_name  = request.user.last_name
     active     = itcontrol.ItControl(first_name, last_name, location_request)
-    user       = request.user
 
     if location_request == 'All Locations':
         csv_file = active.save_current_all()
@@ -77,14 +76,6 @@ def data_collection(request, location_request):
         'employees_late':employees_late
     }
     return data
-
-
-# @login_required
-# def main_hub(request):
-#     return render(request, 'main_hub/main.html')
-
-
-
 
 
 @login_required
