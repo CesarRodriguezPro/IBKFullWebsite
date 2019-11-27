@@ -1,297 +1,278 @@
 {% extends 'main_hub/base.html' %}
-{% load staticfiles %}
-
 {% block content %}
 
-<!-- MAIN CONTENT-->
+<!-- Weather code -->
+<a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us" data-label_1="NEW YORK"
+  data-label_2="WEATHER" data-theme="original">NEW YORK WEATHER</a>
+<script>
+  ! function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id = id;
+      js.src = 'https://weatherwidget.io/js/widget.min.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }
+  }(document, 'script', 'weatherwidget-io-js');
+</script>
+<!-- end of weather code -->
 
-<div class="main-content">
-    <div class="section__content section__content--p30">
+<!--start section of information -->
 
+<br>
+<div class="row">
+  <!--  amount of employees-->
+  <div class="col-lg">
+    {% if current_location_label == "All Locations" %}
 
-        <div class="row">
-            {% if current_location_label == "All Locations" %}
-            <div class="col-lg-6">
-                <div class="au-card au-card--bg-blue m-b-30">
-                    <div class="au-card-inner">
-                        <div class="table-responsive">
-                            <table class="table table-top-countries">
-                                <tbody>
-
-                                    {%  for location, item in current_working_locations.items %}
-                                    <tr>
-
-                                        <td><a style='color:white;'
-                                                href="{% url 'foreman_hub:foreman_main' %}{{location}}">{{ location }}</a>
-                                        </td>
-
-                                        <td class="text-right">{{ item.Name }}</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {% else %}
-            <div class="col-lg-6">
-                <div class="au-card au-card--bg-blue au-card-top-countries m-b-30 table-top-countries">
-                    <div class="au-card-inner">
-                        <h2 style="text-align: center; color:white;">Current Employees {{ current_employees }}</h2>
-                    </div>
-                </div>
-            </div>
-
-
-            {% endif %}
-
-            <div class="col-lg-6">
-                <div class="table-responsive table--no-card m-b-30">
-                    <table class="table table-borderless table-striped table-earning">
-                        <thead>
-                            <tr>
-                                <th>Devices</th>
-                                <th>Quantity</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for device, quantity in list_of_devices.items %}
-                            <tr>
-                                <td>{{ device }}</td>
-                                <td>{{ quantity }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        {% if  employees_late %}
-        <div class="col-lg-12">
-            <!-- employees late -->
-            <div class="table-responsive m-b-30">
-                <h5>Employees Click in Late Today. (between 7:10am 8:00am)</h5>
-                <table class="table table-borderless table-data3">
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Time</th>
-                            <th scope="col">Device Used</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for data in employees_late.values %}
-                        <tr>
-                            <td>{{ data.Name}}</td>
-                            <td>{{ data.Time}}</td>
-                            <td>{{ data.Device}}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <!-- END DATA TABLE-->
-        </div>
-        {% endif %}
-
-
-        {% if greater_hours.data %}
-        <div class="col-lg-12">
-            <!-- Irregular Hours -->
-            <div class="table-responsive m-b-30">
-                <h5> Irregular Hours </h5>
-                <table class="table table-borderless table-data3">
-                    <thead>
-                        <tr>
-                            {% for columns_labels in greater_hours.columns %}
-                            <th>{{ columns_labels }}</th>
-                            {% endfor %}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for items_in_list in greater_hours.data %}
-                        <tr>
-                            {% for items in items_in_list %}
-                            <td>{{ items }}</td>
-                            {% endfor %}
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <!-- END DATA TABLE-->
-        </div>
-        {% endif %}
-
-
-        {% if  irregular_entries %}
-        <div class="col-lg-12">
-            <!-- irregular_entries -->
-            <div class="table-responsive m-b-40">
-                <h5>Irregular Entries </h5>
-                <table class="table table-borderless table-data3">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Department</th>
-                            <th>Device Used</th>
-                            <th>Time</th>
-                            <th>Date</th>
-                            <th>Activity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for data in irregular_entries.values %}
-                        <tr>
-                            <td>{{data.Name}}</td>
-                            <td>{{data.Department}}</td>
-                            <td>{{data.Device}}</td>
-                            <td>{{data.Time}}</td>
-                            <td>{{data.Date}}</td>
-                            <td>{{data.Activity}}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <!-- END DATA TABLE-->
-        </div>
-        {% endif %}
-
-
-        {% if  too_short_entries %}
-        <div class="col-lg-12">
-            <!-- irregular_entries -->
-            <div class="table-responsive m-b-40">
-                <h5> Entries Too short </h5>
-                <table class="table table-borderless table-data3">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Department</th>
-                            <th>Device Used</th>
-                            <th>Punch In</th>
-                            <th>Punch Out</th>
-                            <th>Min</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for data in too_short_entries.values  %}
-                        <tr>
-                            <td>{{data.Name}}</td>
-                            <td>{{data.Department}}</td>
-                            <td>{{data.Device}}</td>
-                            <td>{{data.in}}</td>
-                            <td>{{data.out}}</td>
-                            <td>{{data.total}}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <!-- END DATA TABLE-->
-        </div>
-        {% endif %}
-
-
-        {% if  warning_not_today_clock_in %}
-        <div class="col-lg-12">
-            <div class="table-responsive m-b-40">
-                <h5>Employees Still 'In' who didn't Clock in today</h5>
-                <table class="table table-borderless table-data3">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Clock in</th>
-                            <th>Device Used</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for data in warning_not_today_clock_in.values %}
-                        <tr>
-                            <td>{{ data.Name}}</td>
-                            <td>{{ data.Date}}</td>
-                            <td>{{ data.Device}}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <!-- END DATA TABLE-->
-        </div>
-        {% endif %}
-
-
-        <div class="row">
-
-            {% if current_not %}
-            {% if primary_not%}
-            <div class="col-lg-6">
-                {% else %}
-                <div class="col-lg-12">
-                    {% endif %}
-                    <div class="table-responsive m-b-40">
-                        <h5>Employees in other locations </h5>
-                        <table class="table table-borderless table-data3">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Primary Department</th>
-                                    <th>Current Department</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for data in current_not %}
-                                <tr>
-                                    <td>{{ data.Name }}</td>
-                                    <td>{{ data.Primary_Department }}</td>
-                                    <td>{{ data.Current_Department }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- END DATA TABLE-->
-                </div>
-                {% endif %}
-
-                {% if primary_not %}
-                {% if current_not %}
-                <div class="col-lg-6">
-                    {% else %}
-                    <div class="col-lg-12">
-                        {% endif %}
-                        <div class="table-responsive m-b-40">
-                            <h5>Employees Visiting your site</h5>
-                            <table class="table table-borderless table-data3">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Primary Department</th>
-                                        <th>Current Department</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for data in primary_not %}
-                                    <tr>
-                                        <td>{{ data.Name }}</td>
-                                        <td>{{ data.Primary_Department }}</td>
-                                        <td>{{ data.Current_Department }}</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- END DATA TABLE-->
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-
+    <div class="jumbotron ">
+      <h2 style="text-align: center">Current Employees by location</h2>
+      <div class="table-responsive">
+        <table class=" table table table-striped table-bordered table-sm">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col"> Location </th>
+              <th scope="col"> Employees </th>
+            </tr>
+          </thead>
+          <tbody>
+            {%  for location, item in current_working_locations.items %}
+            <tr>
+              <td>{{ location }}</td>
+              <td>{{ item.Name }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
+    {% else %}
+    <div class="jumbotron jumbotron-fluid">
+      <h2 style="text-align: center">Current Employees {{ current_employees }}</h2>
+    </div>
+    {% endif %}
+  </div>
 
-    {% endblock %}
+  <!--  list of devices-->
+  {% if list_of_devices %}
+  <div class="col-lg">
+    <h5>Devices</h5>
+    <div class="table-responsive">
+      <table class="table table table-striped table-bordered table-sm">
+        <thead class="tableColor">
+          <tr>
+            <th scope="col">Devices</th>
+            <th scope="col">Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for device, quantity in list_of_devices.items %}
+          <tr>
+            <td>{{ device }}</td>
+            <td>{{ quantity }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+{% if greater_hours.data %}
+<h5> Irregular Hours </h5>
+<div class="table-responsive text-nowrap">
+  <table class="table table-striped table-bordered table-sm">
+    <thead class="tableColor">
+      <tr>
+        {% for columns_labels in greater_hours.columns %}
+        <th scope="col">{{ columns_labels }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for items_in_list in greater_hours.data %}
+      <tr>
+        {% for items in items_in_list %}
+        <td>{{ items }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<br>
+{% endif%}
+
+{% if employees_late %}
+<h5>Employees Click in Late Today. (between 7:10am 8:00am)</h5>
+<div class="table-responsive text-nowrap">
+  <table class="table table-striped table-bordered table-sm">
+    <thead class=" tableColor">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Time</th>
+        <th scope="col">Device Used</th>
+        <th scope="col">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in employees_late.values %}
+      <tr>
+        <td>{{ data.Name}}</td>
+        <td>{{ data.Time}}</td>
+        <td>{{ data.Device}}</td>
+        <td>{{ data.Notes}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <br>
+</div>
+{% endif%}
+
+<!-- irregular_entries -->
+{% if irregular_entries %}
+<h5>Irregular Entries </h5>
+<div class="table-responsive text-nowrap">
+  <table class="table table-striped table-bordered table-sm">
+    <thead class="tableColor">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Department</th>
+        <th scope="col">Device Used</th>
+        <th scope="col">Time</th>
+        <th scope="col">Date</th>
+        <th scope="col">Activity</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in irregular_entries.values %}
+      <tr>
+        <td>{{data.Name}}</td>
+        <td>{{data.Department}}</td>
+        <td>{{data.Device}}</td>
+        <td>{{data.Time}}</td>
+        <td>{{data.Date}}</td>
+        <td>{{data.Activity}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<br>
+{% endif%}
+
+
+{% if too_short_entries %}
+<h5> Entries Too short </h5>
+<div class="table-responsive text-nowrap">
+  <table class="table table-striped table-bordered table-sm">
+    <thead class="tableColor">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Department</th>
+        <th scope="col">Device Used</th>
+        <th scope="col">Punch In</th>
+        <th scope="col">Punch Out</th>
+        <th scope="col">Min</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in too_short_entries.values %}
+      <tr>
+        <td>{{data.Name}}</td>
+        <td>{{data.Department}}</td>
+        <td>{{data.Device}}</td>
+        <td>{{data.in}}</td>
+        <td>{{data.out}}</td>
+        <td>{{data.total}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<br>
+{% endif%}
+
+
+{% if warning_not_today_clock_in %}
+<h5>Employees Still 'In' who didn't Clock in today</h5>
+<div class="table-responsive text-nowrap">
+  <table class="table table-striped table-bordered table-sm">
+    <thead class=" tableColor">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Clock in</th>
+        <th scope="col">Device Used</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in warning_not_today_clock_in.values %}
+      <tr>
+        <td>{{ data.Name}}</td>
+        <td>{{ data.Date}}</td>
+        <td>{{ data.Device}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<br>
+{% endif%}
+
+<!--    list of location for employees working in other places-->
+
+<div class="row">
+  {% if current_not %}
+  <div class="table-responsive text-nowrap col-lg ">
+    <h5>Employees in other locations </h5>
+    <table class="table table-striped table-bordered table-sm">
+      <thead class="tableColor">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Primary Department</th>
+          <th scope="col">Current Department</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in current_not %}
+        <tr>
+          <td>{{ data.Name }}</td>
+          <td>{{ data.Primary_Department }}</td>
+          <td>{{ data.Current_Department }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+
+  {% if primary_not %}
+  <div class="table-responsive text-nowrap col-lg ">
+    <h5>Employees Visiting your site</h5>
+    <table class="table table-striped  table-bordered table-sm">
+      <thead class=" tableColor">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Primary Department</th>
+          <th scope="col">Current Department</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in primary_not %}
+        <tr>
+          <td>{{ data.Name }}</td>
+          <td>{{ data.Primary_Department }}</td>
+          <td>{{ data.Current_Department }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+</div>
+
+
+
+{% endblock %}
