@@ -11,7 +11,6 @@ class IrregularEntries:
     ''' this will catch wrong entries due synchronization problems '''
     def __init__(self):
         self.key_api = TimeStationKey.get_key()
-        self.key_api = os.environ.get('TimeStationKey')
         self.CODE = 34  # Employee Activity
         self.today = datetime.date.today()
         self.current_monday = self.today - datetime.timedelta(days=self.today.weekday())
