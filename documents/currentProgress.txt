@@ -1,6 +1,0 @@
-- created basic upload documents
-- basic upload file done
-- basic list view with delete button done
-- next dowload button functional
-
-

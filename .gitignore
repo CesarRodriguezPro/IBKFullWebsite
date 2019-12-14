@@ -6,3 +6,4 @@ DjangoEnv
 *.doc
 *.pdf
 *.csv
+*.xlsx

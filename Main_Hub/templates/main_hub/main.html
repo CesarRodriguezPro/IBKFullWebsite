@@ -1,6 +1,16 @@
 {% extends 'main_hub/base.html' %}
 {% block content %}
 
+<div style="padding:15px; align:center; background-color:#1F567C;" >
+<table>
+<tr>
+<td><h4 style="color:white;">{{user.get_full_name }}</h4></td>
+<td style="color:white;padding-left:15px">News! Now you can donwload the daily Safety Meeting form the "Downloads" tab</td>
+</tr>
+</table>
+</div>
+
+
 <!-- Weather code -->
 <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us" data-label_1="NEW YORK"
   data-label_2="WEATHER" data-theme="original">NEW YORK WEATHER</a>
@@ -18,7 +28,6 @@
 <!-- end of weather code -->
 
 <!--start section of information -->
-
 <br>
 <div class="row">
   <!--  amount of employees-->

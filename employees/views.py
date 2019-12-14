@@ -7,7 +7,6 @@ from django.urls import reverse
 import datetime
 
 
-
 def hour_change(request):
     return render(request, template_name='changeHoursPage.html',context=ChangeHoursForm)
 

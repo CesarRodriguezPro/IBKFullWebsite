@@ -8,6 +8,8 @@ from django.http import HttpResponse
 from UniversalRootFolder import pdf_creator_for_timesheet
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from dailySafety.views import print_pdf
+from dailyTrainingLog.views import dailyTrainigLog_pdf
 import datetime
 
 register = template.Library()
@@ -88,11 +90,18 @@ def main_hub(request, requested_location=None, options=None):
         if options:
             if options == 'DownloadCurrent':
                 return download_current_list(request, requested_location)
+
+
+            elif options == 'daily_safety':
+                return print_pdf(request, requested_location)
+
+            elif options == 'dailyTrainingLog':
+                return dailyTrainigLog_pdf(request, requested_location)
+
             elif options == 'last_week_timesheet':
                 return pdf_creator_for_timesheet.pdf_builder_last_week(location=requested_location)
             elif options == 'current_Timesheet':
                 if datetime.date.today().weekday() == 0:
-
                     return pdf_creator_for_timesheet.pdf_builder_last_week(location=requested_location)
                 else:
                     return pdf_creator_for_timesheet.pdf_builder_current(location=requested_location)

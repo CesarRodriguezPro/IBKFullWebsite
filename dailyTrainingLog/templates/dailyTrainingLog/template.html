@@ -1,0 +1,124 @@
+<html>
+
+<head>
+    <style type="text/css">
+        @page {
+            size: letter portrait;
+            size: Letter;
+            margin: 1.5cm;
+
+        }
+
+
+        body {
+            font-size: 10pt;
+        }
+
+        . {
+            padding: 4px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        .heather_center_text {
+            text-align: center;
+            width: 540px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h3 style='text-align: center;'>Daily Training Log</h3>
+
+        <h4 style='text-align:center;'> LL196 Traker | Date-{{today_date}} | Company - IBK Construction Group</h4>
+        <table>
+            <tr>
+                <td style='width: 140px'>Job Site Address</td>
+                <td class='heather_center_text'>{{location}} </td>
+            </tr>
+            <tr>
+                <td>Permint Holder</td>
+                <td class='heather_center_text'></td>
+            </tr>
+            <tr>
+                <td>Permit Holder License # </td>
+                <td> </td>
+            </tr>
+            <tr>
+                <td>Main DOB Permit #</td>
+                <td class='heather_center_text'></td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="padding-top:10px">
+        <table>
+            <tr>
+                <td>
+                    BC 3321.1 requires permint holder to maintain a daily log of all workers on site and proof
+                    that they received the required site
+                    safety
+                    training. Use this lob form to list the names of all workers on site and information about
+                    their training. This form and Copies of traning
+                    cards for all workers must be kept on site and made avaiable to the Department of Buildings
+                    upon request.
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="padding-top:10px">
+
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Worker's Name</th>
+                <th>Worker's title(CS,SSM,SSC,etc)</th>
+                <th>Company worker is employed by<br>
+                    (if different form permit holder)</th>
+                <th>Date Training Card Reviewed</th>
+                <th>Expiration date of card</th>
+            </tr>
+            {{ data }}
+            {% for i in employees_names.values %}
+
+            <tr>
+                <td style="width:20px">{{forloop.counter}}</td>
+                <td style='width:180px'>{{i.Name}}</td>
+                <td style='width:180px'>{{i.TITLE}}</td>
+                <td>IBK Construction</td>
+                <td>{{ today_date }}</td>
+                <td>{{ i.OSHAExp }}</td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div style="page-break-before: always;">
+        <h1> Names missing </h1>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Device</th>
+            </tr>
+            <tr>
+                {% for item in not_in.values %}
+                <td>{{item.Name}}</td>
+                <td>{{ item.Device}}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

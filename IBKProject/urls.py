@@ -31,6 +31,8 @@ urlpatterns = [
     path('accounts/', include(('accounts.urls', 'accounts'))),
     path('employees/', include(('employees.urls', 'employees'))),
     path('documents/', include(('documents.urls', 'documents'))),
+    path('safety/', include(('dailySafety.urls', 'dailySafety'))),
+    path('dailyLog/', include(('dailyTrainingLog.urls', 'dailyTrainingLog'))),
     ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

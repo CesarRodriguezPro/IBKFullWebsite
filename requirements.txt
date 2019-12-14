@@ -1,3 +1,4 @@
+weasyprint
 astroid==2.2.5
 certifi==2019.6.16
 Django==2.2.5

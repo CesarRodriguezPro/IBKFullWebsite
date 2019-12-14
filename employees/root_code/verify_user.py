@@ -5,7 +5,7 @@ import datetime
 from dateutil import relativedelta
 
 ''' these function will verify if the employees is in Timestation 
-i will donwload a CSV file from the API and conpare the name giving in the employees/home.html
+i will donwload a CSV file from the API and compare the name giving in the employees/home.html
 also will return the name as its properly time in timestation.
 also will check if the data download it from the API is older than 4 hours if it is will renew it.'''
 
@@ -26,6 +26,7 @@ class Verify:
         self.raw_data = pd.read_csv(self.url)
         if self.save_data:
             self.employees_to_data_store()
+
 
     def data_selector(self):
 

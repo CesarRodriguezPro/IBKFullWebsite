@@ -10,9 +10,9 @@ from .models import Document
 class ListDocument(LoginRequiredMixin, ListView):
     model = Document
 
+
 @login_required()
 def delete_document(request, pk):
-    print(pk)
     if request.method == 'POST':
         document = Document.objects.get(pk=pk)
         document.delete()
