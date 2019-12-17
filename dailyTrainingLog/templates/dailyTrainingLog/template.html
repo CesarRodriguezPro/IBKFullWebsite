@@ -5,7 +5,7 @@
         @page {
             size: letter portrait;
             size: Letter;
-            margin: 1.5cm;
+            margin: 1.0cm;
 
         }
 
@@ -96,7 +96,7 @@
                 <td style="width:20px">{{forloop.counter}}</td>
                 <td style='width:180px'>{{i.Name}}</td>
                 <td style='width:180px'>{{i.TITLE}}</td>
-                <td>IBK Construction</td>
+                <td styte='width:120px'>IBK Construction</td>
                 <td>{{ today_date }}</td>
                 <td>{{ i.OSHAExp }}</td>
 
@@ -111,12 +111,14 @@
                 <th>Name</th>
                 <th>Device</th>
             </tr>
-            <tr>
+            
                 {% for item in not_in.values %}
+                <tr>
                 <td>{{item.Name}}</td>
                 <td>{{ item.Device}}</td>
+                </tr>
                 {% endfor %}
-            </tr>
+            
         </table>
     </div>
 </body>

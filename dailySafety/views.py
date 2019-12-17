@@ -1,18 +1,20 @@
 from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from weasyprint import HTML
-from .rootApplications import timeStationServerInfo
+from . import timeStationServerInfo
 import datetime
 import os
 
 
-class Home(TemplateView):
+class Home(TemplateView,LoginRequiredMixin):
     template_name = 'dailySafety/index.html'
 
 
-class PDF(TemplateView):
+class PDF(TemplateView, LoginRequiredMixin):
     template_name = os.path.join('dailySafety/template.html')
 
 
@@ -28,7 +30,7 @@ def building_pages(location):
 
         extra_space_right = 36 - number_employees if number_employees < 36 else 0
         extra_space_right_column = ['_' for x in range(extra_space_right)]
-        extra_space_left_column = ['_' for x in range(8)]
+       
 
         data = {
             'location': location,
@@ -37,7 +39,6 @@ def building_pages(location):
             'foreman_name': device,
             'items': employees,
             'extra_space_right_string' : extra_space_right_column,
-            'extra_space_left_string' : extra_space_left_column,
             'list_topics' : timeStationServerInfo.list_topics,
         }
         html_string = render_to_string('dailySafety/template.html', context=data)
@@ -47,6 +48,8 @@ def building_pages(location):
         counter += 1
     return list_pages
 
+
+@login_required
 def print_pdf(request, location):
     today = datetime.datetime.now().strftime('%m.%d.%Y')
     response = HttpResponse(content_type='application/pdf')

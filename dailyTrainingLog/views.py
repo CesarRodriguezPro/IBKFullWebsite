@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.template.loader import render_to_string
+from django.contrib.auth.decorators import login_required
 from weasyprint import HTML
 from django.http import HttpResponse
 from dailyTrainingLog.DataProccesing import GetDataFromTimeStation
@@ -23,6 +24,7 @@ def building_pages(location, today):
     rendered_pdf = html.render()
     return [rendered_pdf]
 
+@login_required
 def dailyTrainigLog_pdf(request, location):
     today = datetime.datetime.now().strftime('%m/%d/%Y')
     response = HttpResponse(content_type='application/pdf')

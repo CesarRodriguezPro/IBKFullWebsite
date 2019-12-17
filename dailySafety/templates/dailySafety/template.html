@@ -11,7 +11,7 @@
         @page {
             size: letter portrait;
             size: Letter;
-            margin: 1.5cm;
+            margin: 1.0cm;
 
         }
 
@@ -44,7 +44,7 @@
 
         .left_col {
             float: left;
-            width: 48%;
+            width: 48.4%;
         }
 
         .right_col {
@@ -100,26 +100,14 @@
                 {% for topic in list_topics%}
                     {% if forloop.counter < 2 %}
                             <tr>
-                                <td style="width:325px; height:51px" colspan=1>{{topic}}</td>
+                                <td style="width:345px; height:54px" colspan=1>{{topic}}</td>
                             </tr>
                       {% else %}
                             <tr>
-                                <td style="height:15px; width:325px">{{topic}}</td>
+                                <td style="height:16px; width:347px">{{topic}}</td>
                             </tr>
                         {% endif %}
                 {% endfor %}
-
-
-                {% if number_employees > 34 %}
-                    {% for x in extra_space_left_string  %}
-                        <tr>
-                            <td style="height:15px; width:325px"></td>
-                        </tr>
-                    {% endfor %}
-                {% endif %}
-
-
-
 
             </table>
         </div>
@@ -127,21 +115,21 @@
         <div class=".right_col">
             <table>
                 <tr>
-                    <td style="height:15px;" colspan=2>List of Attendees</td>
-                    <td style="height:15px;">Exp Osha 30H</td>
+                    <td style="height:16px;" colspan=2>List of Attendees</td>
+                    <td>Exp Osha 30H</td>
                 </tr>
                 {% for item in items.values %}
                     <tr>
-                        <td style="width:20px; height:15px">{{ forloop.counter }}</td>
-                        <td style="width:247px; height:15px">{{ item.Name }} <br></td>
-                        <td>{{ item.osha }}<br></td>
+                        <td style="width:25px">{{ forloop.counter }}</td>
+                        <td style="width:239px; height:16px">{{ item.Name }}</td>
+                        <td>{{ item.osha }}</td>
                     </tr>
                 {% endfor %}
                 {% if number_employees < 34 %}
                     {% for x in extra_space_right_string %}
                         <tr>
-                            <td style="width:20px; height:15px"></td>
-                            <td style="width:247px; height:15px"> <br></td>
+                            <td style="width:25px"></td>
+                            <td style="width:239px; height:16px"> <br></td>
                             <td><br></td>
                         </tr>
                     {% endfor %}

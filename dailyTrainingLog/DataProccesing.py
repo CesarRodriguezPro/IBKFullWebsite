@@ -3,7 +3,7 @@ from UniversalRootFolder import TimeStationKey
 import os, datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-osha_path = os.path.join(BASE_DIR, 'media','dailyTrainingLog', 'data.xlsx')
+osha_path = os.path.join(BASE_DIR, 'media','data.xlsx')
 
 ######################## settings #########################################################################
 API_KEY = TimeStationKey.get_key()
