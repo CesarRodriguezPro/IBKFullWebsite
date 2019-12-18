@@ -3,12 +3,10 @@ from django.views.generic import View, ListView
 from .root_code.get_jnfo import GettingTimeSheet
 from .root_code.verify_user import Verify
 from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from . import models
 import datetime
-
-
-
 
 
 def get_user_info(request, last, name):
@@ -62,8 +60,7 @@ class EmployeesHub(View):
         return get_user_info(request,last,name)
 
 
-
-class Record(ListView):
+class Record(ListView, LoginRequiredMixin):
     template_name = 'employees/record_list.html'
     model = models.RecordView
     paginate_by = 100  # if pagination is desired
