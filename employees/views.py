@@ -1,20 +1,24 @@
 from django.shortcuts import render
-from django.views.generic import View
+from django.views.generic import View, ListView
 from .root_code.get_jnfo import GettingTimeSheet
 from .root_code.verify_user import Verify
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from . import models
 import datetime
 
 
-def hour_change(request):
-    return render(request, template_name='changeHoursPage.html',context=ChangeHoursForm)
+
 
 
 def get_user_info(request, last, name):
     data = GettingTimeSheet()
     full_name = f'{last}, {name}'
     combine_time, separate_time, updated_time, next_update = data.run(full_name)
+    record_request = models.RecordView()
+    record_request.first_name = name
+    record_request.last_name = last
+    record_request.save()
 
     data = {
         'timestamp_log':updated_time,
@@ -22,8 +26,8 @@ def get_user_info(request, last, name):
         'name' : full_name,
         'combine_data': combine_time,
         'separate_time': separate_time,
-
     }    
+
     return render(request, 'employees/employees_hub.html', context=data)
 
 
@@ -58,6 +62,12 @@ class EmployeesHub(View):
         return get_user_info(request,last,name)
 
 
+
+class Record(ListView):
+    template_name = 'employees/record_list.html'
+    model = models.RecordView
+    paginate_by = 100  # if pagination is desired
+    ordering = ['-time']
 
 
 
