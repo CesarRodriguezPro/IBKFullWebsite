@@ -24,6 +24,7 @@ TEMPLATES_DIR = [
     os.path.join(BASE_DIR, 'documents', 'templates'),
     os.path.join(BASE_DIR, 'dailySafety', 'templates'),
     os.path.join(BASE_DIR, 'dailyTrainigLog', 'templates'),
+    os.path.join(BASE_DIR, 'uploadExcel', 'templates'),
 ]
 
 
@@ -61,6 +62,7 @@ INSTALLED_APPS = [
     'documents',
     'dailySafety',
     'dailyTrainingLog',
+    'uploadExcel',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
