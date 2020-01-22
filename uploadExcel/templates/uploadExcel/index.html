@@ -1,9 +1,46 @@
-{% extends "uploadExcel' %}
+{% extends "uploadExcel/base.html" %}
+{% load crispy_forms_tags %}
 {% block title %} Upload Excel {% endblock title %}
 
 
 {% block content %}
 
-<h1>hello world </h1>
+{% if request.session.type == 'SystemAdmin' %}
+{% if messages %}
+      {% for message in messages %}
+            <div 
+            {% if message.tags %} 
+                {% if message.tags == 'error'%}
+                          class="alert alert-danger" 
+                  {% else %}
+                          class="alert alert-success"
+                  {% endif %}
+            {% endif %}
+            role="alert">
+            {{ message }}"
+            </div>
+      {% endfor %}
+{% endif %}
+
+
+<div class="jumbotron">
+      <div class="form-group col-md-3 mb-0">
+        <h5>Please upload the excel</h5>
+      </div>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+
+      <div class="form-group col-md-3 mb-0">
+        {{ form.document|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-3 mb-0">
+        <button type="submit" class="btn btn-primary ">Summit</button>
+      </div>
+  </div>
+   </div>
+  </form>
+
+{% endif %}
 
 {% endblock content%}

@@ -61,7 +61,12 @@
                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                    Downloads
                  </button>
+
+                 
                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    {% if request.session.type == 'SystemAdmin' %}
+                           <a class="dropdown-item" href="{% url 'uploadExcel:upload' %}">Upload Database</a>
+                    {% endif %}
                    <a class="dropdown-item" href="{% url 'documents:list_documents' %}">Forms And Documents</a>
                    <a class="dropdown-item"
                      href="{% url 'foreman_hub:foreman_main' %}{{current_location_label}}/daily_safety">Pre-Shift Safety
